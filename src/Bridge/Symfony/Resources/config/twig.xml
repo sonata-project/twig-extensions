@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="sonata.core.twig.extension.wrapping" class="Sonata\TwigExtensions\Extension\FormTypeExtension">
+            <tag name="twig.extension"/>
+            <argument>%sonata.core.form_type%</argument>
+        </service>
+        <service id="sonata.core.twig.status_extension" class="Sonata\TwigExtensions\Extension\StatusExtension">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="sonata.core.twig.deprecated_template_extension" class="Sonata\TwigExtensions\Extension\DeprecatedTemplateExtension">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="sonata.core.twig.template_extension" class="Sonata\TwigExtensions\Extension\TemplateExtension">
+            <tag name="twig.extension"/>
+            <argument>%kernel.debug%</argument>
+            <argument type="service" id="sonata.core.model.adapter.chain"/>
+        </service>
+        <service id="sonata.core.flashmessage.twig.extension" class="Sonata\TwigExtensions\Extension\FlashMessageExtension" public="true">
+            <tag name="twig.extension"/>
+            <argument type="service" id="sonata.core.flashmessage.manager"/>
+        </service>
+    </services>
+</container>
