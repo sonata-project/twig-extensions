@@ -1,9 +1,11 @@
 {
     "name": "sonata-project/twig-extensions",
-    "type": "symfony-bundle",
-    "description": "Symfony twig extensions",
+    "type": "library",
+    "description": "Sonata twig extensions",
     "keywords": [
-        "twig"
+        "twig",
+        "twig-extensions",
+        "sonata"
     ],
     "homepage": "https://sonata-project.org/bundles/twig-extensions",
     "license": "MIT",
@@ -22,7 +24,7 @@
         "php": "^7.1"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^3.3 || ^4.0"
+        "symfony/phpunit-bridge": "^4.0"
     },
     "config": {
         "sort-packages": true
