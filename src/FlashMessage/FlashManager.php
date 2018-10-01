@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\FlashMessage;
 
-use Sonata\Twig\Component\Status\StatusClassRendererInterface;
+use Sonata\Twig\Status\StatusClassRendererInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
