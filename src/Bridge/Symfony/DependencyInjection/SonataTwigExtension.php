@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 
-use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use Sonata\Twig\Serializer\BaseSerializerHandler;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
