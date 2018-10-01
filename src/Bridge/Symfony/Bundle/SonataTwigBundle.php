@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig;
+namespace Sonata\Twig\Bridge\Symfony\Bundle;
 
-use Sonata\Twig\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -8,7 +8,7 @@ The easiest way to install ``twig-extensions`` is to require it with Composer:
 
 .. code-block:: bash
 
-    $ composer require sonata-project/core-bundle
+    $ composer require sonata-project/twig-extensions
 
 Alternatively, you could add a dependency into your ``composer.json`` file directly.
 
@@ -22,7 +22,7 @@ Now, enable the bundle in ``bundles.php`` file:
 
     return [
         //...
-        Sonata\Twig\SonataCoreBundle::class => ['all' => true],
+        Sonata\Twig\Bridge\Symfony\Bundle\SonataTwigBundle::class => ['all' => true],
     ];
 
 .. note::
@@ -38,7 +38,7 @@ Now, enable the bundle in ``bundles.php`` file:
     {
         return array(
             // ...
-            new Sonata\Twig\SonataCoreBundle(),
+            new Sonata\Twig\Bridge\Symfony\Bundle\SonataTwigBundle(),
             // ...
         );
     }

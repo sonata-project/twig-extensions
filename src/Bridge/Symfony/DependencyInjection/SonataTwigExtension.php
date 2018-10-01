@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\DependencyInjection;
+namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use Sonata\Twig\Serializer\BaseSerializerHandler;

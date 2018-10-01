@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\Tests;
+namespace Sonata\Twig\Tests\Bridge\Symfony;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompilerPass;

@@ -1,5 +1,5 @@
-Core Bundle
-===========
+Twig Extensions
+===============
 
 The ``twig-extensions`` provided defaults elements required by the different Sonata's Bundles.
 
@@ -10,7 +10,6 @@ The ``twig-extensions`` provided defaults elements required by the different Son
    :numbered:
 
    reference/installation
-   reference/form_types
    reference/status_helper
    reference/flash_messages
    reference/twig_helpers

@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\Tests\Resources;
+namespace Sonata\Twig\Tests\Bridge\Symfony\Resources;
 
 use Sonata\Twig\Test\XliffValidatorTestCase;
 
