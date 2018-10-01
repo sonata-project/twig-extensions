@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\Twig\TokenParser;
+namespace Sonata\Twig\TokenParser;
 
-use Sonata\Twig\Twig\Node\TemplateBoxNode;
+use Sonata\Twig\Node\TemplateBoxNode;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;

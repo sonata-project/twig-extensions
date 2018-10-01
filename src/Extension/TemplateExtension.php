@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\Twig\Extension;
+namespace Sonata\Twig\Extension;
 
 use Sonata\Doctrine\Adapter\AdapterInterface;
-use Sonata\Twig\Twig\TokenParser\TemplateBoxTokenParser;
+use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 

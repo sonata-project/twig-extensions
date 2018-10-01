@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Tests\Twig\Node;
 
-use Sonata\Twig\Twig\Node\DeprecatedTemplateNode;
+use Sonata\Twig\Node\DeprecatedTemplateNode;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Test\NodeTestCase;
 

@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Twig\TokenParser;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Twig\Twig\Node\TemplateBoxNode;
-use Sonata\Twig\Twig\TokenParser\TemplateBoxTokenParser;
+use Sonata\Twig\Node\TemplateBoxNode;
+use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class TemplateBoxTokenParserTest extends TestCase

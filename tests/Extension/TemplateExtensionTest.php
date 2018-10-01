@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Twig\Twig\Extension\TemplateExtension;
+use Sonata\Twig\Extension\TemplateExtension;
 
 class TemplateExtensionTest extends TestCase
 {

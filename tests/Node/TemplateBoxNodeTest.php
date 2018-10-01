@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Tests\Twig\TokenParser;
 
-use Sonata\Twig\Twig\Node\TemplateBoxNode;
+use Sonata\Twig\Node\TemplateBoxNode;
 
 class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 {

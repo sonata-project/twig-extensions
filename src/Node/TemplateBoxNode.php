@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\Twig\Node;
+namespace Sonata\Twig\Node;
 
 use Twig\Compiler;
 use Twig\Node\Expression\AbstractExpression;
