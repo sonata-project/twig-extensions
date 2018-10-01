@@ -26,91 +26,12 @@ class ConfigurationTest extends TestCase
         return new Configuration();
     }
 
-    public function testInvalidFormTypeValueLeadsToErrorMessage(): void
-    {
-        $this->assertConfigurationIsInvalid(
-            [
-                ['form_type' => '3D'],
-            ],
-            'The form_type option value must be one of'
-        );
-    }
-
-    public function testProcessedConfigurationLooksAsExpected(): void
-    {
-        $this->assertProcessedConfigurationEquals([
-            ['form_type' => 'horizontal'], // this should be overwritten
-            ['form_type' => 'standard'],    // by this during the merge
-        ], [
-            'form_type' => 'standard',
-            'flashmessage' => [],
-            'form' => [
-                'mapping' => [
-                    'enabled' => true,
-                    'type' => [],
-                    'extension' => [],
-                ],
-            ],
-            'serializer' => [
-                'formats' => ['json', 'xml', 'yml'],
-            ],
-        ]);
-    }
-
-    public function testFormMapping(): void
-    {
-        $this->assertProcessedConfigurationEquals([
-            ['form' => [
-                'mapping' => [
-                    'type' => [
-                        'foo' => 'Foo\Bar',
-                    ],
-                    'extension' => [
-                        'choice' => [
-                            'service.id',
-                        ],
-                    ],
-                ],
-            ]],
-        ], [
-            'form' => [
-                'mapping' => [
-                    'enabled' => true,
-                    'type' => [
-                        'foo' => 'Foo\Bar',
-                    ],
-                    'extension' => [
-                        'choice' => [
-                            'service.id',
-                        ],
-                    ],
-                ],
-            ],
-            'form_type' => 'standard',
-            'flashmessage' => [],
-            'serializer' => [
-                'formats' => ['json', 'xml', 'yml'],
-            ],
-        ]);
-    }
-
     public function testDefault(): void
     {
         $this->assertProcessedConfigurationEquals([
             [],
         ], [
-            'form' => [
-                'mapping' => [
-                    'enabled' => true,
-                    'type' => [],
-                    'extension' => [],
-                ],
-            ],
-            'form_type' => 'standard',
             'flashmessage' => [],
-            'serializer' => [
-                'formats' => ['json', 'xml', 'yml'],
-            ],
         ]);
     }
 }

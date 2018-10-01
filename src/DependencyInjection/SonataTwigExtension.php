@@ -18,29 +18,14 @@ use Sonata\Twig\Serializer\BaseSerializerHandler;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-final class SonataTwigExtension extends Extension implements PrependExtensionInterface
+final class SonataTwigExtension extends Extension
 {
-    public function prepend(ContainerBuilder $container): void
-    {
-        $configs = $container->getExtensionConfig('sonata_admin');
-
-        foreach ($configs as $config) {
-            if (isset($config['options']['form_type'])) {
-                $container->prependExtensionConfig(
-                    $this->getAlias(),
-                    ['form_type' => $config['options']['form_type']]
-                );
-            }
-        }
-    }
-
     public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();

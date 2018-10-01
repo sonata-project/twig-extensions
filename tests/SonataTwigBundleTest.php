@@ -14,16 +14,15 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Twig\DependencyInjection\Compiler\AdapterCompilerPass;
-use Sonata\Twig\DependencyInjection\Compiler\StatusRendererCompilerPass;
-use Sonata\Twig\SonataTwigBundle;
+use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\Bridge\Symfony\Bundle\SonataTwigBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-final class SonataCoreBundleTest extends TestCase
+final class SonataTwigBundleTest extends TestCase
 {
     /**
      * @doesNotPerformAssertions
@@ -39,14 +38,9 @@ final class SonataCoreBundleTest extends TestCase
                     return;
                 }
 
-                if ($pass instanceof AdapterCompilerPass) {
-                    return;
-                }
-
                 $this->fail(sprintf(
                     'Compiler pass is not one of the expected types.
-                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass" or
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass", but got "%s".',
+                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass" but got "%s".',
                     \get_class($pass)
                 ));
             }));

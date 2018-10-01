@@ -20,7 +20,7 @@ class TemplateExtensionTest extends TestCase
 {
     public function testSafeUrl(): void
     {
-        $adapter = $this->createMock('Sonata\Twig\Model\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Sonata\Doctrine\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
         $extension = new TemplateExtension(true, $adapter);
