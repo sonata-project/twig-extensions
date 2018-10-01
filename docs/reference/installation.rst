@@ -4,7 +4,7 @@
 Installation
 ============
 
-The easiest way to install ``SonataCoreBundle`` is to require it with Composer:
+The easiest way to install ``twig-extensions`` is to require it with Composer:
 
 .. code-block:: bash
 
@@ -22,7 +22,7 @@ Now, enable the bundle in ``bundles.php`` file:
 
     return [
         //...
-        Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
+        Sonata\Twig\SonataCoreBundle::class => ['all' => true],
     ];
 
 .. note::
@@ -38,7 +38,7 @@ Now, enable the bundle in ``bundles.php`` file:
     {
         return array(
             // ...
-            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\Twig\SonataCoreBundle(),
             // ...
         );
     }
@@ -52,7 +52,7 @@ Configuration
 
         # config/packages/sonata.yaml
 
-        sonata_core:
+        sonata_twig:
             form:
                 mapping:
                     enabled: false
@@ -74,7 +74,7 @@ corresponding configuration node accordingly:
 
         # config/packages/sonata.yaml
 
-        sonata_core:
+        sonata_twig:
             form_type: horizontal
 
 .. note::

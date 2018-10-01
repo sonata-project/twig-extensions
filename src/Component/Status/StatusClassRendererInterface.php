@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Component\Status;
+namespace Sonata\Twig\Component\Status;
 
 /**
  * @author Hugo Briand <briand@ekino.com>

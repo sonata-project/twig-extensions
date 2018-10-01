@@ -18,7 +18,7 @@ Configuration
 
         # app/config/config.yml
 
-        sonata_core:
+        sonata_twig:
             flashmessage:
                 success:
                     types:
@@ -50,7 +50,7 @@ To use this feature in your PHP classes/controllers, you can use for example:
 
     <?php
 
-    $flashManager = $this->get('sonata.core.flashmessage.manager');
+    $flashManager = $this->get('sonata.twig.flashmessage.manager');
 
     $messages = $flashManager->get('success');
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Twig\Extension;
+namespace Sonata\Twig\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -34,6 +34,6 @@ final class FlashMessageExtension extends AbstractExtension
 
     public function getName(): string
     {
-        return 'sonata_core_flashmessage';
+        return 'sonata_twig_flashmessage';
     }
 }

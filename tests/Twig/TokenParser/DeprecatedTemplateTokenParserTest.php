@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
+namespace Sonata\Twig\Tests\Twig\TokenParser;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Twig\Node\DeprecatedTemplateNode;
-use Sonata\CoreBundle\Twig\TokenParser\DeprecatedTemplateTokenParser;
+use Sonata\Twig\Twig\Node\DeprecatedTemplateNode;
+use Sonata\Twig\Twig\TokenParser\DeprecatedTemplateTokenParser;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 use Twig\Node\Expression\ConstantExpression;

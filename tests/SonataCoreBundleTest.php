@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests;
+namespace Sonata\Twig\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
-use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
-use Sonata\CoreBundle\SonataCoreBundle;
+use Sonata\Twig\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\Twig\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\SonataTwigBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -51,7 +51,7 @@ final class SonataCoreBundleTest extends TestCase
                 ));
             }));
 
-        $bundle = new SonataCoreBundle();
+        $bundle = new SonataTwigBundle();
         $bundle->build($containerBuilder);
     }
 }

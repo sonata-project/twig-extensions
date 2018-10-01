@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\DependencyInjection;
+namespace Sonata\Twig\DependencyInjection;
 
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
+use Sonata\Twig\Serializer\BaseSerializerHandler;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-final class SonataCoreExtension extends Extension implements PrependExtensionInterface
+final class SonataTwigExtension extends Extension implements PrependExtensionInterface
 {
     public function prepend(ContainerBuilder $container): void
     {
@@ -61,17 +61,17 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
     {
         $mergedConfig = array_merge_recursive($config['flashmessage'], [
             'success' => ['types' => [
-                'success' => ['domain' => 'SonataCoreBundle'],
+                'success' => ['domain' => 'SonataTwigBundle'],
                 'sonata_flash_success' => ['domain' => 'SonataAdminBundle'],
                 'sonata_user_success' => ['domain' => 'SonataUserBundle'],
                 'fos_user_success' => ['domain' => 'FOSUserBundle'],
             ]],
             'warning' => ['types' => [
-                'warning' => ['domain' => 'SonataCoreBundle'],
+                'warning' => ['domain' => 'SonataTwigBundle'],
                 'sonata_flash_info' => ['domain' => 'SonataAdminBundle'],
             ]],
             'danger' => ['types' => [
-                'error' => ['domain' => 'SonataCoreBundle'],
+                'error' => ['domain' => 'SonataTwigBundle'],
                 'sonata_flash_error' => ['domain' => 'SonataAdminBundle'],
                 'sonata_user_error' => ['domain' => 'SonataUserBundle'],
             ]],
@@ -84,7 +84,7 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
             $cssClasses[$typeKey] = array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
-        $identifier = 'sonata.core.flashmessage.manager';
+        $identifier = 'sonata.twig.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
         $definition->replaceArgument(2, $types);

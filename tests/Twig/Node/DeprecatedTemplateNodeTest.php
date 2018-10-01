@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\Node;
+namespace Sonata\Twig\Tests\Twig\Node;
 
-use Sonata\CoreBundle\Twig\Node\DeprecatedTemplateNode;
+use Sonata\Twig\Twig\Node\DeprecatedTemplateNode;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Test\NodeTestCase;
 

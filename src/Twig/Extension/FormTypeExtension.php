@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Twig\Extension;
+namespace Sonata\Twig\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
@@ -37,6 +37,6 @@ final class FormTypeExtension extends AbstractExtension implements GlobalsInterf
 
     public function getName(): string
     {
-        return 'sonata_core_wrapping';
+        return 'sonata_twig_wrapping';
     }
 }

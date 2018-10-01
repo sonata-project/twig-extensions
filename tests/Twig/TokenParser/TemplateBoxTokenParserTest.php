@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
+namespace Sonata\Twig\Tests\Twig\TokenParser;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
-use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
+use Sonata\Twig\Twig\Node\TemplateBoxNode;
+use Sonata\Twig\Twig\TokenParser\TemplateBoxTokenParser;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class TemplateBoxTokenParserTest extends TestCase

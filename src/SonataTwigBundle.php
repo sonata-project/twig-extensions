@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle;
+namespace Sonata\Twig;
 
-use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
-use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\Twig\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class SonataCoreBundle extends Bundle
+final class SonataTwigBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

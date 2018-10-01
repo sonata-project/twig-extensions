@@ -54,12 +54,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\TwigExtensions\\": "src/"
+            "Sonata\\Twig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sonata\\TwigExtensions\\Tests\\": "tests/"
+            "Sonata\\Twig\\Tests\\": "tests/"
         }
     }
 }

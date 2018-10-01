@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\FlashMessage;
+namespace Sonata\Twig\FlashMessage;
 
-use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+use Sonata\Twig\Component\Status\StatusClassRendererInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\DependencyInjection\Compiler;
+namespace Sonata\Twig\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -24,11 +24,11 @@ final class StatusRendererCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasDefinition('sonata.core.twig.status_extension')) {
+        if (!$container->hasDefinition('sonata.twig.status_extension')) {
             return;
         }
 
-        $definition = $container->getDefinition('sonata.core.twig.status_extension');
+        $definition = $container->getDefinition('sonata.twig.status_extension');
 
         foreach ($container->findTaggedServiceIds('sonata.status.renderer') as $id => $attributes) {
             $definition->addMethodCall('addStatusService', [new Reference($id)]);

@@ -11,17 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\Extension;
+namespace Sonata\Twig\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Twig\Extension\FormTypeExtension;
+use Sonata\Twig\Twig\Extension\FormTypeExtension;
 
 class FormTypeExtensionTest extends TestCase
 {
     public function testGetName(): void
     {
         $extension = new FormTypeExtension(true);
-        $this->assertSame('sonata_core_wrapping', $extension->getName());
+        $this->assertSame('sonata_twig_wrapping', $extension->getName());
     }
 
     public function testGetGlobals(): void

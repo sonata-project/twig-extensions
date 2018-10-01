@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\DependencyInjection\Compiler;
+namespace Sonata\Twig\Tests\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
-use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
@@ -36,13 +36,13 @@ final class StatusRendererCompilerPassTest extends AbstractCompilerPassTestCase
         $this->setDefinition('sonata.status.renderer', $statusRenderer);
 
         $statusExtension = new Definition();
-        $this->setDefinition('sonata.core.twig.status_extension', $statusExtension);
-        $this->setDefinition('sonata.core.twig.status_runtime', $statusExtension);
+        $this->setDefinition('sonata.twig.status_extension', $statusExtension);
+        $this->setDefinition('sonata.twig.status_runtime', $statusExtension);
 
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'sonata.core.twig.status_runtime',
+            'sonata.twig.status_runtime',
             'addStatusService',
             [new Reference('sonata.status.renderer')]
         );

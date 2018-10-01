@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\DependencyInjection;
+namespace Sonata\Twig\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sonata_core');
+        $rootNode = $treeBuilder->root('sonata_twig');
 
         $this->addFlashMessageSection($rootNode);
 
@@ -62,7 +62,7 @@ class Configuration implements ConfigurationInterface
                                 ->useAttributeAsKey('type')
                                 ->prototype('array')
                                     ->children()
-                                        ->scalarNode('domain')->defaultValue('SonataCoreBundle')->end()
+                                        ->scalarNode('domain')->defaultValue('SonataTwigBundle')->end()
                                     ->end()
                                 ->end()
                             ->end()

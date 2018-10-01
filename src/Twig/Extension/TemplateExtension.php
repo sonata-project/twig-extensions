@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Twig\Extension;
+namespace Sonata\Twig\Twig\Extension;
 
-use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
-use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
+use Sonata\Twig\Model\Adapter\AdapterInterface;
+use Sonata\Twig\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -64,6 +64,6 @@ final class TemplateExtension extends AbstractExtension
 
     public function getName(): string
     {
-        return 'sonata_core_template';
+        return 'sonata_twig_template';
     }
 }

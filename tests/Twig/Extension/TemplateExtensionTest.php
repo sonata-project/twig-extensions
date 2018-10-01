@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\Extension;
+namespace Sonata\Twig\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Twig\Extension\TemplateExtension;
+use Sonata\Twig\Twig\Extension\TemplateExtension;
 
 class TemplateExtensionTest extends TestCase
 {
     public function testSafeUrl(): void
     {
-        $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Sonata\Twig\Model\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
         $extension = new TemplateExtension(true, $adapter);

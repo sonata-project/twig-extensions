@@ -81,7 +81,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - missing form mapping for `sonata_type_color`
-- reusable test case `Sonata\CoreBundle\Test\AbstractWidgetTestCase` is now compatible with Symfony 3.4
+- reusable test case `Sonata\Twig\Test\AbstractWidgetTestCase` is now compatible with Symfony 3.4
 
 ### Removed
 - Support for old versions of PHP and Symfony.
@@ -116,7 +116,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.3.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.2.0...3.3.0) - 2017-03-23
 ### Added
-- `sonata-project/datagrid-bundle` dependency for `Sonata\CoreBundle\ModelPageableManagerInterface`
+- `sonata-project/datagrid-bundle` dependency for `Sonata\Twig\ModelPageableManagerInterface`
 
 ### Fixed
 - deprecation notices in `AbstractWidgetTestCase`

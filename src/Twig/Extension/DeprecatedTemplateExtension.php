@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Twig\Extension;
+namespace Sonata\Twig\Twig\Extension;
 
-use Sonata\CoreBundle\Twig\TokenParser\DeprecatedTemplateTokenParser;
+use Sonata\Twig\Twig\TokenParser\DeprecatedTemplateTokenParser;
 use Twig\Extension\AbstractExtension;
 
 /**

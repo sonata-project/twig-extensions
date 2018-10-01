@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Twig\Extension;
+namespace Sonata\Twig\Twig\Extension;
 
-use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+use Sonata\Twig\Component\Status\StatusClassRendererInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
