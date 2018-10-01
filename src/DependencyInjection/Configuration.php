@@ -31,38 +31,6 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('sonata_core');
 
         $this->addFlashMessageSection($rootNode);
-        $this->addSerializerFormats($rootNode);
-
-        $rootNode
-            ->children()
-                ->arrayNode('form')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('mapping')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->booleanNode('enabled')
-                                    ->defaultValue(true)
-                                ->end()
-                                ->arrayNode('type')
-                                    ->useAttributeAsKey('id')
-                                    ->defaultValue([])
-                                    ->prototype('scalar')->end()
-                                ->end()
-
-                                ->arrayNode('extension')
-                                    ->useAttributeAsKey('id')
-                                    ->defaultValue([])
-                                    ->prototype('array')
-                                        ->prototype('scalar')->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ;
 
         return $treeBuilder;
     }
@@ -98,27 +66,6 @@ class Configuration implements ConfigurationInterface
                                     ->end()
                                 ->end()
                             ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ;
-    }
-
-    /**
-     * Returns configuration for serializer formats.
-     */
-    private function addSerializerFormats(ArrayNodeDefinition $node): void
-    {
-        $node
-            ->children()
-                ->arrayNode('serializer')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('formats')
-                            ->prototype('scalar')->end()
-                            ->defaultValue(['json', 'xml', 'yml'])
-                            ->info('Default serializer formats, will be used while getting subscribing methods.')
                         ->end()
                     ->end()
                 ->end()

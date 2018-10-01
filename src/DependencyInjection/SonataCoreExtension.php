@@ -46,23 +46,12 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
         $processor = new Processor();
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
-        $bundles = $container->getParameter('kernel.bundles');
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('date.xml');
         $loader->load('flash.xml');
-        $loader->load('form_types.xml');
-        $loader->load('validator.xml');
         $loader->load('twig.xml');
-        $loader->load('model_adapter.xml');
-        $loader->load('commands.xml');
 
         $this->registerFlashTypes($container, $config);
-        $container->setParameter('sonata.core.form_type', $config['form_type']);
-
-        if (isset($bundles['JMSSerializerBundle'])) {
-            $this->configureSerializerFormats($config);
-        }
     }
 
     /**
@@ -102,12 +91,5 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
         $definition->replaceArgument(3, $cssClasses);
 
         $container->setDefinition($identifier, $definition);
-    }
-
-    public function configureSerializerFormats(array $config): void
-    {
-        if (interface_exists(SubscribingHandlerInterface::class)) {
-            BaseSerializerHandler::setFormats($config['serializer']['formats']);
-        }
     }
 }
