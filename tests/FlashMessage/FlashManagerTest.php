@@ -41,7 +41,7 @@ class FlashManagerTest extends TestCase
     /**
      * Set up units tests.
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->session = $this->getSession();
         $this->flashManager = $this->getFlashManager([
