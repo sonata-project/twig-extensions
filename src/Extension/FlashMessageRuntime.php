@@ -16,7 +16,7 @@ namespace Sonata\Twig\Extension;
 use Sonata\Twig\FlashMessage\FlashManager;
 
 /**
- * This is the Sonata core flash message Twig runtime.
+ * This is the Sonata flash message Twig runtime.
  *
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
@@ -34,7 +34,7 @@ final class FlashMessageRuntime
     }
 
     /**
-     * Returns flash messages handled by Sonata core flash manager.
+     * Returns flash messages handled by Sonata flash manager.
      *
      * @param string $type Type of flash message
      */
@@ -44,7 +44,7 @@ final class FlashMessageRuntime
     }
 
     /**
-     * Returns flash messages types handled by Sonata core flash manager.
+     * Returns flash messages types handled by Sonata flash manager.
      */
     public function getFlashMessagesTypes(): array
     {
