@@ -37,7 +37,7 @@ final class FlashManager implements StatusClassRendererInterface
     private $cssClasses;
 
     /**
-     * @param array $types      Sonata core types array (defined in configuration)
+     * @param array $types      Sonata types array (defined in configuration)
      * @param array $cssClasses Css classes associated with $types
      */
     public function __construct(SessionInterface $session, array $types, array $cssClasses)
@@ -60,7 +60,7 @@ final class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns Sonata core flash message types.
+     * Returns Sonata flash message types.
      */
     public function getTypes(): array
     {
@@ -76,7 +76,7 @@ final class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns flash bag messages for correct type after renaming with Sonata core type.
+     * Returns flash bag messages for correct type after renaming with Sonata type.
      */
     public function get(string $type): array
     {
@@ -108,7 +108,7 @@ final class FlashManager implements StatusClassRendererInterface
     /**
      * Process flash message type rename.
      *
-     * @param string $type  Sonata core flash message type
+     * @param string $type  Sonata flash message type
      * @param string $value Original flash message type
      */
     private function rename(string $type, string $value): void

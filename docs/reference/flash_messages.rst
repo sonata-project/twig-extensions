@@ -74,4 +74,4 @@ To use this feature in your templates, include the following template:
 
 .. code-block:: jinja
 
-    {% include '@SonataCore/FlashMessage/render.html.twig' %}
+    {% include '@SonataTwig/FlashMessage/render.html.twig' %}
