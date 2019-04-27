@@ -35,10 +35,9 @@ final class StatusRuntime
     }
 
     /**
-     * @param object $object
-     * @param mixed  $statusType
+     * @param mixed $statusType
      */
-    public function statusClass($object, $statusType = null, string $default = ''): string
+    public function statusClass(object $object, $statusType = null, string $default = ''): string
     {
         foreach ($this->statusServices as $statusService) {
             \assert($statusService instanceof StatusClassRendererInterface);

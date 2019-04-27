@@ -20,15 +20,11 @@ interface StatusClassRendererInterface
 {
     /**
      * Tells if class may handle $object for status class rendering.
-     *
-     * @param object $object
      */
-    public function handlesObject($object, ?string $statusName = null): bool;
+    public function handlesObject(object $object, ?string $statusName = null): bool;
 
     /**
      * Returns the status CSS class for $object.
-     *
-     * @param object $object
      */
-    public function getStatusClass($object, ?string $statusName = null, string $default = ''): string;
+    public function getStatusClass(object $object, ?string $statusName = null, string $default = ''): string;
 }
