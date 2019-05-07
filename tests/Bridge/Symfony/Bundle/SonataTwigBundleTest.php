@@ -33,7 +33,7 @@ final class SonataTwigBundleTest extends TestCase
 
         $containerBuilder->expects($this->any())
             ->method('addCompilerPass')
-            ->will($this->returnCallback(function (CompilerPassInterface $pass): void {
+            ->willReturnCallback(function (CompilerPassInterface $pass): void {
                 if ($pass instanceof StatusRendererCompilerPass) {
                     return;
                 }
@@ -43,7 +43,7 @@ final class SonataTwigBundleTest extends TestCase
                     Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass" but got "%s".',
                     \get_class($pass)
                 ));
-            }));
+            });
 
         $bundle = new SonataTwigBundle();
         $bundle->build($containerBuilder);
