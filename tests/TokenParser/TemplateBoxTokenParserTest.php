@@ -16,7 +16,7 @@ namespace Sonata\Twig\Tests\TokenParser;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Node\TemplateBoxNode;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
-use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Node\Expression\ConstantExpression;
 
 class TemplateBoxTokenParserTest extends TestCase
 {
@@ -31,10 +31,8 @@ class TemplateBoxTokenParserTest extends TestCase
      */
     public function testCompile($enabled, $source, $expected): void
     {
-        $translator = $this->createMock(TranslatorInterface::class);
-
         $env = new \Twig_Environment(new \Twig_Loader_Array([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
-        $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
+        $env->addTokenParser(new TemplateBoxTokenParser($enabled));
         if (class_exists('\Twig_Source')) {
             $source = new \Twig_Source($source, 'test');
         }
@@ -57,7 +55,7 @@ class TemplateBoxTokenParserTest extends TestCase
                 true,
                 '{% sonata_template_box %}',
                 new TemplateBoxNode(
-                    new \Twig_Node_Expression_Constant('Template information', 1),
+                    new ConstantExpression('Template information', 1),
                     true,
                     1,
                     'sonata_template_box'
@@ -67,7 +65,7 @@ class TemplateBoxTokenParserTest extends TestCase
                 true,
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
-                    new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
+                    new ConstantExpression('This is the basket delivery address step page', 1),
                     true,
                     1,
                     'sonata_template_box'
@@ -77,7 +75,7 @@ class TemplateBoxTokenParserTest extends TestCase
                 false,
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
-                    new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
+                    new ConstantExpression('This is the basket delivery address step page', 1),
                     false,
                     1,
                     'sonata_template_box'

@@ -14,13 +14,14 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Node;
 
 use Sonata\Twig\Node\TemplateBoxNode;
+use Twig\Node\Expression\ConstantExpression;
 
 class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 {
     public function testConstructor(): void
     {
         $body = new TemplateBoxNode(
-            new \Twig_Node_Expression_Constant('This is the default message', 1),
+            new ConstantExpression('This is the default message', 1),
             true,
             1,
             'sonata_template_box'
@@ -44,14 +45,14 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
     public function getTests()
     {
         $nodeEn = new TemplateBoxNode(
-            new \Twig_Node_Expression_Constant('This is the default message', 1),
+            new ConstantExpression('This is the default message', 1),
             true,
             1,
             'sonata_template_box'
         );
 
         $nodeFr = new TemplateBoxNode(
-            new \Twig_Node_Expression_Constant('Ceci est le message par défaut', 1),
+            new ConstantExpression('Ceci est le message par défaut', 1),
             true,
             1,
             'sonata_template_box'
