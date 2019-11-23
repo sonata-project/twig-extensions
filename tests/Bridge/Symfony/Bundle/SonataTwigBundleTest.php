@@ -31,7 +31,7 @@ final class SonataTwigBundleTest extends TestCase
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
 
-        $containerBuilder->expects($this->any())
+        $containerBuilder
             ->method('addCompilerPass')
             ->willReturnCallback(function (CompilerPassInterface $pass): void {
                 if ($pass instanceof StatusRendererCompilerPass) {

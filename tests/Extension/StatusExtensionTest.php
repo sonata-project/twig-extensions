@@ -15,6 +15,7 @@ namespace Sonata\Twig\Tests\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\StatusExtension;
+use Twig\TwigFilter;
 
 class StatusExtensionTest extends TestCase
 {
@@ -29,6 +30,6 @@ class StatusExtensionTest extends TestCase
         $extension = new StatusExtension();
         $filters = $extension->getFilters();
 
-        $this->assertContainsOnlyInstancesOf('Twig_SimpleFilter', $filters);
+        $this->assertContainsOnlyInstancesOf(TwigFilter::class, $filters);
     }
 }
