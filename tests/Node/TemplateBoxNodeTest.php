@@ -15,8 +15,9 @@ namespace Sonata\Twig\Tests\Node;
 
 use Sonata\Twig\Node\TemplateBoxNode;
 use Twig\Node\Expression\ConstantExpression;
+use Twig\Test\NodeTestCase;
 
-class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
+class TemplateBoxNodeTest extends NodeTestCase
 {
     public function testConstructor(): void
     {

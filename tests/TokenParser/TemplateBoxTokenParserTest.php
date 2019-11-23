@@ -16,7 +16,12 @@ namespace Sonata\Twig\Tests\TokenParser;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Node\TemplateBoxNode;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
+use Twig\Environment;
+use Twig\Error\SyntaxError;
+use Twig\Loader\ArrayLoader;
 use Twig\Node\Expression\ConstantExpression;
+use Twig\Parser;
+use Twig\Source;
 
 class TemplateBoxTokenParserTest extends TestCase
 {
@@ -24,20 +29,18 @@ class TemplateBoxTokenParserTest extends TestCase
      * @dataProvider getTestsForRender
      *
      * @param bool            $enabled
-     * @param \Twig_Source    $source
+     * @param string          $source
      * @param TemplateBoxNode $expected
      *
-     * @throws \Twig_Error_Syntax
+     * @throws SyntaxError
      */
     public function testCompile($enabled, $source, $expected): void
     {
-        $env = new \Twig_Environment(new \Twig_Loader_Array([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
+        $env = new Environment(new ArrayLoader([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
         $env->addTokenParser(new TemplateBoxTokenParser($enabled));
-        if (class_exists('\Twig_Source')) {
-            $source = new \Twig_Source($source, 'test');
-        }
+        $source = new Source($source, 'test');
         $stream = $env->tokenize($source);
-        $parser = new \Twig_Parser($env);
+        $parser = new Parser($env);
 
         $actual = $parser->parse($stream)->getNode('body')->getNode(0);
         $this->assertSame(
