@@ -34,7 +34,7 @@
     "require-dev": {
         "jms/serializer-bundle": "^3.3",
         "matthiasnoback/symfony-config-test": "^4.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^3.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "symfony/dependency-injection": "^3.4 || ^4.0",
         "symfony/framework-bundle": "^3.4 || ^4.0",
         "symfony/http-foundation": "^3.4 || ^4.0",
