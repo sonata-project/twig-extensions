@@ -28,8 +28,7 @@ class FlashMessageExtensionTest extends TestCase
     public function testFunctionsArePrefixed(): void
     {
         foreach ($this->extension->getFunctions() as $function) {
-            $this->assertTrue(
-                0 === strpos($function->getName(), 'sonata_flashmessages_'),
+            $this->assertSame(0, strpos($function->getName(), 'sonata_flashmessages_'),
                 'All function names should start with a standard prefix'
             );
         }
