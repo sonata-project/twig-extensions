@@ -35,6 +35,7 @@ final class SonataTwigExtension extends Extension
         $loader->load('twig.xml');
 
         $this->registerFlashTypes($container, $config);
+        $container->setParameter('sonata.twig.form_type', $config['form_type']);
     }
 
     /**

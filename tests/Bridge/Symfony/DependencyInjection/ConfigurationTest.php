@@ -32,6 +32,7 @@ class ConfigurationTest extends TestCase
             [],
         ], [
             'flashmessage' => [],
+            'form_type' => 'standard',
         ]);
     }
 }
