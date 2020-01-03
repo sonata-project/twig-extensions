@@ -17,7 +17,7 @@
         <service id="sonata.twig.template_extension" class="Sonata\Twig\Extension\TemplateExtension">
             <tag name="twig.extension"/>
             <argument>%kernel.debug%</argument>
-            <argument type="service" id="sonata.twig.model.adapter.chain"/>
+            <argument type="service" id="sonata.doctrine.model.adapter.chain"/>
         </service>
     </services>
 </container>
