@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Bridge\Symfony;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Twig\Bridge\Symfony\Bundle\SonataTwigBundle;
 use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
