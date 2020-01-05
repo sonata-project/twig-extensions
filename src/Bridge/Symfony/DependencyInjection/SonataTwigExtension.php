@@ -35,6 +35,7 @@ final class SonataTwigExtension extends Extension
         $loader->load('twig.xml');
 
         $this->registerFlashTypes($container, $config);
+        $container->setParameter('sonata.twig.form_type', $config['form_type']);
     }
 
     /**
@@ -70,8 +71,8 @@ final class SonataTwigExtension extends Extension
         $identifier = 'sonata.twig.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
-        $definition->replaceArgument(2, $types);
-        $definition->replaceArgument(3, $cssClasses);
+        $definition->replaceArgument(1, $types);
+        $definition->replaceArgument(2, $cssClasses);
 
         $container->setDefinition($identifier, $definition);
     }

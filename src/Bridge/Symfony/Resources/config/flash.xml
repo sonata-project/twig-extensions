@@ -8,7 +8,6 @@
         <service id="sonata.twig.flashmessage.manager" class="%sonata.twig.flashmessage.manager.class%" public="true">
             <tag name="sonata.status.renderer"/>
             <argument type="service" id="session"/>
-            <argument type="service" id="translator"/>
             <argument/>
             <argument/>
         </service>

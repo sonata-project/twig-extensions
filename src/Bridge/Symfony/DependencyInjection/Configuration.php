@@ -46,8 +46,16 @@ class Configuration implements ConfigurationInterface
      */
     private function addFlashMessageSection(ArrayNodeDefinition $node): void
     {
+        $validFormTypeValues = ['standard', 'horizontal'];
+
         $node
             ->children()
+                ->enumNode('form_type')
+                    ->defaultValue('standard')
+                    ->values($validFormTypeValues)
+                    ->info('Style used in the forms, some of the widgets need to be wrapped in a special div element
+depending on this style.')
+                ->end()
                 ->arrayNode('flashmessage')
                     ->useAttributeAsKey('message')
                     ->prototype('array')
