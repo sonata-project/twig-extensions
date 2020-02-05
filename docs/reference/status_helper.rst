@@ -32,12 +32,6 @@ Now that we have defined our service, we will add it using the ``sonata.status.r
 
 .. configuration-block::
 
-    .. code-block:: xml
-
-        <service id="sonata.order.status.renderer" class="Sonata\Component\Order\OrderStatusRenderer">
-            <tag name="sonata.status.renderer"/>
-        </service>
-
     .. code-block:: yaml
 
         services:
@@ -46,11 +40,17 @@ Now that we have defined our service, we will add it using the ``sonata.status.r
                 tags:
                     - { name: sonata.status.renderer }
 
+    .. code-block:: xml
+
+        <service id="sonata.order.status.renderer" class="Sonata\Component\Order\OrderStatusRenderer">
+            <tag name="sonata.status.renderer"/>
+        </service>
+
 Use the service
 ---------------
 
 You can now call your helper in your twig views using the following code:
 
-.. code-block:: jinja
+.. code-block:: twig
 
     {{ my_object|sonata_status_class(status_name, 'default_value') }}
