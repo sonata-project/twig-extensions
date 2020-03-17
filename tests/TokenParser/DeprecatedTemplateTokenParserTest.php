@@ -64,6 +64,11 @@ class DeprecatedTemplateTokenParserTest extends TestCase
         $stream = $env->tokenize($source);
         $parser = new Parser($env);
 
-        return $parser->parse($stream)->getNode('body')->getNode(0);
+        // The following original line is commented due an issue with the allowed node name types.
+        // Using `Iterator::offsetGet()` is a workaround.
+        // @see https://github.com/twigphp/Twig/issues/3294
+        // return $parser->parse($stream)->getNode('body')->getNode(0);
+
+        return $parser->parse($stream)->getNode('body')->getIterator()->offsetGet(0);
     }
 }
