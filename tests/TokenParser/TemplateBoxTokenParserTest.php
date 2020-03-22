@@ -42,11 +42,9 @@ class TemplateBoxTokenParserTest extends TestCase
         $stream = $env->tokenize($source);
         $parser = new Parser($env);
 
-        // The following original line is commented due an issue with the allowed node name types.
-        // Using `Iterator::offsetGet()` is a workaround.
+        // "0" is passed as string due an issue with the allowed node name types.
         // @see https://github.com/twigphp/Twig/issues/3294
-        // $actual = $parser->parse($stream)->getNode('body')->getNode(0);
-        $actual = $parser->parse($stream)->getNode('body')->getIterator()->offsetGet(0);
+        $actual = $parser->parse($stream)->getNode('body')->getNode('0');
         $this->assertSame(
             $expected->getIterator()->getFlags(),
             $actual->getIterator()->getFlags()
