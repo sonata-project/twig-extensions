@@ -20,8 +20,10 @@ use Sonata\Twig\FlashMessage\FlashManager;
  *
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class FlashMessageRuntime
+class FlashMessageRuntime
 {
     /**
      * @var FlashManager
@@ -36,17 +38,22 @@ final class FlashMessageRuntime
     /**
      * Returns flash messages handled by Sonata flash manager.
      *
-     * @param string $type Type of flash message
+     * @param string      $type             Type of flash message
+     * @param string|null $deprecatedDomain Translation domain to use
+     *
+     * @return array
      */
-    public function getFlashMessages(string $type): array
+    public function getFlashMessages($type, $deprecatedDomain = null)
     {
-        return $this->flashManager->get($type);
+        return $this->flashManager->get($type, $deprecatedDomain);
     }
 
     /**
      * Returns flash messages types handled by Sonata flash manager.
+     *
+     * @return array
      */
-    public function getFlashMessagesTypes(): array
+    public function getFlashMessagesTypes()
     {
         return $this->flashManager->getHandledTypes();
     }

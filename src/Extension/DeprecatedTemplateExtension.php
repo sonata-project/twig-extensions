@@ -18,13 +18,15 @@ use Twig\Extension\AbstractExtension;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class DeprecatedTemplateExtension extends AbstractExtension
+class DeprecatedTemplateExtension extends AbstractExtension
 {
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function getTokenParsers(): array
+    public function getTokenParsers()
     {
         return [
             new DeprecatedTemplateTokenParser(),

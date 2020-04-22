@@ -19,10 +19,17 @@ use Twig\TokenParser\AbstractTokenParser;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class DeprecatedTemplateTokenParser extends AbstractTokenParser
+class DeprecatedTemplateTokenParser extends AbstractTokenParser
 {
-    public function parse(Token $token): DeprecatedTemplateNode
+    /**
+     * @throws \Twig\Error\SyntaxError
+     *
+     * @return DeprecatedTemplateNode
+     */
+    public function parse(Token $token)
     {
         if (!$this->parser->getStream()->test(Token::STRING_TYPE)) {
             throw new \InvalidArgumentException('New template name is mandatory.');
@@ -35,7 +42,10 @@ final class DeprecatedTemplateTokenParser extends AbstractTokenParser
         return new DeprecatedTemplateNode($newTemplate, $token->getLine(), $this->getTag());
     }
 
-    public function getTag(): string
+    /**
+     * @return string
+     */
+    public function getTag()
     {
         return 'sonata_template_deprecate';
     }

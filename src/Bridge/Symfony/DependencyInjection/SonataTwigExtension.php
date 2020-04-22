@@ -41,7 +41,7 @@ final class SonataTwigExtension extends Extension
     /**
      * Registers flash message types defined in configuration to flash manager.
      */
-    public function registerFlashTypes(ContainerBuilder $container, array $config): void
+    private function registerFlashTypes(ContainerBuilder $container, array $config): void
     {
         $mergedConfig = array_merge_recursive($config['flashmessage'], [
             'success' => ['types' => [

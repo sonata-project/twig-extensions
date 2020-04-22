@@ -7,10 +7,10 @@ parameters:
 #        - tests
 
     excludes_analyse:
-        - src/Test/AbstractWidgetTestCase.php
         - tests/bootstrap.php
 
     autoload_files:
         - vendor/autoload.php
 
     ignoreErrors:
+        - '#Class Symfony\\Component\\Translation\\TranslatorInterface not found.#'

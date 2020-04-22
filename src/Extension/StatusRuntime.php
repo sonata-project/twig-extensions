@@ -18,8 +18,10 @@ use Sonata\Twig\Status\StatusClassRendererInterface;
 /**
  * @author Hugo Briand <briand@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class StatusRuntime
+class StatusRuntime
 {
     /**
      * @var StatusClassRendererInterface[]
@@ -29,15 +31,19 @@ final class StatusRuntime
     /**
      * Adds a renderer to the status services list.
      */
-    public function addStatusService(StatusClassRendererInterface $renderer): void
+    public function addStatusService(StatusClassRendererInterface $renderer)
     {
         $this->statusServices[] = $renderer;
     }
 
     /**
-     * @param mixed $statusType
+     * @param object     $object
+     * @param mixed|null $statusType
+     * @param string     $default
+     *
+     * @return string
      */
-    public function statusClass(object $object, $statusType = null, string $default = ''): string
+    public function statusClass($object, $statusType = null, $default = '')
     {
         foreach ($this->statusServices as $statusService) {
             \assert($statusService instanceof StatusClassRendererInterface);

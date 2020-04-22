@@ -16,27 +16,69 @@ namespace Sonata\Twig\Extension;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
-final class FormTypeExtension extends AbstractExtension implements GlobalsInterface
-{
+if (class_exists('Twig_Extension_GlobalsInterface')) {
     /**
-     * @var bool
+     * @final since sonata-project/twig-extensions 0.x
      */
-    private $wrapFieldsWithAddons;
-
-    public function __construct($formType)
+    class FormTypeExtension extends AbstractExtension implements GlobalsInterface
     {
-        $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
+        /**
+         * @var bool
+         */
+        private $wrapFieldsWithAddons;
+
+        public function __construct($formType)
+        {
+            $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
+        }
+
+        /**
+         * @return array
+         */
+        public function getGlobals()
+        {
+            return [
+                'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
+            ];
+        }
+
+        /**
+         * @return string
+         */
+        public function getName()
+        {
+            return 'sonata_twig_wrapping';
+        }
     }
-
-    public function getGlobals(): array
+} else {
+    /**
+     * @final since sonata-project/twig-extensions 0.x
+     */
+    class FormTypeExtension extends AbstractExtension implements GlobalsInterface
     {
-        return [
-            'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
-        ];
-    }
+        /**
+         * @var bool
+         */
+        private $wrapFieldsWithAddons;
 
-    public function getName(): string
-    {
-        return 'sonata_twig_wrapping';
+        public function __construct($formType)
+        {
+            $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
+        }
+
+        public function getGlobals(): array
+        {
+            return [
+                'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
+            ];
+        }
+
+        /**
+         * @return string
+         */
+        public function getName()
+        {
+            return 'sonata_twig_wrapping';
+        }
     }
 }

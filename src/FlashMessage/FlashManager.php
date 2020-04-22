@@ -15,44 +15,95 @@ namespace Sonata\Twig\FlashMessage;
 
 use Sonata\Twig\Status\StatusClassRendererInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class FlashManager implements StatusClassRendererInterface
+class FlashManager implements StatusClassRendererInterface
 {
     /**
      * @var SessionInterface
      */
-    private $session;
+    protected $session;
+
+    /**
+     * NEXT_MAJOR: remove this property.
+     *
+     * @var LegacyTranslatorInterface|TranslatorInterface|null
+     *
+     * @deprecated translator property is deprecated since sonata-project/twig-extensions 0.x, to be removed in 1.0
+     */
+    protected $translator;
 
     /**
      * @var array
      */
-    private $types;
+    protected $types;
 
     /**
      * @var array
      */
-    private $cssClasses;
+    protected $cssClasses;
 
     /**
-     * @param array $types      Sonata types array (defined in configuration)
-     * @param array $cssClasses Css classes associated with $types
+     * @param LegacyTranslatorInterface|TranslatorInterface|array|null $deprecatedTranslatorOrTypes
+     * @param array                                                    $deprecatedTypesOrCssClass   Sonata types array (defined in configuration)
+     * @param array|null                                               $deprecatedCssClasses        Css classes associated with $types
      */
-    public function __construct(SessionInterface $session, array $types, array $cssClasses)
-    {
+    public function __construct(
+        SessionInterface $session,
+        $deprecatedTranslatorOrTypes,
+        array $deprecatedTypesOrCssClass,
+        ?array $deprecatedCssClasses = null
+    ) {
         $this->session = $session;
-        $this->types = $types;
-        $this->cssClasses = $cssClasses;
+
+        if (\is_array($deprecatedTranslatorOrTypes)) {
+            $this->types = $deprecatedTranslatorOrTypes;
+            $this->cssClasses = $deprecatedTypesOrCssClass;
+        } else {
+            $this->translator = $deprecatedTranslatorOrTypes;
+            $this->types = $deprecatedTypesOrCssClass;
+            $this->cssClasses = $deprecatedCssClasses;
+
+            @trigger_error(
+                'The translator dependency in '.__CLASS__.' is deprecated since 0.x and will be removed in 1.0. '.
+                'Please prepare your dependencies for this change.',
+                E_USER_DEPRECATED
+            );
+
+            if (null === $deprecatedCssClasses) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Argument 4 should be an instance of %s',
+                    'array'
+                ));
+            }
+        }
     }
 
-    public function handlesObject($object, ?string $statusName = null): bool
+    /**
+     * @param mixed       $object
+     * @param string|null $statusName
+     *
+     * @return bool
+     */
+    public function handlesObject($object, $statusName = null)
     {
         return \is_string($object) && \array_key_exists($object, $this->cssClasses);
     }
 
-    public function getStatusClass($object, ?string $statusName = null, string $default = ''): string
+    /**
+     * @param mixed       $object
+     * @param string|null $statusName
+     * @param string      $default
+     *
+     * @return string
+     */
+    public function getStatusClass($object, $statusName = null, $default = '')
     {
         return \array_key_exists($object, $this->cssClasses)
             ? $this->cssClasses[$object]
@@ -61,46 +112,70 @@ final class FlashManager implements StatusClassRendererInterface
 
     /**
      * Returns Sonata flash message types.
+     *
+     * @return array
      */
-    public function getTypes(): array
+    public function getTypes()
     {
         return $this->types;
     }
 
     /**
      * Returns Symfony session service.
+     *
+     * @return SessionInterface
      */
-    public function getSession(): SessionInterface
+    public function getSession()
     {
         return $this->session;
     }
 
     /**
-     * Returns flash bag messages for correct type after renaming with Sonata type.
+     * Returns Symfony translator service.
+     *
+     * @return TranslatorInterface
      */
-    public function get(string $type): array
+    public function getTranslator()
     {
-        $this->handle();
+        return $this->translator;
+    }
+
+    /**
+     * Returns flash bag messages for correct type after renaming with Sonata type.
+     *
+     * @param string $type             Type of flash message
+     * @param string $deprecatedDomain Translation domain to use
+     *
+     * @return array
+     */
+    public function get($type, $deprecatedDomain = null)
+    {
+        $this->handle($deprecatedDomain);
 
         return $this->getSession()->getFlashBag()->get($type);
     }
 
     /**
      * Gets handled message types.
+     *
+     * @return array
      */
-    public function getHandledTypes(): array
+    public function getHandledTypes()
     {
         return array_keys($this->getTypes());
     }
 
     /**
      * Handles flash bag types renaming.
+     *
+     * @param string $deprecatedDomain
      */
-    private function handle(): void
+    protected function handle($deprecatedDomain = null)
     {
         foreach ($this->getTypes() as $type => $values) {
             foreach ($values as $value => $options) {
-                $this->rename($type, $value);
+                $domainType = $deprecatedDomain ?: ($options['domain'] ?? null);
+                $this->rename($type, $value, $domainType);
             }
         }
     }
@@ -108,14 +183,18 @@ final class FlashManager implements StatusClassRendererInterface
     /**
      * Process flash message type rename.
      *
-     * @param string $type  Sonata flash message type
-     * @param string $value Original flash message type
+     * @param string      $type             Sonata flash message type
+     * @param string      $value            Original flash message type
+     * @param string|null $deprecatedDomain Translation domain to use
      */
-    private function rename(string $type, string $value): void
+    protected function rename($type, $value, $deprecatedDomain = null)
     {
         $flashBag = $this->getSession()->getFlashBag();
 
         foreach ($flashBag->get($value) as $message) {
+            if (null !== $this->getTranslator() && null !== $deprecatedDomain) {
+                $message = $this->getTranslator()->trans($message, [], $deprecatedDomain);
+            }
             $flashBag->add($type, $message);
         }
     }

@@ -19,15 +19,17 @@ use Twig\Node\Node;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class DeprecatedTemplateNode extends Node
+class DeprecatedTemplateNode extends Node
 {
     public function __construct(AbstractExpression $newTemplate, $line, $tag = null)
     {
         parent::__construct(['newTemplate' => $newTemplate], [], $line, $tag);
     }
 
-    public function compile(Compiler $compiler): void
+    public function compile(Compiler $compiler)
     {
         @trigger_error(sprintf(
             'The "%s" template is deprecated. Use "%s" instead.',
