@@ -21,10 +21,15 @@ use Twig\TwigFunction;
  *
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class FlashMessageExtension extends AbstractExtension
+class FlashMessageExtension extends AbstractExtension
 {
-    public function getFunctions(): array
+    /**
+     * @return TwigFunction[]
+     */
+    public function getFunctions()
     {
         return [
             new TwigFunction('sonata_flashmessages_get', [FlashMessageRuntime::class, 'getFlashMessages']),
@@ -32,7 +37,10 @@ final class FlashMessageExtension extends AbstractExtension
         ];
     }
 
-    public function getName(): string
+    /**
+     * @return string
+     */
+    public function getName()
     {
         return 'sonata_twig_flashmessage';
     }

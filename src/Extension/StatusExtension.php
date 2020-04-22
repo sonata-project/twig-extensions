@@ -19,8 +19,10 @@ use Twig\TwigFilter;
 /**
  * @author Hugo Briand <briand@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @final since sonata-project/twig-extensions 0.x
  */
-final class StatusExtension extends AbstractExtension
+class StatusExtension extends AbstractExtension
 {
     public function getFilters(): array
     {
