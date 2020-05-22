@@ -11,17 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Twig\Tests\TokenParser;
+namespace Sonata\Twig\Tests\Twig\TokenParser;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Node\TemplateBoxNode;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
-use Twig\Environment;
-use Twig\Error\SyntaxError;
-use Twig\Loader\ArrayLoader;
-use Twig\Node\Expression\ConstantExpression;
-use Twig\Parser;
-use Twig\Source;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class TemplateBoxTokenParserTest extends TestCase
 {
@@ -29,18 +24,22 @@ class TemplateBoxTokenParserTest extends TestCase
      * @dataProvider getTestsForRender
      *
      * @param bool            $enabled
-     * @param string          $source
+     * @param \Twig_Source    $source
      * @param TemplateBoxNode $expected
      *
-     * @throws SyntaxError
+     * @throws \Twig_Error_Syntax
      */
     public function testCompile($enabled, $source, $expected): void
     {
-        $env = new Environment(new ArrayLoader([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
-        $env->addTokenParser(new TemplateBoxTokenParser($enabled));
-        $source = new Source($source, 'test');
+        $translator = $this->createMock(TranslatorInterface::class);
+
+        $env = new \Twig_Environment(new \Twig_Loader_Array([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
+        $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
+        if (class_exists('\Twig_Source')) {
+            $source = new \Twig_Source($source, 'test');
+        }
         $stream = $env->tokenize($source);
-        $parser = new Parser($env);
+        $parser = new \Twig_Parser($env);
 
         // "0" is passed as string due an issue with the allowed node name types.
         // @see https://github.com/twigphp/Twig/issues/3294
@@ -55,13 +54,17 @@ class TemplateBoxTokenParserTest extends TestCase
 
     public function getTestsForRender()
     {
+        $translator = $this->createMock(TranslatorInterface::class);
+
         return [
             [
                 true,
                 '{% sonata_template_box %}',
                 new TemplateBoxNode(
-                    new ConstantExpression('Template information', 1),
+                    new \Twig_Node_Expression_Constant('Template information', 1),
+                    null,
                     true,
+                    $translator,
                     1,
                     'sonata_template_box'
                 ),
@@ -70,8 +73,10 @@ class TemplateBoxTokenParserTest extends TestCase
                 true,
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
-                    new ConstantExpression('This is the basket delivery address step page', 1),
+                    new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
+                    null,
                     true,
+                    $translator,
                     1,
                     'sonata_template_box'
                 ),
@@ -80,8 +85,10 @@ class TemplateBoxTokenParserTest extends TestCase
                 false,
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
-                    new ConstantExpression('This is the basket delivery address step page', 1),
+                    new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
+                    null,
                     false,
+                    $translator,
                     1,
                     'sonata_template_box'
                 ),

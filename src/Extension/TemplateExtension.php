@@ -38,60 +38,34 @@ class TemplateExtension extends AbstractExtension
     /**
      * NEXT_MAJOR: remove this property.
      *
-     * @var LegacyTranslatorInterface|TranslatorInterface|null
-     *
      * @deprecated translator property is deprecated since sonata-project/twig-extensions 0.x, to be removed in 1.0
+     *
+     * @var LegacyTranslatorInterface|TranslatorInterface
      */
     protected $translator;
 
     /**
-     * @param bool                                                                $debug                              Is Symfony debug enabled?
-     * @param LegacyTranslatorInterface|TranslatorInterface|AdapterInterface|null $deprecatedTranslatorOrModelAdapter
+     * @param bool                                          $debug      Is Symfony debug enabled?
+     * @param LegacyTranslatorInterface|TranslatorInterface $translator
      */
-    public function __construct($debug, $deprecatedTranslatorOrModelAdapter = null, ?AdapterInterface $deprecatedModelAdapter = null)
+    public function __construct($debug, $translator, AdapterInterface $modelAdapter)
     {
-        $this->debug = $debug;
-
         if (
-            !$deprecatedTranslatorOrModelAdapter instanceof LegacyTranslatorInterface &&
-            !$deprecatedTranslatorOrModelAdapter instanceof TranslatorInterface &&
-            !$deprecatedTranslatorOrModelAdapter instanceof AdapterInterface &&
-            null !== $deprecatedTranslatorOrModelAdapter
+            !$translator instanceof LegacyTranslatorInterface &&
+            !$translator instanceof TranslatorInterface
         ) {
             throw new \InvalidArgumentException(sprintf(
-                'Argument 2 should be an instance of %s or %s or %s or %s',
+                'Argument 2 should be an instance of %s or %s',
                 LegacyTranslatorInterface::class,
-                TranslatorInterface::class,
-                'null',
-                AdapterInterface::class
+                TranslatorInterface::class
             ));
         }
 
-        if (!$deprecatedTranslatorOrModelAdapter instanceof AdapterInterface && !$deprecatedModelAdapter instanceof AdapterInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'Argument 3 should be an instance of %s, %s given.',
-                AdapterInterface::class,
-                \get_class($deprecatedModelAdapter)
-            ));
-        }
-
-        if ($deprecatedTranslatorOrModelAdapter instanceof AdapterInterface) {
-            $this->modelAdapter = $deprecatedTranslatorOrModelAdapter;
-        } else {
-            $this->translator = $deprecatedTranslatorOrModelAdapter;
-            $this->modelAdapter = $deprecatedModelAdapter;
-
-            @trigger_error(
-                'The translator dependency in '.__CLASS__.' is deprecated since 0.x and will be removed in 1.0. '.
-                'Please prepare your dependencies for this change.',
-                E_USER_DEPRECATED
-            );
-        }
+        $this->debug = $debug;
+        $this->translator = $translator;
+        $this->modelAdapter = $modelAdapter;
     }
 
-    /**
-     * @return TwigFilter[]
-     */
     public function getFilters()
     {
         return [
