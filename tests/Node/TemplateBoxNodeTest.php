@@ -14,6 +14,9 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Node;
 
 use Sonata\Twig\Node\TemplateBoxNode;
+use Symfony\Component\Translation\Formatter\MessageFormatterInterface;
+use Symfony\Component\Translation\Loader\ArrayLoader;
+use Symfony\Component\Translation\Translator;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Test\NodeTestCase;
 
@@ -21,9 +24,13 @@ class TemplateBoxNodeTest extends NodeTestCase
 {
     public function testConstructor(): void
     {
+        $translator = $this->getTranslator('en');
+
         $body = new TemplateBoxNode(
             new ConstantExpression('This is the default message', 1),
+            new ConstantExpression('SonataTwigBundle', 1),
             true,
+            $translator,
             1,
             'sonata_template_box'
         );
@@ -40,21 +47,26 @@ class TemplateBoxNodeTest extends NodeTestCase
         parent::testCompile($node, $source, $environment, $isPattern);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTests()
     {
+        $translator = $this->getTranslator('en');
+
         $nodeEn = new TemplateBoxNode(
             new ConstantExpression('This is the default message', 1),
+            new ConstantExpression('SonataTwigBundle', 1),
             true,
+            $translator,
             1,
             'sonata_template_box'
         );
 
+        $translator = $this->getTranslator('fr');
+
         $nodeFr = new TemplateBoxNode(
             new ConstantExpression('Ceci est le message par défaut', 1),
+            new ConstantExpression('SonataTwigBundle', 1),
             true,
+            $translator,
             1,
             'sonata_template_box'
         );
@@ -72,10 +84,36 @@ EOF
 // line 1
 echo "<div class='alert alert-default alert-info'>
     <strong>Ceci est le message par défaut</strong>
-    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+    <div>Ce fichier peut être trouvé à l'emplacement <code>{$this->getTemplateName()}</code>.</div>
 </div>";
 EOF
             ],
         ];
+    }
+
+    /**
+     * Returns a Translator instance.
+     *
+     * @param string $locale
+     *
+     * @return Translator
+     */
+    public function getTranslator($locale)
+    {
+        // NEXT_MAJOR: remove second argument when dropping sf < 3.4.
+        $translator = new Translator(
+            $locale,
+            interface_exists(MessageFormatterInterface::class) ?
+            null :
+            new IdentityTranslator()
+        );
+        $translator->addLoader('array', new ArrayLoader());
+
+        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'This is the default message'], 'en', 'SonataTwigBundle');
+        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'Ceci est le message par défaut'], 'fr', 'SonataTwigBundle');
+        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => 'This file can be found in'], 'en', 'SonataTwigBundle');
+        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => "Ce fichier peut être trouvé à l'emplacement"], 'fr', 'SonataTwigBundle');
+
+        return $translator;
     }
 }

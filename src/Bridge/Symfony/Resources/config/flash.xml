@@ -8,8 +8,9 @@
         <service id="sonata.twig.flashmessage.manager" class="%sonata.twig.flashmessage.manager.class%" public="true">
             <tag name="sonata.status.renderer"/>
             <argument type="service" id="session"/>
-            <argument/>
-            <argument/>
+            <argument type="service" id="translator"/>
+            <argument type="collection"/>
+            <argument type="collection"/>
         </service>
         <service id="sonata.twig.flashmessage.twig.runtime" class="Sonata\Twig\Extension\FlashMessageRuntime">
             <tag name="twig.runtime"/>

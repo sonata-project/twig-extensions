@@ -24,14 +24,14 @@ use Twig\TwigFilter;
  */
 class StatusExtension extends AbstractExtension
 {
-    public function getFilters(): array
+    public function getFilters()
     {
         return [
             new TwigFilter('sonata_status_class', [StatusRuntime::class, 'statusClass']),
         ];
     }
 
-    public function getName(): string
+    public function getName()
     {
         return 'sonata_twig_status';
     }
