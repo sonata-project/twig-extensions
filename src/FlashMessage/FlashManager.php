@@ -33,7 +33,7 @@ class FlashManager implements StatusClassRendererInterface
     /**
      * NEXT_MAJOR: remove this property.
      *
-     * @var LegacyTranslatorInterface|TranslatorInterface|null
+     * @var LegacyTranslatorInterface|TranslatorInterface
      *
      * @deprecated translator property is deprecated since sonata-project/twig-extensions 0.x, to be removed in 1.0
      */
@@ -50,39 +50,31 @@ class FlashManager implements StatusClassRendererInterface
     protected $cssClasses;
 
     /**
-     * @param LegacyTranslatorInterface|TranslatorInterface|array|null $deprecatedTranslatorOrTypes
-     * @param array                                                    $deprecatedTypesOrCssClass   Sonata types array (defined in configuration)
-     * @param array|null                                               $deprecatedCssClasses        Css classes associated with $types
+     * @param LegacyTranslatorInterface|TranslatorInterface $translator
+     * @param array                                         $types      Sonata core types array (defined in configuration)
+     * @param array                                         $cssClasses Css classes associated with $types
      */
     public function __construct(
         SessionInterface $session,
-        $deprecatedTranslatorOrTypes,
-        array $deprecatedTypesOrCssClass,
-        ?array $deprecatedCssClasses = null
+        $translator,
+        array $types,
+        array $cssClasses
     ) {
-        $this->session = $session;
-
-        if (\is_array($deprecatedTranslatorOrTypes)) {
-            $this->types = $deprecatedTranslatorOrTypes;
-            $this->cssClasses = $deprecatedTypesOrCssClass;
-        } else {
-            $this->translator = $deprecatedTranslatorOrTypes;
-            $this->types = $deprecatedTypesOrCssClass;
-            $this->cssClasses = $deprecatedCssClasses;
-
-            @trigger_error(
-                'The translator dependency in '.__CLASS__.' is deprecated since 0.x and will be removed in 1.0. '.
-                'Please prepare your dependencies for this change.',
-                E_USER_DEPRECATED
-            );
-
-            if (null === $deprecatedCssClasses) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Argument 4 should be an instance of %s',
-                    'array'
-                ));
-            }
+        if (
+            !$translator instanceof LegacyTranslatorInterface &&
+            !$translator instanceof TranslatorInterface
+        ) {
+            throw new \InvalidArgumentException(sprintf(
+                'Argument 2 should be an instance of %s or %s',
+                LegacyTranslatorInterface::class,
+                TranslatorInterface::class
+            ));
         }
+
+        $this->session = $session;
+        $this->translator = $translator;
+        $this->types = $types;
+        $this->cssClasses = $cssClasses;
     }
 
     /**
@@ -133,7 +125,7 @@ class FlashManager implements StatusClassRendererInterface
     /**
      * Returns Symfony translator service.
      *
-     * @return TranslatorInterface
+     * @return LegacyTranslatorInterface|TranslatorInterface
      */
     public function getTranslator()
     {

@@ -13,4 +13,3 @@ parameters:
         - vendor/autoload.php
 
     ignoreErrors:
-        - '#Class Symfony\\Component\\Translation\\TranslatorInterface not found.#'

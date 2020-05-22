@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Fixtures\Bundle\Serializer;
 
 use Sonata\Doctrine\Model\ManagerInterface;
-use Sonata\Serializer\BaseSerializerHandler;
+use Sonata\Form\Serializer\BaseSerializerHandler;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>

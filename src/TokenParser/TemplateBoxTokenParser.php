@@ -33,27 +33,28 @@ class TemplateBoxTokenParser extends AbstractTokenParser
     /**
      * NEXT_MAJOR: remove this property.
      *
-     * @var LegacyTranslatorInterface|TranslatorInterface|null
-     *
-     * @deprecated translator property is deprecated since sonata-project/twig-extensions 0.x, to be removed in 1.0
+     * @var LegacyTranslatorInterface|TranslatorInterface
      */
     protected $translator;
 
     /**
      * @param bool $enabled Is Symfony debug enabled?
      */
-    public function __construct($enabled, $deprecatedTranslator = null)
+    public function __construct($enabled, $translator)
     {
-        $this->enabled = $enabled;
-        $this->translator = $deprecatedTranslator;
-
-        if (null !== $deprecatedTranslator) {
-            @trigger_error(
-                'The translator dependency in '.__CLASS__.' is deprecated since 0.x and will be removed in 1.0. '.
-                'Please prepare your dependencies for this change.',
-                E_USER_DEPRECATED
-            );
+        if (
+            !$translator instanceof LegacyTranslatorInterface &&
+            !$translator instanceof TranslatorInterface
+        ) {
+            throw new \InvalidArgumentException(sprintf(
+                'Argument 2 should be an instance of %s or %s',
+                LegacyTranslatorInterface::class,
+                TranslatorInterface::class
+            ));
         }
+
+        $this->enabled = $enabled;
+        $this->translator = $translator;
     }
 
     /**
@@ -69,19 +70,15 @@ class TemplateBoxTokenParser extends AbstractTokenParser
             $message = new ConstantExpression('Template information', $token->getLine());
         }
 
-        $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
-
-        if (null !== $this->translator) {
-            if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
-                $translationBundle = $this->parser->getExpressionParser()->parseExpression();
-            } else {
-                $translationBundle = null;
-            }
-
-            return new TemplateBoxNode($message, $translationBundle, $this->enabled, $this->translator, $token->getLine(), $this->getTag());
+        if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
+            $translationBundle = $this->parser->getExpressionParser()->parseExpression();
+        } else {
+            $translationBundle = null;
         }
 
-        return new TemplateBoxNode($message, $this->enabled, $token->getLine(), $this->getTag());
+        $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
+
+        return new TemplateBoxNode($message, $translationBundle, $this->enabled, $this->translator, $token->getLine(), $this->getTag());
     }
 
     /**

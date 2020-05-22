@@ -2,9 +2,21 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="SonataTwigBundle.en.xliff">
         <body>
+            <trans-unit id="sonata_core_template_box_file_found_in">
+                <source>sonata_core_template_box_file_found_in</source>
+                <target>Plik szablony znajdziesz w</target>
+            </trans-unit>
             <trans-unit id="message_close">
                 <source>message_close</source>
                 <target>Zamknij</target>
+            </trans-unit>
+            <trans-unit id="more">
+                <source>more</source>
+                <target>więcej</target>
+            </trans-unit>
+            <trans-unit id="less">
+                <source>less</source>
+                <target>mniej</target>
             </trans-unit>
         </body>
     </file>
