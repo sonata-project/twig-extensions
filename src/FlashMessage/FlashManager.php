@@ -47,12 +47,22 @@ final class FlashManager implements StatusClassRendererInterface
         $this->cssClasses = $cssClasses;
     }
 
-    public function handlesObject($object, ?string $statusName = null): bool
+    /**
+     * Tells if class may handle $object for status class rendering.
+     *
+     * @return bool
+     */
+    public function handlesObject($object, ?string $statusName = null)
     {
         return \is_string($object) && \array_key_exists($object, $this->cssClasses);
     }
 
-    public function getStatusClass($object, ?string $statusName = null, string $default = ''): string
+    /**
+     * Returns the status CSS class for $object.
+     *
+     * @return string
+     */
+    public function getStatusClass($object, ?string $statusName = null, string $default = '')
     {
         return \array_key_exists($object, $this->cssClasses)
             ? $this->cssClasses[$object]
