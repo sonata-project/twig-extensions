@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since version 1.x, to be removed in 2.0. Use Sonata\Twig\Bridge\Symfony\SonataTwigBundle instead.
+ * @deprecated since version 1.0, to be removed in 2.0. Use Sonata\Twig\Bridge\Symfony\SonataTwigBundle instead.
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */

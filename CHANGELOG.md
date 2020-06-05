@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3.0](https://github.com/sonata-project/twig-extensions/compare/1.2.0...1.3.0) - 2020-06-04
+### Removed
+- remove return type hints in `Sonata\Twig\FlashMessage\FlashManager::handlesObject()`
+- remove return type hints in `Sonata\Twig\FlashMessage\FlashManager::getStatusClass()`
+- remove return type hints in `Sonata\Twig\FlashMessage\StatusClassRendererInterface::handlesObject()`
+- remove return type hints in `Sonata\Twig\FlashMessage\StatusClassRendererInterface::getStatusClass()`
+- remove return type hints in `Sonata\Form\Type\BaseStatusType::configureOptions()`
+
 ## [1.2.0](https://github.com/sonata-project/twig-extensions/compare/1.1.1...1.2.0) - 2020-03-21
 ### Added
 - Added support for `twig/twig:^3.0`
