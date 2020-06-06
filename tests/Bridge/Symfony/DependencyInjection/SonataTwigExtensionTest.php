@@ -18,6 +18,12 @@ use Sonata\Twig\Bridge\Symfony\DependencyInjection\SonataTwigExtension;
 
 final class SonataTwigExtensionTest extends AbstractExtensionTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->container->setParameter('kernel.bundles', []);
+    }
+
     public function testHasFormTypeParameter(): void
     {
         $this->load();

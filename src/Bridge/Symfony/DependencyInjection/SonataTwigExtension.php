@@ -16,13 +16,14 @@ namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-final class SonataTwigExtension extends Extension
+final class SonataTwigExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -36,6 +37,18 @@ final class SonataTwigExtension extends Extension
 
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.twig.form_type', $config['form_type']);
+    }
+
+    /* NEXT MAJOR: Remove this logic when no one uses CoreBundle as a twig namespace */
+    public function prepend(ContainerBuilder $container)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['SonataCoreBundle'])) {
+            $container->prependExtensionConfig('twig', ['paths' => [
+                \dirname(__DIR__).'/Resources/views' => 'SonataCore',
+            ]]);
+        }
     }
 
     /**
