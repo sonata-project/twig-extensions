@@ -75,3 +75,30 @@ To use this feature in your templates, include the following template:
 .. code-block:: jinja
 
     {% include '@SonataTwig/FlashMessage/render.html.twig' %}
+
+You can also use your own template. Below, you can see an example:
+
+.. code-block:: jinja
+
+    {# check each types #}
+    {% for type in sonata_flashmessages_types() %}
+
+        {# get messages from current type #}
+        {% set messages = sonata_flashmessages_get(type) %}
+
+        {# display flash message, sonata_flashmessages_class will return define CSS class #}
+        {% for message in messages %}
+            <div class="alert alert-{{ sonata_flashmessages_class(type, 'default') }} alert-dismissable">
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="alert"
+                        aria-hidden="true"
+                        aria-label="{{ 'message_close'|trans({}, 'SonataTwigBundle') }}">
+                    &times;
+                </button>
+                {{ message|raw }}
+            </div>
+        {% endfor %}
+
+    {% endfor %}

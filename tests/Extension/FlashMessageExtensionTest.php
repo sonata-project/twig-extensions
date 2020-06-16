@@ -15,6 +15,7 @@ namespace Sonata\Twig\Tests\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\FlashMessageExtension;
+use Twig\TwigFunction;
 
 class FlashMessageExtensionTest extends TestCase
 {
@@ -34,5 +35,12 @@ class FlashMessageExtensionTest extends TestCase
                 'All function names should start with a standard prefix'
             );
         }
+    }
+
+    public function testGetFunctions(): void
+    {
+        $filters = $this->extension->getFunctions();
+
+        $this->assertContainsOnlyInstancesOf(TwigFunction::class, $filters);
     }
 }
