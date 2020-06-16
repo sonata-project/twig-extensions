@@ -75,11 +75,39 @@ class FlashManagerTest extends TestCase
     public function testGetHandledTypes(): void
     {
         $this->assertSame(['success', 'warning', 'error'], $this->flashManager->getHandledTypes());
+
+        // NEXT_MAJOR: StatusRuntime assertion
+        // StatusRuntime
+        $this->assertTrue($this->flashManager->handlesObject($this->flashManager, 'error'));
+
+        // FlashMessageRuntime
+        $this->assertTrue($this->flashManager->handlesType('error'));
+
+        // NEXT_MAJOR: StatusRuntime assertion
+        $this->assertFalse($this->flashManager->handlesObject($this->flashManager, 'warning'));
+
+        // FlashMessageRuntime
+        $this->assertFalse($this->flashManager->handlesType('warning'));
     }
 
     public function testGetStatus(): void
     {
-        $this->assertSame('danger', $this->flashManager->getStatusClass('error'));
+        // NEXT_MAJOR: remove first assertion
+        // StatusRuntime
+        $this->assertSame('danger', $this->flashManager->getStatusClass($this->flashManager, 'error'));
+
+        // FlashMessageRuntime
+        $this->assertSame('danger', $this->flashManager->getRenderedHtmlClassAttribute('error'));
+    }
+
+    public function testGetDefaultStatus(): void
+    {
+        // NEXT_MAJOR: StatusRuntime assertion
+        // StatusRuntime
+        $this->assertSame('example', $this->flashManager->getStatusClass($this->flashManager, 'non_existing_status', 'example'));
+
+        // FlashMessageRuntime
+        $this->assertSame('example', $this->flashManager->getRenderedHtmlClassAttribute('non_existing_status', 'example'));
     }
 
     /**
@@ -114,13 +142,13 @@ class FlashManagerTest extends TestCase
     public function testHandlingRegisteredTypes(): void
     {
         // Given
-        $this->session->getFlashBag()->set('my_bundle_success', 'hey, success dude!');
+        $this->flashManager->addFlash('my_bundle_success', 'hey, success dude!');
         $this->session->getFlashBag()->set('my_second_bundle_success', 'hey, success dude!');
 
-        $this->session->getFlashBag()->set('my_bundle_warning', 'hey, warning dude!');
+        $this->flashManager->addFlash('my_bundle_warning', 'hey, warning dude!');
         $this->session->getFlashBag()->set('my_second_bundle_warning', 'hey, warning dude!');
 
-        $this->session->getFlashBag()->set('my_bundle_error', 'hey, error dude!');
+        $this->flashManager->addFlash('my_bundle_error', 'hey, error dude!');
         $this->session->getFlashBag()->set('my_second_bundle_error', 'hey, error dude!');
 
         // When
@@ -197,20 +225,16 @@ class FlashManagerTest extends TestCase
 
     /**
      * Returns a Symfony session service.
-     *
-     * @return \Symfony\Component\HttpFoundation\Session\Session
      */
-    protected function getSession()
+    protected function getSession(): Session
     {
         return new Session(new MockArraySessionStorage(), new AttributeBag(), new FlashBag());
     }
 
     /**
      * Returns Sonata flash manager.
-     *
-     * @return FlashManager
      */
-    protected function getFlashManager(array $types)
+    protected function getFlashManager(array $types): FlashManager
     {
         $classes = ['error' => 'danger'];
 

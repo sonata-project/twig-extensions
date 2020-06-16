@@ -18,8 +18,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
+ *
+ * NEXT_MAJOR: remove StatusClassRendererInterface implementation
  */
-final class FlashManager implements StatusClassRendererInterface
+final class FlashManager implements FlashManagerInterface, StatusClassRendererInterface
 {
     /**
      * @var SessionInterface
@@ -50,6 +52,10 @@ final class FlashManager implements StatusClassRendererInterface
     /**
      * Tells if class may handle $object for status class rendering.
      *
+     * @deprecated since sonata-project/twig-extensions 1.x, will be removed in 2.0. Use handlesType() instead.
+     *
+     * NEXT_MAJOR: remove this method
+     *
      * @param object|string $object     FlashManager or Sonata flash message type
      * @param string|null   $statusName Sonata flash message type
      *
@@ -57,6 +63,13 @@ final class FlashManager implements StatusClassRendererInterface
      */
     public function handlesObject($object, ?string $statusName = null)
     {
+        @trigger_error(sprintf(
+            'The "%s()" method is deprecated since sonata-project/twig-extensions 1.x'
+            .' and will be removed in version 2.0. Use "%s" instead.',
+            __METHOD__,
+            'handlesType()'
+        ), E_USER_DEPRECATED);
+
         if (\is_string($object)) {
             if (null === $statusName) {
                 $statusName = $object;
@@ -68,29 +81,38 @@ final class FlashManager implements StatusClassRendererInterface
             return false;
         }
 
-        return \array_key_exists($statusName, $this->cssClasses);
+        return $this->handlesType($statusName);
     }
 
     /**
      * Returns the status CSS class for $object.
      *
+     * @deprecated since sonata-project/twig-extensions 1.x, will be removed in 2.0. Use getRenderedHtmlClassAttribute() instead.
+     *
+     * NEXT_MAJOR: remove this method
+     *
      * @param object|string $object     FlashManager or Sonata flash message type
      * @param string|null   $statusName Sonata flash message type
-     * @param string        $default    Default status class if flash message type do not exist
+     * @param string        $default    Default status class if Sonata flash message type do not exist
      *
      * @return string
      */
     public function getStatusClass($object, ?string $statusName = null, string $default = '')
     {
+        @trigger_error(sprintf(
+            'The "%s()" method is deprecated since sonata-project/twig-extensions 1.x'
+            .' and will be removed in 2.0. Use "%s" instead.',
+            __METHOD__,
+            'getRenderedHtmlClassAttribute()'
+        ), E_USER_DEPRECATED);
+
         if (\is_string($object)) {
             if (null === $statusName) {
                 $statusName = $object;
             }
         }
 
-        return \array_key_exists($statusName, $this->cssClasses)
-            ? $this->cssClasses[$statusName]
-            : $default;
+        return $this->getRenderedHtmlClassAttribute($statusName, $default);
     }
 
     /**
@@ -110,7 +132,7 @@ final class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns flash bag messages for correct type after renaming with Sonata type.
+     * Returns flash bag messages for correct type after renaming with Sonata flash message type.
      */
     public function get(string $type): array
     {
@@ -120,11 +142,31 @@ final class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Gets handled message types.
+     * Gets handled Sonata flash message types.
      */
     public function getHandledTypes(): array
     {
         return array_keys($this->getTypes());
+    }
+
+    public function getRenderedHtmlClassAttribute(string $type, string $default = ''): string
+    {
+        return \array_key_exists($type, $this->cssClasses)
+            ? $this->cssClasses[$type]
+            : $default;
+    }
+
+    public function handlesType(string $type): bool
+    {
+        return \array_key_exists($type, $this->cssClasses);
+    }
+
+    /**
+     * Add flash message to session.
+     */
+    public function addFlash(string $type, string $message): void
+    {
+        $this->session->getFlashBag()->add($type, $message);
     }
 
     /**
@@ -140,7 +182,7 @@ final class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Process flash message type rename.
+     * Process Sonata flash message type rename.
      *
      * @param string $type  Sonata flash message type
      * @param string $value Original flash message type

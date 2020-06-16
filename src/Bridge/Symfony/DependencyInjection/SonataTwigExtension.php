@@ -43,21 +43,22 @@ final class SonataTwigExtension extends Extension
      */
     public function registerFlashTypes(ContainerBuilder $container, array $config): void
     {
+        // NEXT_MAJOR: change types to string[]
         $mergedConfig = array_merge_recursive($config['flashmessage'], [
             'success' => ['types' => [
-                'success' => ['domain' => 'SonataTwigBundle'],
-                'sonata_flash_success' => ['domain' => 'SonataAdminBundle'],
-                'sonata_user_success' => ['domain' => 'SonataUserBundle'],
-                'fos_user_success' => ['domain' => 'FOSUserBundle'],
+                'success' => [],
+                'sonata_flash_success' => [],
+                'sonata_user_success' => [],
+                'fos_user_success' => [],
             ]],
             'warning' => ['types' => [
-                'warning' => ['domain' => 'SonataTwigBundle'],
-                'sonata_flash_info' => ['domain' => 'SonataAdminBundle'],
+                'warning' => [],
+                'sonata_flash_info' => [],
             ]],
             'danger' => ['types' => [
-                'error' => ['domain' => 'SonataTwigBundle'],
-                'sonata_flash_error' => ['domain' => 'SonataAdminBundle'],
-                'sonata_user_error' => ['domain' => 'SonataUserBundle'],
+                'error' => [],
+                'sonata_flash_error' => [],
+                'sonata_user_error' => [],
             ]],
         ]);
 
