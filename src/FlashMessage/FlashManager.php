@@ -37,7 +37,7 @@ final class FlashManager implements StatusClassRendererInterface
     private $cssClasses;
 
     /**
-     * @param array $types      Sonata types array (defined in configuration)
+     * @param array $types      Sonata flash message types array (defined in configuration)
      * @param array $cssClasses Css classes associated with $types
      */
     public function __construct(SessionInterface $session, array $types, array $cssClasses)
@@ -50,22 +50,46 @@ final class FlashManager implements StatusClassRendererInterface
     /**
      * Tells if class may handle $object for status class rendering.
      *
+     * @param object|string $object     FlashManager or Sonata flash message type
+     * @param string|null   $statusName Sonata flash message type
+     *
      * @return bool
      */
     public function handlesObject($object, ?string $statusName = null)
     {
-        return \is_string($object) && \array_key_exists($object, $this->cssClasses);
+        if (\is_string($object)) {
+            if (null === $statusName) {
+                $statusName = $object;
+            }
+            $object = $this;
+        }
+
+        if (!$object instanceof self) {
+            return false;
+        }
+
+        return \array_key_exists($statusName, $this->cssClasses);
     }
 
     /**
      * Returns the status CSS class for $object.
      *
+     * @param object|string $object     FlashManager or Sonata flash message type
+     * @param string|null   $statusName Sonata flash message type
+     * @param string        $default    Default status class if flash message type do not exist
+     *
      * @return string
      */
     public function getStatusClass($object, ?string $statusName = null, string $default = '')
     {
-        return \array_key_exists($object, $this->cssClasses)
-            ? $this->cssClasses[$object]
+        if (\is_string($object)) {
+            if (null === $statusName) {
+                $statusName = $object;
+            }
+        }
+
+        return \array_key_exists($statusName, $this->cssClasses)
+            ? $this->cssClasses[$statusName]
             : $default;
     }
 
