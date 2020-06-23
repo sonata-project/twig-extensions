@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Extension;
 
+use Sonata\Twig\FlashMessage\FlashManager;
 use Sonata\Twig\Status\StatusClassRendererInterface;
 
 /**
@@ -35,9 +36,31 @@ final class StatusRuntime
     }
 
     /**
-     * @param mixed $statusType
+     * @param object|string $object     Object for StatusClassRenderer or string for FlashManager
+     * @param string|null   $statusType Object status type or Sonata flash message type
+     * @param string        $default    Default status class
+     * @param mixed         $statusType
      */
-    public function statusClass(object $object, $statusType = null, string $default = ''): string
+    public function statusClass($object, $statusType = null, string $default = ''): string
+    {
+        if (\is_object($object)) {
+            return $this->statusClassForStatusClassRenderer($object, $statusType, $default);
+        }
+
+        if (\is_string($object)) {
+            return $this->statusClassForFlashManager($object, $statusType, $default);
+        }
+
+        @trigger_error(sprintf(
+            'Passing other type than object or string as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
+            .' and will throw an exception in version 2.0.',
+            __METHOD__
+        ), E_USER_DEPRECATED);
+
+        return $default;
+    }
+
+    private function statusClassForStatusClassRenderer(object $object, $statusType = null, string $default = ''): string
     {
         foreach ($this->statusServices as $statusService) {
             \assert($statusService instanceof StatusClassRendererInterface);
@@ -48,5 +71,36 @@ final class StatusRuntime
         }
 
         return $default;
+    }
+
+    private function statusClassForFlashManager(string $object, ?string $statusType = null, string $default = ''): string
+    {
+        if ($flashManager = $this->getFlashManagerFromStatusServices()) {
+            if ($flashManager->handlesObject($flashManager, $statusType)) {
+                if (null === $statusType) {
+                    $statusType = $object;
+                }
+
+                if ($flashManager->handlesObject($flashManager, $statusType)) {
+                    return $flashManager->getStatusClass($flashManager, $statusType, $default);
+                }
+            }
+        }
+
+        return $default;
+    }
+
+    /**
+     * Get FlashManager if it is registered as StatusClassRenderer.
+     */
+    private function getFlashManagerFromStatusServices(): ?FlashManager
+    {
+        foreach ($this->statusServices as $statusService) {
+            if ($statusService instanceof FlashManager) {
+                return $statusService;
+            }
+        }
+
+        return null;
     }
 }
