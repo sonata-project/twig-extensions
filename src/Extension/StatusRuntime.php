@@ -76,14 +76,12 @@ final class StatusRuntime
     private function statusClassForFlashManager(string $object, ?string $statusType = null, string $default = ''): string
     {
         if ($flashManager = $this->getFlashManagerFromStatusServices()) {
-            if ($flashManager->handlesObject($flashManager, $statusType)) {
-                if (null === $statusType) {
-                    $statusType = $object;
-                }
+            if (null === $statusType) {
+                $statusType = $object;
+            }
 
-                if ($flashManager->handlesObject($flashManager, $statusType)) {
-                    return $flashManager->getStatusClass($flashManager, $statusType, $default);
-                }
+            if ($flashManager->handlesObject($flashManager, $statusType)) {
+                return $flashManager->getStatusClass($flashManager, $statusType, $default);
             }
         }
 
