@@ -29,6 +29,10 @@ class StatusRuntimeTest extends TestCase
             ->willReturn(false);
 
         $runtime->addStatusService($statusService);
+        // getStatusClass() for StatusClassRenderer
         $this->assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));
+
+        // getStatusClass() for FlashManager
+        $this->assertSame('test-value', $runtime->statusClass('getStatus', null, 'test-value'));
     }
 }
