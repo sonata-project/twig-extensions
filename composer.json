@@ -49,18 +49,12 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
-        },
-        "symfony": {
-            "bundles": {
-                "Sonata\\Twig\\Bridge\\Symfony\\SonataTwigBundle": [
-                    "all"
-                ]
-            }
         }
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\Twig\\": "src/"
+            "Sonata\\Twig\\": "src/",
+            "Sonata\\Twig\\Bridge\\Symfony\\": "src/Bridge/Symfony/"
         }
     },
     "autoload-dev": {
