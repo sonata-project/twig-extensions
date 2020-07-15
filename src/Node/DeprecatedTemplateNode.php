@@ -19,6 +19,10 @@ use Twig\Node\Node;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * NEXT_MAJOR: Remove this class.
+ *
+ * @deprecated since sonata-project/twig-extensions 1.x, to be removed in 2.0.
  */
 final class DeprecatedTemplateNode extends Node
 {
