@@ -24,6 +24,10 @@ use Twig\Source;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * NEXT_MAJOR: Remove this class.
+ *
+ * @group legacy
  */
 class DeprecatedTemplateTokenParserTest extends TestCase
 {
