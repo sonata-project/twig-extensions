@@ -53,7 +53,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\Twig\\": "src/"
+            "Sonata\\Twig\\": "src/",
+            "Sonata\\Twig\\Bridge\\Symfony\\": "src/Bridge/Symfony/"
         }
     },
     "autoload-dev": {
