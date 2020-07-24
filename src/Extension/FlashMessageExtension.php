@@ -29,6 +29,7 @@ final class FlashMessageExtension extends AbstractExtension
         return [
             new TwigFunction('sonata_flashmessages_get', [FlashMessageRuntime::class, 'getFlashMessages']),
             new TwigFunction('sonata_flashmessages_types', [FlashMessageRuntime::class, 'getFlashMessagesTypes']),
+            new TwigFunction('sonata_flashmessages_class', [FlashMessageRuntime::class, 'getFlashMessagesClass']),
         ];
     }
 

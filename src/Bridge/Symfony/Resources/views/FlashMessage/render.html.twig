@@ -12,7 +12,7 @@ file that was distributed with this source code.
 {% for type in sonata_flashmessages_types() %}
     {% set messages = sonata_flashmessages_get(type) %}
     {% if messages|length > 1 %}
-        <div class="alert alert-{{ type|sonata_status_class }} alert-dismissible collapsed-box">
+        <div class="alert alert-{{ sonata_flashmessages_class(type, 'default') }} alert-dismissible collapsed-box">
             <button
                     type="button"
                     class="close"
@@ -39,7 +39,7 @@ file that was distributed with this source code.
             </label>
         </div>
     {% elseif messages|length == 1 %}
-        <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
+        <div class="alert alert-{{ sonata_flashmessages_class(type, 'default') }} alert-dismissable">
             <button
                     type="button"
                     class="close"

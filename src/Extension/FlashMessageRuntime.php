@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Extension;
 
-use Sonata\Twig\FlashMessage\FlashManager;
+use Sonata\Twig\FlashMessage\FlashManagerInterface;
 
 /**
  * This is the Sonata flash message Twig runtime.
@@ -24,19 +24,17 @@ use Sonata\Twig\FlashMessage\FlashManager;
 final class FlashMessageRuntime
 {
     /**
-     * @var FlashManager
+     * @var FlashManagerInterface
      */
     private $flashManager;
 
-    public function __construct(FlashManager $flashManager)
+    public function __construct(FlashManagerInterface $flashManager)
     {
         $this->flashManager = $flashManager;
     }
 
     /**
      * Returns flash messages handled by Sonata flash manager.
-     *
-     * @param string $type Type of flash message
      */
     public function getFlashMessages(string $type): array
     {
@@ -44,10 +42,18 @@ final class FlashMessageRuntime
     }
 
     /**
-     * Returns flash messages types handled by Sonata flash manager.
+     * Returns Sonata flash messages types handled by Sonata flash manager.
      */
     public function getFlashMessagesTypes(): array
     {
         return $this->flashManager->getHandledTypes();
+    }
+
+    /**
+     * Returns Sonata flash message css class.
+     */
+    public function getFlashMessagesClass(string $type, string $default = ''): string
+    {
+        return $this->flashManager->getRenderedHtmlClassAttribute($type, $default);
     }
 }

@@ -4,8 +4,8 @@
 Twig Helpers
 ============
 
-sonata_flashmessages_get and sonata_flashmessages_types
--------------------------------------------------------
+sonata_flashmessages_get, sonata_flashmessages_types and sonata_flashmessages_class
+-----------------------------------------------------------------------------------
 
 See :doc:`flash_messages` for more information.
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\Extension;
 
 use Sonata\Twig\FlashMessage\FlashManager;
+use Sonata\Twig\FlashMessage\FlashManagerInterface;
 use Sonata\Twig\Status\StatusClassRendererInterface;
 
 /**
@@ -43,6 +44,10 @@ final class StatusRuntime
      */
     public function statusClass($object, $statusType = null, string $default = ''): string
     {
+        if ($object instanceof FlashManagerInterface) {
+            return $this->statusClassForFlashManager($statusType, null, $default);
+        }
+
         if (\is_object($object)) {
             return $this->statusClassForStatusClassRenderer($object, $statusType, $default);
         }
@@ -53,7 +58,7 @@ final class StatusRuntime
 
         @trigger_error(sprintf(
             'Passing other type than object or string as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
-            .' and will throw an exception in version 2.0.',
+            .' and will throw an exception in 2.0.',
             __METHOD__
         ), E_USER_DEPRECATED);
 
@@ -80,8 +85,8 @@ final class StatusRuntime
                 $statusType = $object;
             }
 
-            if ($flashManager->handlesObject($flashManager, $statusType)) {
-                return $flashManager->getStatusClass($flashManager, $statusType, $default);
+            if ($flashManager->handlesType($statusType)) {
+                return $flashManager->getRenderedHtmlClassAttribute($statusType, $default);
             }
         }
 
