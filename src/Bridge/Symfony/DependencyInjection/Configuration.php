@@ -29,12 +29,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('sonata_twig');
 
-        // NEXT_MAJOR: Remove when dropping support for symfony/config < 4.2
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->root('sonata_twig');
-        } else {
-            $rootNode = $treeBuilder->getRootNode();
-        }
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addFlashMessageSection($rootNode);
 
