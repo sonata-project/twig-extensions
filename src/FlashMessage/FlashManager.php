@@ -52,7 +52,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     /**
      * Tells if class may handle $object for status class rendering.
      *
-     * @deprecated since sonata-project/twig-extensions 1.x, will be removed in 2.0. Use handlesType() instead.
+     * @deprecated since sonata-project/twig-extensions 1.4, will be removed in 2.0. Use handlesType() instead.
      *
      * NEXT_MAJOR: remove this method
      *
@@ -64,7 +64,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     public function handlesObject($object, ?string $statusName = null)
     {
         @trigger_error(sprintf(
-            'The "%s()" method is deprecated since sonata-project/twig-extensions 1.x'
+            'The "%s()" method is deprecated since sonata-project/twig-extensions 1.4'
             .' and will be removed in version 2.0. Use "%s" instead.',
             __METHOD__,
             'handlesType()'
@@ -87,7 +87,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     /**
      * Returns the status CSS class for $object.
      *
-     * @deprecated since sonata-project/twig-extensions 1.x, will be removed in 2.0. Use getRenderedHtmlClassAttribute() instead.
+     * @deprecated since sonata-project/twig-extensions 1.4, will be removed in 2.0. Use getRenderedHtmlClassAttribute() instead.
      *
      * NEXT_MAJOR: remove this method
      *
@@ -100,7 +100,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     public function getStatusClass($object, ?string $statusName = null, string $default = '')
     {
         @trigger_error(sprintf(
-            'The "%s()" method is deprecated since sonata-project/twig-extensions 1.x'
+            'The "%s()" method is deprecated since sonata-project/twig-extensions 1.4'
             .' and will be removed in 2.0. Use "%s" instead.',
             __METHOD__,
             'getRenderedHtmlClassAttribute()'

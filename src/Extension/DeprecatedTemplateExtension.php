@@ -21,7 +21,7 @@ use Twig\Extension\AbstractExtension;
  *
  * NEXT_MAJOR: Remove this class.
  *
- * @deprecated since sonata-project/twig-extensions 1.x, to be removed in 2.0.
+ * @deprecated since sonata-project/twig-extensions 1.4, to be removed in 2.0.
  */
 final class DeprecatedTemplateExtension extends AbstractExtension
 {
