@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Bridge\Symfony\Bundle;
 
-use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
+use Sonata\Twig\Bridge\Symfony\SonataTwigBundle as ForwardCompatibleSonataTwigBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 @trigger_error(sprintf(
     'The %s\SonataTwigBundle class is deprecated since version 1.4, to be removed in 2.0. Use %s instead.',
     __NAMESPACE__,
-    SonataTwigBundle::class
+    ForwardCompatibleSonataTwigBundle::class
 ), E_USER_DEPRECATED);
 
 if (false) {
@@ -35,4 +35,4 @@ if (false) {
     }
 }
 
-class_alias(SonataTwigBundle::class, __NAMESPACE__.'\SonataTwigBundle');
+class_alias(ForwardCompatibleSonataTwigBundle::class, __NAMESPACE__.'\SonataTwigBundle');
