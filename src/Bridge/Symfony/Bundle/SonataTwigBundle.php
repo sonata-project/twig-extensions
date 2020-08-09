@@ -17,7 +17,7 @@ use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 @trigger_error(sprintf(
-    'The %s\SonataTwigBundle class is deprecated since version 1.x, to be removed in 2.0. Use %s instead.',
+    'The %s\SonataTwigBundle class is deprecated since version 1.4, to be removed in 2.0. Use %s instead.',
     __NAMESPACE__,
     SonataTwigBundle::class
 ), E_USER_DEPRECATED);

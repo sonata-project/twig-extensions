@@ -2,6 +2,50 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.0](https://github.com/sonata-project/twig-extensions/compare/1.3.1...1.4.0) - 2020-08-08
+### Added
+- [[#90](https://github.com/sonata-project/twig-extensions/pull/90)] Add
+  `Sonata\Twig\FlashMessage\FlashManager::addFlash(string $type, string
+$message): void` to add flash message directly by FlashManager
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#90](https://github.com/sonata-project/twig-extensions/pull/90)] Add
+  `Sonata\Twig\FlashMessage\FlashManagerInterface` to allow create custom
+FlashManager ([@wbloszyk](https://github.com/wbloszyk))
+- [[#90](https://github.com/sonata-project/twig-extensions/pull/90)] Add twig
+  function `sonata_flashmessage_class` - get css class from flash message type
+in Twig ([@wbloszyk](https://github.com/wbloszyk))
+- [[#100](https://github.com/sonata-project/twig-extensions/pull/100)] Added
+  `Sonata\Twig\Bridge\Symfony\SonataTwigSymfonyBundle`.
+([@phansys](https://github.com/phansys))
+
+### Changed
+- [[#101](https://github.com/sonata-project/twig-extensions/pull/101)] Bump
+  Symfony to version 5.1 ([@franmomu](https://github.com/franmomu))
+- [[#99](https://github.com/sonata-project/twig-extensions/pull/99)] Bump Twig
+  to 2.6. ([@franmomu](https://github.com/franmomu))
+
+### Deprecated
+- [[#99](https://github.com/sonata-project/twig-extensions/pull/99)] Deprecated
+  `sonata_template_deprecate` twig tag and
+`sonata.twig.deprecated_template_extension` service.
+([@franmomu](https://github.com/franmomu))
+- [[#99](https://github.com/sonata-project/twig-extensions/pull/99)] Deprecated
+  `DeprecatedTemplateExtension`, `DeprecatedTemplateNode` and
+`DeprecatedTemplateTokenParser` classes.
+([@franmomu](https://github.com/franmomu))
+
+### Fixed
+- [[#90](https://github.com/sonata-project/twig-extensions/pull/90)] Fix
+  working `FlashManager` as `StatusClassRenderer`
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#100](https://github.com/sonata-project/twig-extensions/pull/100)] Fixed
+  Flex recipe implementation through `SonataTwigSymfonyBundle` alias.
+([@phansys](https://github.com/phansys))
+
+### Removed
+- [[#101](https://github.com/sonata-project/twig-extensions/pull/101)] Remove
+  support of Symfony < 3.4 and < 4.4 ([@franmomu](https://github.com/franmomu))
+
 ## [1.3.1](https://github.com/sonata-project/twig-extensions/compare/1.3.0...1.3.1) - 2020-06-29
 ### Fixed
 - [[#92](https://github.com/sonata-project/twig-extensions/pull/92)] Fix

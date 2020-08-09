@@ -29,12 +29,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('sonata_twig');
 
-        // NEXT_MAJOR: Remove when dropping support for symfony/config < 4.2
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->root('sonata_twig');
-        } else {
-            $rootNode = $treeBuilder->getRootNode();
-        }
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addFlashMessageSection($rootNode);
 
@@ -68,7 +63,7 @@ depending on this style.')
                                     ->children()
                                         ->scalarNode('domain')
                                             ->defaultValue('SonataTwigBundle')
-                                            ->setDeprecated('The child node "%node%" at path "%path%" is deprecated since sonata-project/twig-extensions 1.x and will be removed in 2.0 version. Translate you message before add it to session flash.')
+                                            ->setDeprecated('The child node "%node%" at path "%path%" is deprecated since sonata-project/twig-extensions 1.4 and will be removed in 2.0 version. Translate you message before add it to session flash.')
                                             ->end()
                                     ->end()
                                 ->end()

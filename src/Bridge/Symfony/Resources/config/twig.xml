@@ -13,7 +13,7 @@
         </service>
         <!-- NEXT_MAJOR: Remove this definition. -->
         <service id="sonata.twig.deprecated_template_extension" class="Sonata\Twig\Extension\DeprecatedTemplateExtension">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/twig-extensions 1.x.</deprecated>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/twig-extensions 1.4.</deprecated>
             <tag name="twig.extension"/>
         </service>
         <service id="sonata.twig.template_extension" class="Sonata\Twig\Extension\TemplateExtension">
