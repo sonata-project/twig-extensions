@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.1](https://github.com/sonata-project/twig-extensions/compare/1.4.0...1.4.1) - 2020-08-09
+### Fixed
+- [[#103](https://github.com/sonata-project/twig-extensions/pull/103)] Fixed conflict with class names. ([@franmomu](https://github.com/franmomu))
+
 ## [1.4.0](https://github.com/sonata-project/twig-extensions/compare/1.3.1...1.4.0) - 2020-08-08
 ### Added
 - [[#90](https://github.com/sonata-project/twig-extensions/pull/90)] Add
