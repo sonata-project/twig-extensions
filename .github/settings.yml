@@ -1,0 +1,5 @@
+repository:
+  name: twig-extensions
+  description: Sonata twig extensions
+  homepage: https://sonata-project.org
+  topics: library, symfony, symfony-bridge, twig, twig-extension
