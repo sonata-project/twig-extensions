@@ -20,21 +20,3 @@ Now, enable the bundle in ``bundles.php`` file::
         // ...
         Sonata\Twig\Bridge\Symfony\Bundle\SonataTwigBundle::class => ['all' => true],
     ];
-
-.. note::
-
-    If you are not using Symfony Flex, you should enable bundles in your
-    ``AppKernel.php``.
-
-.. code-block:: php
-
-    // app/AppKernel.php
-
-    public function registerBundles()
-    {
-        return [
-            // ...
-            new Sonata\Twig\Bridge\Symfony\Bundle\SonataTwigBundle(),
-            // ...
-        ];
-    }
