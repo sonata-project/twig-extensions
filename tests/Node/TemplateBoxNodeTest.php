@@ -32,7 +32,6 @@ class TemplateBoxNodeTest extends NodeTestCase
     }
 
     /**
-     * @covers \Twig_Node_Block::compile
      * @dataProvider getTests
      */
     public function testCompile($node, $source, $environment = null, $isPattern = false): void

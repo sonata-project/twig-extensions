@@ -7,5 +7,7 @@ framework:
         name: 'MOCKSESSID'
 
 twig:
+    exception_controller: null
     paths:
         - '%kernel.project_dir%/templates'
+    strict_variables: '%kernel.debug%'
