@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 
+use Symfony\Component\Config\Definition\BaseNode;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -63,7 +64,7 @@ depending on this style.')
                                     ->children()
                                         ->scalarNode('domain')
                                             ->defaultValue('SonataTwigBundle')
-                                            ->setDeprecated('The child node "%node%" at path "%path%" is deprecated since sonata-project/twig-extensions 1.4 and will be removed in 2.0 version. Translate you message before add it to session flash.')
+                                            ->setDeprecated(...$this->getDomainParamDeprecationMsg())
                                             ->end()
                                     ->end()
                                 ->end()
@@ -73,5 +74,21 @@ depending on this style.')
                 ->end()
             ->end()
         ;
+    }
+
+    // BC layer for deprecation messages for symfony/config < 5.1
+    private function getDomainParamDeprecationMsg(): array
+    {
+        $message = 'The child node "%node%" at path "%path%" is deprecated since sonata-project/twig-extensions 1.4 and will be removed in 2.0 version. Translate you message before add it to session flash.';
+
+        if (method_exists(BaseNode::class, 'getDeprecation')) {
+            return [
+                'sonata-project/twig-extensions',
+                '1.4',
+                $message,
+            ];
+        }
+
+        return [$message];
     }
 }
