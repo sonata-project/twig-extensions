@@ -34,9 +34,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.twig.status_extension', StatusExtension::class)
             ->tag('twig.extension')
 
+        // NEXT_MAJOR: Remove this service.
         ->set('sonata.twig.deprecated_template_extension', DeprecatedTemplateExtension::class)
             ->tag('twig.extension')
-            ->deprecate('The "%service_id%" service is deprecated since sonata-project/twig-extensions 1.4.')
 
         ->set('sonata.twig.template_extension', TemplateExtension::class)
             ->tag('twig.extension')
