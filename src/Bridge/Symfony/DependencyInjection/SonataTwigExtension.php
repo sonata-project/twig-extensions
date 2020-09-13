@@ -16,7 +16,7 @@ namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -30,9 +30,9 @@ final class SonataTwigExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('flash.xml');
-        $loader->load('twig.xml');
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('flash.php');
+        $loader->load('twig.php');
 
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.twig.form_type', $config['form_type']);
