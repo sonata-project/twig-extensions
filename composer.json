@@ -33,7 +33,7 @@
     },
     "require-dev": {
         "jms/serializer-bundle": "^3.3",
-        "matthiasnoback/symfony-config-test": "^4.0",
+        "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "symfony/browser-kit": "^4.4 || ^5.1",
         "symfony/dependency-injection": "^4.4 || ^5.1",
