@@ -21,8 +21,8 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "sonata-project/doctrine-extensions": "^1.9",
+        "php": "^7.3",
+        "sonata-project/doctrine-extensions": "^1.10.1",
         "symfony/config": "^4.4 || ^5.1",
         "symfony/translation": "^4.4 || ^5.1",
         "symfony/twig-bridge": "^4.4 || ^5.1",
@@ -33,14 +33,14 @@
     },
     "require-dev": {
         "jms/serializer-bundle": "^3.3",
-        "matthiasnoback/symfony-config-test": "^4.0",
+        "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "symfony/browser-kit": "^4.4 || ^5.1",
         "symfony/dependency-injection": "^4.4 || ^5.1",
         "symfony/framework-bundle": "^4.4 || ^5.1",
         "symfony/http-foundation": "^4.4 || ^5.1",
         "symfony/http-kernel": "^4.4 || ^5.1",
-        "symfony/phpunit-bridge": "^5.1.1",
+        "symfony/phpunit-bridge": "^5.1.8",
         "symfony/twig-bundle": "^4.4 || ^5.1"
     },
     "config": {
