@@ -6,6 +6,14 @@
                 <source>message_close</source>
                 <target>Zamknij</target>
             </trans-unit>
+            <trans-unit id="more">
+                <source>more</source>
+                <target>więcej</target>
+            </trans-unit>
+            <trans-unit id="less">
+                <source>less</source>
+                <target>mniej</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
