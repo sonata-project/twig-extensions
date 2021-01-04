@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.5.0](https://github.com/sonata-project/twig-extensions/compare/1.4.2...1.5.0) - 2021-01-04
+### Added
+- [[#159](https://github.com/sonata-project/twig-extensions/pull/159)] Added missing `pl` translations. ([@axzx](https://github.com/axzx))
+- [[#169](https://github.com/sonata-project/twig-extensions/pull/169)] Support for PHP8 ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [1.4.2](https://github.com/sonata-project/twig-extensions/compare/1.4.1...1.4.2) - 2020-12-08
 ### Fixed
 - [[#124](https://github.com/sonata-project/twig-extensions/pull/124)] Fixed throwing a deprecation warning every time the bundle is loaded. ([@franmomu](https://github.com/franmomu))
