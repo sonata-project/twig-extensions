@@ -51,7 +51,7 @@ abstract class AbstractTemplateRegistry implements TemplateRegistryInterface
 
         @trigger_error(sprintf(
             'Passing a nonexistent template name as argument 1 to %s() is deprecated since'
-            .' sonata-project/admin-bundle 3.52 and will throw an exception in 4.0.',
+            .' sonata-project/twig-extensions 1.x and will throw an exception in 2.0.',
             __METHOD__
         ), E_USER_DEPRECATED);
 

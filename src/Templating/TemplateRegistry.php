@@ -23,14 +23,14 @@ final class TemplateRegistry extends AbstractTemplateRegistry implements Mutable
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @deprecated since version sonata-project/admin-bundle 3.39.0 and will be removed in 4.0. Use Sonata\AdminBundle\Templating\MutableTemplateRegistry instead.
+     * @deprecated since version sonata-project/twig-extensions 1.x and will be removed in 2.0. Use Sonata\Twig\Templating\MutableTemplateRegistry instead.
      */
     public function setTemplates(array $templates)
     {
         $this->templates = $templates;
 
         @trigger_error(sprintf(
-            'Method "%s()" is deprecated since sonata-project/admin-bundle 3.39 and will be removed in 4.0.',
+            'Method "%s()" is deprecated since sonata-project/twig-extensions 1.x and will be removed in 2.0.',
             __METHOD__
         ), E_USER_DEPRECATED);
     }
@@ -38,14 +38,14 @@ final class TemplateRegistry extends AbstractTemplateRegistry implements Mutable
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @deprecated since version sonata-project/admin-bundle 3.39.0 and will be removed in 4.0. Use Sonata\AdminBundle\Templating\MutableTemplateRegistry instead.
+     * @deprecated since version sonata-project/twig-extensions 1.x and will be removed in 2.0. Use Sonata\Twig\Templating\MutableTemplateRegistry instead.
      */
     public function setTemplate($name, $template)
     {
         $this->templates[$name] = $template;
 
         @trigger_error(sprintf(
-            'Method "%s()" is deprecated since sonata-project/admin-bundle 3.39 and will be removed in 4.0.',
+            'Method "%s()" is deprecated since sonata-project/twig-extensions 1.x and will be removed in 2.0.',
             __METHOD__
         ), E_USER_DEPRECATED);
     }

@@ -22,12 +22,12 @@ namespace Sonata\Twig\Templating;
  */
 interface MutableTemplateRegistryAwareInterface
 {
-    // NEXT_MAJOR: uncomment this method in 4.0
+    // NEXT_MAJOR: uncomment this method
     //public function getTemplateRegistry(): MutableTemplateRegistryInterface;
 
-    // NEXT_MAJOR: uncomment this method in 4.0
+    // NEXT_MAJOR: uncomment this method
     //public function hasTemplateRegistry(): bool;
 
-    // NEXT_MAJOR: uncomment this method in 4.0
+    // NEXT_MAJOR: uncomment this method
     //public function setTemplateRegistry(MutableTemplateRegistryInterface $templateRegistry): void;
 }
