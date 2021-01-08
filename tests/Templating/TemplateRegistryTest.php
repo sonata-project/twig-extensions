@@ -53,7 +53,7 @@ class TemplateRegistryTest extends TestCase
     {
         $this->assertFalse($this->templateRegistry->hasTemplate('nonexist_template'));
         // NEXT_MAJOR: remove this line
-        $this->expectDeprecation('Passing a nonexistent template name as argument 1 to Sonata\AdminBundle\Templating\AbstractTemplateRegistry::getTemplate() is deprecated since sonata-project/admin-bundle 3.52 and will throw an exception in 4.0.');
+        $this->expectDeprecation('Passing a nonexistent template name as argument 1 to Sonata\Twig\Templating\AbstractTemplateRegistry::getTemplate() is deprecated since sonata-project/twig-extensions 1.x and will throw an exception in 2.0.');
         $this->assertNull($this->templateRegistry->getTemplate('nonexist_template'));
         // NEXT_MAJOR: Remove previous assertion, the "@group" annotations and uncomment the following line
         // $this->assertFalse($this->templateRegistry->hasTemplate('nonexist_template'));
