@@ -37,6 +37,6 @@ final class DeprecatedTemplateNode extends Node
             'The "%s" template is deprecated. Use "%s" instead.',
             $this->getTemplateName(),
             $this->getNode('newTemplate')->getAttribute('value')
-        ), E_USER_DEPRECATED);
+        ), \E_USER_DEPRECATED);
     }
 }

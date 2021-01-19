@@ -60,7 +60,7 @@ final class StatusRuntime
             'Passing other type than object or string as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.4'
             .' and will throw an exception in 2.0.',
             __METHOD__
-        ), E_USER_DEPRECATED);
+        ), \E_USER_DEPRECATED);
 
         return $default;
     }
