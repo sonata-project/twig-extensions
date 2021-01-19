@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
     'The %s\SonataTwigBundle class is deprecated since version 1.4, to be removed in 2.0. Use %s instead.',
     __NAMESPACE__,
     ForwardCompatibleSonataTwigBundle::class
-), E_USER_DEPRECATED);
+), \E_USER_DEPRECATED);
 
 if (false) {
     /**
