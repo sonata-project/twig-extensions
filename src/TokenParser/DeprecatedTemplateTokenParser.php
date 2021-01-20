@@ -31,7 +31,7 @@ final class DeprecatedTemplateTokenParser extends AbstractTokenParser
         @trigger_error(
             'The "sonata_template_deprecate" tag is deprecated since sonata-project/twig-extensions 1.4'
             .' and will be removed in version 2.0. Use "deprecated" tag instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         if (!$this->parser->getStream()->test(Token::STRING_TYPE)) {

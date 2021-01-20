@@ -68,7 +68,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
             .' and will be removed in version 2.0. Use "%s" instead.',
             __METHOD__,
             'handlesType()'
-        ), E_USER_DEPRECATED);
+        ), \E_USER_DEPRECATED);
 
         if (\is_string($object)) {
             if (null === $statusName) {
@@ -104,7 +104,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
             .' and will be removed in 2.0. Use "%s" instead.',
             __METHOD__,
             'getRenderedHtmlClassAttribute()'
-        ), E_USER_DEPRECATED);
+        ), \E_USER_DEPRECATED);
 
         if (\is_string($object)) {
             if (null === $statusName) {
