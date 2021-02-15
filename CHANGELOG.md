@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.5.1](https://github.com/sonata-project/twig-extensions/compare/1.5.0...1.5.1) - 2021-02-15
+### Added
+- [[#188](https://github.com/sonata-project/twig-extensions/pull/188)] Added support for `sonata-project/doctrine-extensions` 1.9. ([@franmomu](https://github.com/franmomu))
+
 ## [1.5.0](https://github.com/sonata-project/twig-extensions/compare/1.4.2...1.5.0) - 2021-01-04
 ### Added
 - [[#159](https://github.com/sonata-project/twig-extensions/pull/159)] Added missing `pl` translations. ([@axzx](https://github.com/axzx))
