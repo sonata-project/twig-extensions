@@ -22,8 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.twig.flashmessage.manager.class', FlashManager::class)
 
-        ->set('sonata.twig.extension.flashmessage.class', FlashMessageExtension::class)
-    ;
+        ->set('sonata.twig.extension.flashmessage.class', FlashMessageExtension::class);
 
     // Use "service" function for creating references to services when dropping support for Symfony 4.4
     // Use "param" function for creating references to parameters when dropping support for Symfony 5.1
@@ -46,6 +45,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.twig.flashmessage.twig.extension', '%sonata.twig.extension.flashmessage.class%')
             ->public()
-            ->tag('twig.extension')
-    ;
+            ->tag('twig.extension');
 };
