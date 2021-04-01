@@ -72,8 +72,7 @@ depending on this style.')
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-        ;
+            ->end();
     }
 
     // BC layer for deprecation messages for symfony/config < 5.1

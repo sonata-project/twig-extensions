@@ -43,6 +43,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->args([
                 '%kernel.debug%',
                 new ReferenceConfigurator('sonata.doctrine.model.adapter.chain'),
-            ])
-    ;
+            ]);
 };
