@@ -72,7 +72,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
                     __METHOD__,
                     RequestStack::class,
                     SessionInterface::class,
-                    is_object($session) ? get_class($session) : gettype($session)
+                    \is_object($session) ? \get_class($session) : \gettype($session)
                 )
             );
         }
@@ -163,7 +163,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
             return $this->session;
         }
 
-        if (\method_exists($this->requestStack, 'getMainRequest')) {
+        if (method_exists($this->requestStack, 'getMainRequest')) {
             $request = $this->requestStack->getMainRequest();
         } else {
             $request = $this->requestStack->getMasterRequest();
