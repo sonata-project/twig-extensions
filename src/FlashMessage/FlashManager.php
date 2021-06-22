@@ -53,7 +53,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     {
         if ($session instanceof SessionInterface) {
             @trigger_error(sprintf(
-                'Passing "%" as $session to "%s" method is deprecated since sonata-project/twig-extensions 1.7'
+                'Passing "%s" as $session to "%s" method is deprecated since sonata-project/twig-extensions 1.7'
                 .' and will be removed in 2.0. Pass "%s" instead.',
                 SessionInterface::class,
                 __METHOD__,
