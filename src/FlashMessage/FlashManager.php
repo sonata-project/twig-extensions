@@ -26,6 +26,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
 {
     /**
      * @var SessionInterface|null
+     *
      * @deprecated since sonata-project/twig-extensions 1.7. Use $requestStack->getSession() instead.
      */
     private $session;
