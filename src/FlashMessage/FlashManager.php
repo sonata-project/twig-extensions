@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\FlashMessage;
 
 use Sonata\Twig\Status\StatusClassRendererInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -24,9 +25,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 final class FlashManager implements FlashManagerInterface, StatusClassRendererInterface
 {
     /**
-     * @var SessionInterface
+     * @var SessionInterface|null
+     * @deprecated since sonata-project/twig-extensions 1.7. Use $requestStack->getSession() instead.
      */
     private $session;
+
+    /**
+     * @var RequestStack|null
+     */
+    private $requestStack;
 
     /**
      * @var array
@@ -42,9 +49,33 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      * @param array $types      Sonata flash message types array (defined in configuration)
      * @param array $cssClasses Css classes associated with $types
      */
-    public function __construct(SessionInterface $session, array $types, array $cssClasses)
+    public function __construct($session, array $types, array $cssClasses)
     {
-        $this->session = $session;
+        if ($session instanceof SessionInterface) {
+            @trigger_error(sprintf(
+                'Passing "%" as $requestStackOrSession to "%s" method is deprecated since sonata-project/twig-extensions 1.7'
+                .' and will be removed in 2.0. Pass "%s" instead.',
+                SessionInterface::class,
+                __METHOD__,
+                RequestStack::class
+            ), \E_USER_DEPRECATED);
+            $this->session = $session;
+        } elseif ($session instanceof RequestStack) {
+            // NEXT_MAJOR: keep this block only
+            // NEXT_MAJOR: add \Symfony\Component\HttpFoundation\RequestStack typehint to $session
+            // NEXT_MAJOR: rename $session to $requestStack
+            $this->requestStack = $session;
+        } else {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Argument $code of "%s" method should be "%s" or "%s", "%s" provided.',
+                    __METHOD__,
+                    RequestStack::class,
+                    SessionInterface::class,
+                    is_object($session) ? get_class($session) : gettype($session)
+                )
+            );
+        }
         $this->types = $types;
         $this->cssClasses = $cssClasses;
     }
@@ -128,7 +159,17 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      */
     public function getSession(): SessionInterface
     {
-        return $this->session;
+        if ($this->session !== null) {
+            return $this->session;
+        }
+
+        if (\method_exists($this->requestStack, 'getMainRequest')) {
+            $request = $this->requestStack->getMainRequest();
+        } else {
+            $request = $this->requestStack->getMasterRequest();
+        }
+
+        return $request->getSession();
     }
 
     /**
@@ -166,7 +207,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      */
     public function addFlash(string $type, string $message): void
     {
-        $this->session->getFlashBag()->add($type, $message);
+        $this->getSession()->getFlashBag()->add($type, $message);
     }
 
     /**

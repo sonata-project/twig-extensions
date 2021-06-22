@@ -32,7 +32,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->public()
             ->tag('sonata.status.renderer')
             ->args([
-                new ReferenceConfigurator('session'),
+                new ReferenceConfigurator('request_stack'),
                 [],
                 [],
             ])
