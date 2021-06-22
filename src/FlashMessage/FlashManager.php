@@ -159,7 +159,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      */
     public function getSession(): SessionInterface
     {
-        if ($this->session !== null) {
+        if (null !== $this->session) {
             return $this->session;
         }
 
