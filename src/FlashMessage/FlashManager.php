@@ -50,9 +50,9 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      * @param array $types      Sonata flash message types array (defined in configuration)
      * @param array $cssClasses Css classes associated with $types
      */
-    public function __construct($session, array $types, array $cssClasses)
+    public function __construct($requestStackOrDeprecatedSession, array $types, array $cssClasses)
     {
-        if ($session instanceof SessionInterface) {
+        if ($requestStackOrDeprecatedSession instanceof SessionInterface) {
             @trigger_error(sprintf(
                 'Passing "%s" as $session to "%s" method is deprecated since sonata-project/twig-extensions 1.7'
                 .' and will be removed in 2.0. Pass "%s" instead.',
@@ -60,12 +60,12 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
                 __METHOD__,
                 RequestStack::class
             ), \E_USER_DEPRECATED);
-            $this->session = $session;
-        } elseif ($session instanceof RequestStack) {
+            $this->session = $requestStackOrDeprecatedSession;
+        } elseif ($requestStackOrDeprecatedSession instanceof RequestStack) {
             // NEXT_MAJOR: keep this block only
             // NEXT_MAJOR: add \Symfony\Component\HttpFoundation\RequestStack typehint to $session
             // NEXT_MAJOR: rename $session to $requestStack
-            $this->requestStack = $session;
+            $this->requestStack = $requestStackOrDeprecatedSession;
         } else {
             throw new \InvalidArgumentException(
                 sprintf(
@@ -73,7 +73,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
                     __METHOD__,
                     RequestStack::class,
                     SessionInterface::class,
-                    \is_object($session) ? \get_class($session) : \gettype($session)
+                    \is_object($requestStackOrDeprecatedSession) ? \get_class($requestStackOrDeprecatedSession) : \gettype($requestStackOrDeprecatedSession)
                 )
             );
         }
