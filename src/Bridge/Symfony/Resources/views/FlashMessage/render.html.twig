@@ -9,9 +9,11 @@ file that was distributed with this source code.
 
 #}
 
+{% set collapse = collapse|default(1) %}
+
 {% for type in sonata_flashmessages_types() %}
     {% set messages = sonata_flashmessages_get(type) %}
-    {% if messages|length > 1 %}
+    {% if messages|length > collapse and collapse > 0 %}
         <div class="alert alert-{{ sonata_flashmessages_class(type, 'default') }} alert-dismissible collapsed-box">
             <button
                     type="button"
@@ -24,7 +26,7 @@ file that was distributed with this source code.
             <input type="checkbox" class="read-more-state" id="toggle-more-{{ loop.index }}" />
             <div class="read-more-wrap">
                 {% for message in messages %}
-                    {% if loop.index >= 2 %}
+                    {% if loop.index > collapse %}
                         <span class="read-more-target">{{ message|raw }}</span>
                     {% else %}
                         {{ message|raw }}
@@ -38,17 +40,19 @@ file that was distributed with this source code.
                 <span class="badge badge-default">{{ messages|length }}</span>
             </label>
         </div>
-    {% elseif messages|length == 1 %}
-        <div class="alert alert-{{ sonata_flashmessages_class(type, 'default') }} alert-dismissable">
-            <button
+    {% elseif messages|length > 0 %}
+        {% for message in messages %}
+            <div class="alert alert-{{ sonata_flashmessages_class(type, 'default') }} alert-dismissable">
+                <button
                     type="button"
                     class="close"
                     data-dismiss="alert"
                     aria-hidden="true"
                     aria-label="{{ 'message_close'|trans({}, 'SonataTwigBundle') }}">
-                &times;
-            </button>
-            {{ messages|first|raw }}
-        </div>
+                    &times;
+                </button>
+                {{ message|raw }}
+            </div>
+        {% endfor %}
     {% endif %}
 {% endfor %}
