@@ -16,6 +16,8 @@ namespace Sonata\Twig\Tests\Extension;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\FlashMessageRuntime;
 use Sonata\Twig\FlashMessage\FlashManager;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -60,7 +62,10 @@ class FlashMessageRuntimeTest extends TestCase
     protected function getFlashManager(array $types): FlashManager
     {
         $classes = ['error' => 'danger'];
+        $requestStack = new RequestStack();
+        $requestStack->push($request = new Request());
+        $request->setSession($this->getSession());
 
-        return new FlashManager($this->getSession(), $types, $classes);
+        return new FlashManager($requestStack, $types, $classes);
     }
 }
