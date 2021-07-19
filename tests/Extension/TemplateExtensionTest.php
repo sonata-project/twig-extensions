@@ -17,8 +17,14 @@ use PHPUnit\Framework\TestCase;
 use Sonata\Doctrine\Adapter\AdapterInterface;
 use Sonata\Twig\Extension\TemplateExtension;
 
+/**
+ * NEXT_MAJOR: Remove this class.
+ */
 class TemplateExtensionTest extends TestCase
 {
+    /**
+     * @group legacy
+     */
     public function testSafeUrl(): void
     {
         $adapter = $this->createMock(AdapterInterface::class);

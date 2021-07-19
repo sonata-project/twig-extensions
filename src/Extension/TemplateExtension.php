@@ -18,6 +18,11 @@ use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
+/**
+ * NEXT_MAJOR: Remove this class.
+ *
+ * @deprecated since sonata-project/twig-extensions 1.7, to be removed in 2.0.
+ */
 final class TemplateExtension extends AbstractExtension
 {
     /**
@@ -59,6 +64,13 @@ final class TemplateExtension extends AbstractExtension
      */
     public function getUrlsafeIdentifier($model): ?string
     {
+        @trigger_error(sprintf(
+            'Method "%s()" is deprecated since sonata-project/twig-extension 1.7 in favor of the "sonata_urlsafeid"'
+            .' Twig filter defined by SonataAdminBundle and will be removed in version 2.0.'
+            .' You can solve this deprecation by enabling this bundle before SonataAdminBundle.',
+            __METHOD__
+        ), \E_USER_DEPRECATED);
+
         return $this->modelAdapter->getUrlsafeIdentifier($model);
     }
 
