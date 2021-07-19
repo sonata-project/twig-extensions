@@ -26,11 +26,15 @@ final class TemplateExtension extends AbstractExtension
     protected $debug;
 
     /**
+     * NEXT_MAJOR: Remove this property.
+     *
      * @var AdapterInterface
      */
     protected $modelAdapter;
 
     /**
+     * NEXT_MAJOR: Remove the second argument.
+     *
      * @param bool             $debug        Is Symfony debug enabled?
      * @param AdapterInterface $modelAdapter A Sonata model adapter
      */
@@ -40,6 +44,9 @@ final class TemplateExtension extends AbstractExtension
         $this->modelAdapter = $modelAdapter;
     }
 
+    /**
+     * NEXT_MAJOR: Remove this method.
+     */
     public function getFilters(): array
     {
         return [
@@ -55,10 +62,21 @@ final class TemplateExtension extends AbstractExtension
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @deprecated since sonata-project/twig-extensions 1.7, to be removed in 2.0.
+     *
      * @param object $model
      */
     public function getUrlsafeIdentifier($model): ?string
     {
+        @trigger_error(sprintf(
+            'Method "%s()" is deprecated since sonata-project/twig-extension 1.7 in favor of the "sonata_urlsafeid"'
+            .' Twig filter defined by SonataAdminBundle and will be removed in version 2.0.'
+            .' You can solve this deprecation by enabling this bundle before SonataAdminBundle.',
+            __METHOD__
+        ), \E_USER_DEPRECATED);
+
         return $this->modelAdapter->getUrlsafeIdentifier($model);
     }
 

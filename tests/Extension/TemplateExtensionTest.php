@@ -19,6 +19,11 @@ use Sonata\Twig\Extension\TemplateExtension;
 
 class TemplateExtensionTest extends TestCase
 {
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @group legacy
+     */
     public function testSafeUrl(): void
     {
         $adapter = $this->createMock(AdapterInterface::class);
