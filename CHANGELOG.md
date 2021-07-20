@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::$requestStack` property ([@yann-eugone](https://github.com/yann-eugone))
 
 ### Changed
-- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::__construct` `$session` argument allowed types for `Symfony\Component\HttpFoundation\Session\SessionInterface` or `Symfony\Component\HttpFoundation\RequestStack` ([@yann-eugone](https://github.com/yann-eugone))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::__construct()` `$session` argument allowed types for `Symfony\Component\HttpFoundation\Session\SessionInterface` or `Symfony\Component\HttpFoundation\RequestStack` ([@yann-eugone](https://github.com/yann-eugone))
 - [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::getSession()` method to fetch session from request stack ([@yann-eugone](https://github.com/yann-eugone))
 - [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager` service definition to inject `'request_stack'` service instead of `'session'` ([@yann-eugone](https://github.com/yann-eugone))
 
