@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.0](https://github.com/sonata-project/twig-extensions/compare/1.6.0...1.7.0) - 2021-07-20
+### Added
+- [[#222](https://github.com/sonata-project/twig-extensions/pull/222)] Allow customizing flashbag groups ([@core23](https://github.com/core23))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::$requestStack` property ([@yann-eugone](https://github.com/yann-eugone))
+
+### Changed
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::__construct()` `$session` argument allowed types for `Symfony\Component\HttpFoundation\Session\SessionInterface` or `Symfony\Component\HttpFoundation\RequestStack` ([@yann-eugone](https://github.com/yann-eugone))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::getSession()` method to fetch session from request stack ([@yann-eugone](https://github.com/yann-eugone))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager` service definition to inject `'request_stack'` service instead of `'session'` ([@yann-eugone](https://github.com/yann-eugone))
+
+### Deprecated
+- [[#225](https://github.com/sonata-project/twig-extensions/pull/225)] `sonata_urlsafeid` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] Passing `Symfony\Component\HttpFoundation\Session\SessionInterface` as $session argument of `Sonata\Twig\FlashMessage\FlashManager::__construct()` ([@yann-eugone](https://github.com/yann-eugone))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::$session` property ([@yann-eugone](https://github.com/yann-eugone))
+
+### Fixed
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] Usage of deprecated 'session' service since Symfony 5.3 ([@yann-eugone](https://github.com/yann-eugone))
+
 ## [1.6.0](https://github.com/sonata-project/twig-extensions/compare/1.5.1...1.6.0) - 2021-05-18
 ### Added
 - [[#216](https://github.com/sonata-project/twig-extensions/pull/216)] Added "more" ans "less" translations in french. ([@rgrassian](https://github.com/rgrassian))
