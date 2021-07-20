@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Deprecated
 - [[#225](https://github.com/sonata-project/twig-extensions/pull/225)] `sonata_urlsafeid` filter ([@VincentLanglet](https://github.com/VincentLanglet))
-- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] Passing `Symfony\Component\HttpFoundation\Session\SessionInterface` as $session argument of `Sonata\Twig\FlashMessage\FlashManager::__construct` ([@yann-eugone](https://github.com/yann-eugone))
+- [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] Passing `Symfony\Component\HttpFoundation\Session\SessionInterface` as $session argument of `Sonata\Twig\FlashMessage\FlashManager::__construct()` ([@yann-eugone](https://github.com/yann-eugone))
 - [[#221](https://github.com/sonata-project/twig-extensions/pull/221)] `Sonata\Twig\FlashMessage\FlashManager::$session` property ([@yann-eugone](https://github.com/yann-eugone))
 
 ### Fixed
