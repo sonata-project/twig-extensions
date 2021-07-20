@@ -38,7 +38,7 @@
         "symfony/dependency-injection": "^4.4 || ^5.1",
         "symfony/framework-bundle": "^4.4 || ^5.1",
         "symfony/http-foundation": "^4.4 || ^5.1",
-        "symfony/http-kernel": "^4.4 || ^5.1",
+        "symfony/http-kernel": "^4.4.13 || ^5.1.5",
         "symfony/phpunit-bridge": "^5.1.8",
         "symfony/twig-bundle": "^4.4 || ^5.1"
     },
