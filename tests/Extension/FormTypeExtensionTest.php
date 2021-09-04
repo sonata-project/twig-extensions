@@ -21,25 +21,25 @@ class FormTypeExtensionTest extends TestCase
     public function testGetName(): void
     {
         $extension = new FormTypeExtension(true);
-        $this->assertSame('sonata_twig_wrapping', $extension->getName());
+        static::assertSame('sonata_twig_wrapping', $extension->getName());
     }
 
     public function testGetGlobals(): void
     {
         $extension = new FormTypeExtension(true);
 
-        $this->assertArrayHasKey(
+        static::assertArrayHasKey(
             'wrap_fields_with_addons',
             $globals = $extension->getGlobals()
         );
-        $this->assertTrue($globals['wrap_fields_with_addons']);
+        static::assertTrue($globals['wrap_fields_with_addons']);
 
         $extension = new FormTypeExtension(false);
 
-        $this->assertArrayHasKey(
+        static::assertArrayHasKey(
             'wrap_fields_with_addons',
             $globals = $extension->getGlobals()
         );
-        $this->assertFalse($globals['wrap_fields_with_addons']);
+        static::assertFalse($globals['wrap_fields_with_addons']);
     }
 }

@@ -29,7 +29,7 @@ class FlashMessageExtensionTest extends TestCase
     public function testFunctionsArePrefixed(): void
     {
         foreach ($this->extension->getFunctions() as $function) {
-            $this->assertSame(
+            static::assertSame(
                 0,
                 strpos($function->getName(), 'sonata_flashmessages_'),
                 'All function names should start with a standard prefix'
@@ -41,6 +41,6 @@ class FlashMessageExtensionTest extends TestCase
     {
         $filters = $this->extension->getFunctions();
 
-        $this->assertContainsOnlyInstancesOf(TwigFunction::class, $filters);
+        static::assertContainsOnlyInstancesOf(TwigFunction::class, $filters);
     }
 }

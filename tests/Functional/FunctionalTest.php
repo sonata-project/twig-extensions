@@ -27,7 +27,7 @@ final class FunctionalTest extends WebTestCase
         $client = $this->createClientBC($kernel);
         $client->request('GET', '/');
 
-        $this->assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertSame(200, $client->getResponse()->getStatusCode());
     }
 
     protected static function getKernelClass(): string

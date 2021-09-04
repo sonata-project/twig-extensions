@@ -27,10 +27,10 @@ class TemplateExtensionTest extends TestCase
     public function testSafeUrl(): void
     {
         $adapter = $this->createMock(AdapterInterface::class);
-        $adapter->expects($this->once())->method('getUrlsafeIdentifier')->willReturn('safe-parameter');
+        $adapter->expects(static::once())->method('getUrlsafeIdentifier')->willReturn('safe-parameter');
 
         $extension = new TemplateExtension(true, $adapter);
 
-        $this->assertSame('safe-parameter', $extension->getUrlsafeIdentifier(new \stdClass()));
+        static::assertSame('safe-parameter', $extension->getUrlsafeIdentifier(new \stdClass()));
     }
 }
