@@ -45,12 +45,12 @@ class TemplateBoxTokenParserTest extends TestCase
         // "0" is passed as string due an issue with the allowed node name types.
         // @see https://github.com/twigphp/Twig/issues/3294
         $actual = $parser->parse($stream)->getNode('body')->getNode('0');
-        $this->assertSame(
+        static::assertSame(
             $expected->getIterator()->getFlags(),
             $actual->getIterator()->getFlags()
         );
-        $this->assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
-        $this->assertSame($expected->count(), $actual->count());
+        static::assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
+        static::assertSame($expected->count(), $actual->count());
     }
 
     public function getTestsForRender()

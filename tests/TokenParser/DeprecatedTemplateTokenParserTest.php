@@ -42,13 +42,13 @@ class DeprecatedTemplateTokenParserTest extends TestCase
 
         $actual = $this->compile($source);
 
-        $this->assertSame(
+        static::assertSame(
             $expected->getIterator()->getFlags(),
             $actual->getIterator()->getFlags()
         );
 
-        $this->assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
-        $this->assertSame($expected->count(), $actual->count());
+        static::assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
+        static::assertSame($expected->count(), $actual->count());
     }
 
     public function testCompileException(): void

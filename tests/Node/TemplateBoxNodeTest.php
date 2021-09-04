@@ -28,7 +28,7 @@ class TemplateBoxNodeTest extends NodeTestCase
             'sonata_template_box'
         );
 
-        $this->assertSame(1, $body->getTemplateLine());
+        static::assertSame(1, $body->getTemplateLine());
     }
 
     /**

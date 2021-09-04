@@ -26,7 +26,7 @@ class DeprecatedTemplateNodeTest extends NodeTestCase
     {
         $body = $this->getNode();
 
-        $this->assertSame(1, $body->getTemplateLine());
+        static::assertSame(1, $body->getTemplateLine());
     }
 
     /**
