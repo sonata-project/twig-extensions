@@ -71,45 +71,45 @@ class FlashManagerTest extends TestCase
         $session = $this->flashManager->getSession();
 
         // Then
-        $this->assertInstanceOf(Session::class, $session);
+        static::assertInstanceOf(Session::class, $session);
     }
 
     public function testGetHandledTypes(): void
     {
-        $this->assertSame(['success', 'warning', 'error'], $this->flashManager->getHandledTypes());
+        static::assertSame(['success', 'warning', 'error'], $this->flashManager->getHandledTypes());
 
         // NEXT_MAJOR: StatusRuntime assertion
         // StatusRuntime
-        $this->assertTrue($this->flashManager->handlesObject($this->flashManager, 'error'));
+        static::assertTrue($this->flashManager->handlesObject($this->flashManager, 'error'));
 
         // FlashMessageRuntime
-        $this->assertTrue($this->flashManager->handlesType('error'));
+        static::assertTrue($this->flashManager->handlesType('error'));
 
         // NEXT_MAJOR: StatusRuntime assertion
-        $this->assertFalse($this->flashManager->handlesObject($this->flashManager, 'warning'));
+        static::assertFalse($this->flashManager->handlesObject($this->flashManager, 'warning'));
 
         // FlashMessageRuntime
-        $this->assertFalse($this->flashManager->handlesType('warning'));
+        static::assertFalse($this->flashManager->handlesType('warning'));
     }
 
     public function testGetStatus(): void
     {
         // NEXT_MAJOR: remove first assertion
         // StatusRuntime
-        $this->assertSame('danger', $this->flashManager->getStatusClass($this->flashManager, 'error'));
+        static::assertSame('danger', $this->flashManager->getStatusClass($this->flashManager, 'error'));
 
         // FlashMessageRuntime
-        $this->assertSame('danger', $this->flashManager->getRenderedHtmlClassAttribute('error'));
+        static::assertSame('danger', $this->flashManager->getRenderedHtmlClassAttribute('error'));
     }
 
     public function testGetDefaultStatus(): void
     {
         // NEXT_MAJOR: StatusRuntime assertion
         // StatusRuntime
-        $this->assertSame('example', $this->flashManager->getStatusClass($this->flashManager, 'non_existing_status', 'example'));
+        static::assertSame('example', $this->flashManager->getStatusClass($this->flashManager, 'non_existing_status', 'example'));
 
         // FlashMessageRuntime
-        $this->assertSame('example', $this->flashManager->getRenderedHtmlClassAttribute('non_existing_status', 'example'));
+        static::assertSame('example', $this->flashManager->getRenderedHtmlClassAttribute('non_existing_status', 'example'));
     }
 
     /**
@@ -121,8 +121,8 @@ class FlashManagerTest extends TestCase
         $types = $this->flashManager->getTypes();
 
         // Then
-        $this->assertCount(3, $types);
-        $this->assertSame([
+        static::assertCount(3, $types);
+        static::assertSame([
             'success' => [
                 'my_bundle_success' => [],
                 'my_second_bundle_success' => [],
@@ -159,22 +159,22 @@ class FlashManagerTest extends TestCase
         $errorMessages = $this->flashManager->get('error');
 
         // Then
-        $this->assertCount(2, $successMessages);
+        static::assertCount(2, $successMessages);
 
         foreach ($successMessages as $message) {
-            $this->assertSame($message, 'hey, success dude!');
+            static::assertSame($message, 'hey, success dude!');
         }
 
-        $this->assertCount(2, $warningMessages);
+        static::assertCount(2, $warningMessages);
 
         foreach ($warningMessages as $message) {
-            $this->assertSame($message, 'hey, warning dude!');
+            static::assertSame($message, 'hey, warning dude!');
         }
 
-        $this->assertCount(2, $errorMessages);
+        static::assertCount(2, $errorMessages);
 
         foreach ($errorMessages as $message) {
-            $this->assertSame($message, 'hey, error dude!');
+            static::assertSame($message, 'hey, error dude!');
         }
     }
 
@@ -191,12 +191,12 @@ class FlashManagerTest extends TestCase
         $nonRegisteredMessages = $this->flashManager->get('non_registered_success');
 
         // Then
-        $this->assertCount(0, $messages);
+        static::assertCount(0, $messages);
 
-        $this->assertCount(1, $nonRegisteredMessages);
+        static::assertCount(1, $nonRegisteredMessages);
 
         foreach ($nonRegisteredMessages as $message) {
-            $this->assertSame($message, 'hey, success dude!');
+            static::assertSame($message, 'hey, success dude!');
         }
     }
 
@@ -213,15 +213,15 @@ class FlashManagerTest extends TestCase
         $messagesWithoutDomain = $this->flashManager->get('success');
 
         // Then
-        $this->assertCount(1, $messages);
-        $this->assertCount(1, $messagesWithoutDomain);
+        static::assertCount(1, $messages);
+        static::assertCount(1, $messagesWithoutDomain);
 
         foreach ($messages as $message) {
-            $this->assertSame($message, 'my_bundle_success_message');
+            static::assertSame($message, 'my_bundle_success_message');
         }
 
         foreach ($messagesWithoutDomain as $message) {
-            $this->assertSame($message, 'my_bundle_success_message');
+            static::assertSame($message, 'my_bundle_success_message');
         }
     }
 

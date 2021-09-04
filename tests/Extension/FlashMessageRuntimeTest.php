@@ -44,8 +44,8 @@ class FlashMessageRuntimeTest extends TestCase
 
         $runtime = new FlashMessageRuntime($flashManager);
 
-        $this->assertSame('test-value', $runtime->getFlashMessagesClass('test', 'test-value'));
-        $this->assertSame('danger', $runtime->getFlashMessagesClass('error', 'test-value'));
+        static::assertSame('test-value', $runtime->getFlashMessagesClass('test', 'test-value'));
+        static::assertSame('danger', $runtime->getFlashMessagesClass('error', 'test-value'));
     }
 
     /**

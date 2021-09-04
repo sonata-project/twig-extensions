@@ -22,7 +22,7 @@ class StatusExtensionTest extends TestCase
     public function testGetName(): void
     {
         $extension = new StatusExtension();
-        $this->assertSame('sonata_twig_status', $extension->getName());
+        static::assertSame('sonata_twig_status', $extension->getName());
     }
 
     public function testGetFilters(): void
@@ -30,6 +30,6 @@ class StatusExtensionTest extends TestCase
         $extension = new StatusExtension();
         $filters = $extension->getFilters();
 
-        $this->assertContainsOnlyInstancesOf(TwigFilter::class, $filters);
+        static::assertContainsOnlyInstancesOf(TwigFilter::class, $filters);
     }
 }

@@ -64,16 +64,16 @@ class StatusRuntimeTest extends TestCase
         $runtime = new StatusRuntime();
         $statusService = $this->createMock(StatusClassRendererInterface::class);
 
-        $statusService->expects($this->once())
+        $statusService->expects(static::once())
             ->method('handlesObject')
             ->willReturn(false);
 
         $runtime->addStatusService($statusService);
         // getStatusClass() for StatusClassRenderer
-        $this->assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));
+        static::assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));
 
         // getStatusClass() for FlashManager
-        $this->assertSame('test-value', $runtime->statusClass('getStatus', null, 'test-value'));
+        static::assertSame('test-value', $runtime->statusClass('getStatus', null, 'test-value'));
     }
 
     /**
@@ -92,12 +92,12 @@ class StatusRuntimeTest extends TestCase
         $statusRuntime = new StatusRuntime();
         $statusRuntime->addStatusService($this->flashManager);
 
-        $this->assertSame(
+        static::assertSame(
             'danger',
             $statusRuntime->statusClass($this->flashManager, 'error', 'default_class')
         );
 
-        $this->assertSame(
+        static::assertSame(
             'default_class',
             $statusRuntime->statusClass($this->flashManager, 'blabla', 'default_class')
         );
