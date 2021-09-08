@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.8.0](https://github.com/sonata-project/twig-extensions/compare/1.7.0...1.8.0) - 2021-09-08
+### Added
+- [[#244](https://github.com/sonata-project/twig-extensions/pull/244)] Added Dutch (NL) translations as xliff file. ([@7ochem](https://github.com/7ochem))
+
 ## [1.7.0](https://github.com/sonata-project/twig-extensions/compare/1.6.0...1.7.0) - 2021-07-20
 ### Added
 - [[#222](https://github.com/sonata-project/twig-extensions/pull/222)] Allow customizing flashbag groups ([@core23](https://github.com/core23))
