@@ -16,7 +16,6 @@ namespace Sonata\Twig\Tests\Bridge\Symfony;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -24,26 +23,13 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 final class SonataTwigBundleTest extends TestCase
 {
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testBuild(): void
     {
         $containerBuilder = $this->createMock(ContainerBuilder::class);
 
-        $containerBuilder
+        $containerBuilder->expects(static::once())
             ->method('addCompilerPass')
-            ->willReturnCallback(function (CompilerPassInterface $pass): void {
-                if ($pass instanceof StatusRendererCompilerPass) {
-                    return;
-                }
-
-                $this->fail(sprintf(
-                    'Compiler pass is not one of the expected types.
-                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass" but got "%s".',
-                    \get_class($pass)
-                ));
-            });
+            ->with(static::isInstanceOf(StatusRendererCompilerPass::class));
 
         $bundle = new SonataTwigBundle();
         $bundle->build($containerBuilder);
