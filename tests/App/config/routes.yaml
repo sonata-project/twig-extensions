@@ -1,0 +1,5 @@
+flash_message:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: index.html.twig

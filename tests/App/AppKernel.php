@@ -15,14 +15,13 @@ namespace Sonata\Twig\Tests\App;
 
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
 use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
-use Symfony\Bundle\FrameworkBundle\Controller\TemplateController;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorageFactory;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
 final class AppKernel extends Kernel
@@ -59,17 +58,38 @@ final class AppKernel extends Kernel
         return __DIR__;
     }
 
-    protected function configureRoutes(RouteCollectionBuilder $routes): void
+    /**
+     * TODO: Drop RouteCollectionBuilder when support for Symfony < 5.1 is dropped.
+     *
+     * @param RoutingConfigurator|RouteCollectionBuilder $routes
+     */
+    protected function configureRoutes($routes): void
     {
-        $route = new Route('/');
-        $route->setDefault('_controller', TemplateController::class.'::templateAction');
-        $routes->setDefault('template', 'index.html.twig');
-        $routes->addRoute($route);
+        $routes->import(sprintf('%s/config/routes.yaml', $this->getProjectDir()));
     }
 
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
     {
-        $loader->load(__DIR__.'/config.yml');
+        $frameworkConfig = [
+            'secret' => 'secret',
+            'test' => true,
+            'router' => ['utf8' => true],
+        ];
+
+        // TODO: Remove else case when dropping support of Symfony < 5.3
+        if (class_exists(NativeSessionStorageFactory::class)) {
+            $frameworkConfig['session'] = ['storage_factory_id' => 'session.storage.factory.mock_file'];
+        } else {
+            $frameworkConfig['session'] = ['storage_id' => 'session.storage.mock_file'];
+        }
+
+        $containerBuilder->loadFromExtension('framework', $frameworkConfig);
+
+        $containerBuilder->loadFromExtension('twig', [
+            'strict_variables' => '%kernel.debug%',
+            'exception_controller' => null,
+            'paths' => ['%kernel.project_dir%/templates'],
+        ]);
     }
 
     private function getBaseDir(): string
