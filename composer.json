@@ -23,9 +23,9 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "sonata-project/doctrine-extensions": "^1.9.1",
-        "symfony/config": "^4.4 || ^5.1",
-        "symfony/translation": "^4.4 || ^5.1",
-        "symfony/twig-bridge": "^4.4 || ^5.1",
+        "symfony/config": "^4.4 || ^5.3 || ^6.0",
+        "symfony/translation": "^4.4 || ^5.3 || ^6.0",
+        "symfony/twig-bridge": "^4.4 || ^5.3 || ^6.0",
         "twig/twig": "^2.6 || ^3.0"
     },
     "conflict": {
@@ -34,13 +34,13 @@
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
-        "symfony/browser-kit": "^4.4 || ^5.1",
-        "symfony/dependency-injection": "^4.4 || ^5.1",
-        "symfony/framework-bundle": "^4.4 || ^5.1",
-        "symfony/http-foundation": "^4.4 || ^5.1",
-        "symfony/http-kernel": "^4.4.13 || ^5.1.5",
-        "symfony/phpunit-bridge": "^5.1.8",
-        "symfony/twig-bundle": "^4.4 || ^5.1"
+        "symfony/browser-kit": "^4.4 || ^5.3 || ^6.0",
+        "symfony/dependency-injection": "^4.4 || ^5.3 || ^6.0",
+        "symfony/framework-bundle": "^4.4 || ^5.3 || ^6.0",
+        "symfony/http-foundation": "^4.4 || ^5.3 || ^6.0",
+        "symfony/http-kernel": "^4.4.13 || ^5.3 || ^6.0",
+        "symfony/phpunit-bridge": "^5.3 || ^6.0",
+        "symfony/twig-bundle": "^4.4 || ^5.3 || ^6.0"
     },
     "config": {
         "sort-packages": true
