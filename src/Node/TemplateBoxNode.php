@@ -20,7 +20,7 @@ use Twig\Node\Node;
 final class TemplateBoxNode extends Node
 {
     /**
-     * @var int
+     * @var bool
      */
     protected $enabled;
 

@@ -13,26 +13,34 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Bridge\Symfony\Bundle;
 
-use Sonata\Twig\Bridge\Symfony\SonataTwigBundle as ForwardCompatibleSonataTwigBundle;
+use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\Twig\Bridge\Symfony\DependencyInjection\SonataTwigExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-@trigger_error(sprintf(
-    'The %s\SonataTwigBundle class is deprecated since version 1.4, to be removed in 2.0. Use %s instead.',
-    __NAMESPACE__,
-    ForwardCompatibleSonataTwigBundle::class
-), \E_USER_DEPRECATED);
-
-if (false) {
+/**
+ * @deprecated Since version 1.4, to be removed in 2.0. Use Sonata\Twig\Bridge\Symfony\SonataTwigBundle instead.
+ */
+final class SonataTwigBundle extends Bundle
+{
     /**
-     * NEXT_MAJOR: remove this class.
-     *
-     * @deprecated since version 1.0, to be removed in 2.0. Use Sonata\Twig\Bridge\Symfony\SonataTwigBundle instead.
-     *
-     * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+     * @return string
      */
-    final class SonataTwigBundle extends Bundle
+    public function getPath()
     {
+        return __DIR__.'/..';
+    }
+
+    public function build(ContainerBuilder $container): void
+    {
+        $container->addCompilerPass(new StatusRendererCompilerPass());
+    }
+
+    /**
+     * @return string
+     */
+    protected function getContainerExtensionClass()
+    {
+        return SonataTwigExtension::class;
     }
 }
-
-class_alias(ForwardCompatibleSonataTwigBundle::class, __NAMESPACE__.'\SonataTwigBundle');
