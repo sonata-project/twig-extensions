@@ -50,7 +50,7 @@ class TemplateBoxTokenParserTest extends TestCase
             $actual->getIterator()->getFlags()
         );
         static::assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
-        static::assertSame($expected->count(), $actual->count());
+        static::assertCount($expected->count(), $actual);
     }
 
     public function getTestsForRender()
