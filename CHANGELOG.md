@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.9.0](https://github.com/sonata-project/twig-extensions/compare/1.8.0...1.9.0) - 2021-09-22
 ### Added
-- [[#253](https://github.com/sonata-project/twig-extensions/pull/253)] Added support for Symfony 6. ([@jordisala1991](https://github.com/jordisala1991))
+- [[#253](https://github.com/sonata-project/twig-extensions/pull/253)] Added support for Symfony 6 ([@jordisala1991](https://github.com/jordisala1991))
 
 ### Removed
 - [[#253](https://github.com/sonata-project/twig-extensions/pull/253)] Removed support for Symfony 5.1 and 5.2 ([@jordisala1991](https://github.com/jordisala1991))
