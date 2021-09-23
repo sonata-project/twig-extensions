@@ -41,14 +41,12 @@ This package is available under the [MIT license](LICENSE).
 [test_stable_link]: https://github.com/sonata-project/twig-extensions/actions?query=workflow:test+branch:1.x
 [test_unstable_badge]: https://github.com/sonata-project/twig-extensions/workflows/Test/badge.svg?branch=2.x
 [test_unstable_link]: https://github.com/sonata-project/twig-extensions/actions?query=workflow:test+branch:2.x
-
 [coverage_stable_badge]: https://codecov.io/gh/sonata-project/twig-extensions/branch/1.x/graph/badge.svg
 [coverage_stable_link]: https://codecov.io/gh/sonata-project/twig-extensions/branch/1.x
 [coverage_unstable_badge]: https://codecov.io/gh/sonata-project/twig-extensions/branch/2.x/graph/badge.svg
 [coverage_unstable_link]: https://codecov.io/gh/sonata-project/twig-extensions/branch/2.x
 [shepherd_stable_badge]: https://shepherd.dev/github/sonata-project/twig-extensions/coverage.svg
 [shepherd_stable_link]: https://shepherd.dev/github/sonata-project/twig-extensions
-
 [documentation_stable_badge]: https://readthedocs.org/projects/sonata-project-twig-extensions/badge/?version=1.x
 [documentation_stable_link]: https://docs.sonata-project.org/projects/twig-extensions/en/1.x/?badge=1.x
 [documentation_unstable_badge]: https://readthedocs.org/projects/sonata-project-twig-extensions/badge/?version=2.x
