@@ -17,8 +17,11 @@ use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\FlashMessageExtension;
 use Twig\TwigFunction;
 
-class FlashMessageExtensionTest extends TestCase
+final class FlashMessageExtensionTest extends TestCase
 {
+    /**
+     * @var FlashMessageExtension
+     */
     private $extension;
 
     protected function setUp(): void

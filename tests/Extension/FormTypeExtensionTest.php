@@ -16,7 +16,7 @@ namespace Sonata\Twig\Tests\Extension;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\FormTypeExtension;
 
-class FormTypeExtensionTest extends TestCase
+final class FormTypeExtensionTest extends TestCase
 {
     public function testGetName(): void
     {

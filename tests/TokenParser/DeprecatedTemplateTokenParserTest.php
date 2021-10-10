@@ -19,6 +19,7 @@ use Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 use Twig\Node\Expression\ConstantExpression;
+use Twig\Node\Node;
 use Twig\Parser;
 use Twig\Source;
 
@@ -29,7 +30,7 @@ use Twig\Source;
  *
  * @group legacy
  */
-class DeprecatedTemplateTokenParserTest extends TestCase
+final class DeprecatedTemplateTokenParserTest extends TestCase
 {
     public function testCompileValid(): void
     {
@@ -42,13 +43,8 @@ class DeprecatedTemplateTokenParserTest extends TestCase
 
         $actual = $this->compile($source);
 
-        static::assertSame(
-            $expected->getIterator()->getFlags(),
-            $actual->getIterator()->getFlags()
-        );
-
         static::assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
-        static::assertSame($expected->count(), $actual->count());
+        static::assertCount($expected->count(), $actual);
     }
 
     public function testCompileException(): void
@@ -60,7 +56,7 @@ class DeprecatedTemplateTokenParserTest extends TestCase
         $this->compile($source);
     }
 
-    private function compile(Source $source)
+    private function compile(Source $source): Node
     {
         $env = new Environment(new ArrayLoader([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
         $env->addTokenParser(new DeprecatedTemplateTokenParser());

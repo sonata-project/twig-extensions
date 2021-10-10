@@ -27,16 +27,22 @@ interface FlashManagerInterface
 
     /**
      * Returns Sonata flash message types.
+     *
+     * @return array<string, array<string, array<string, mixed>>>
      */
     public function getTypes(): array;
 
     /**
      * Returns flash messages for correct type.
+     *
+     * @return string[]
      */
     public function get(string $type): array;
 
     /**
      * Gets handled Sonata flash message types.
+     *
+     * @return string[]
      */
     public function getHandledTypes(): array;
 

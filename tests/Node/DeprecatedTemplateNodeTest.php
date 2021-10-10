@@ -14,13 +14,15 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Node;
 
 use Sonata\Twig\Node\DeprecatedTemplateNode;
+use Twig\Environment;
 use Twig\Node\Expression\ConstantExpression;
+use Twig\Node\Node;
 use Twig\Test\NodeTestCase;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
-class DeprecatedTemplateNodeTest extends NodeTestCase
+final class DeprecatedTemplateNodeTest extends NodeTestCase
 {
     public function testConstructor(): void
     {
@@ -30,6 +32,11 @@ class DeprecatedTemplateNodeTest extends NodeTestCase
     }
 
     /**
+     * @param mixed $node
+     * @param mixed $source
+     * @param mixed $environment
+     * @param mixed $isPattern
+     *
      * @expectedDeprecation The "" template is deprecated. Use "new.html.twig" instead.
      * @group legacy
      * @dataProvider getTests
@@ -40,16 +47,16 @@ class DeprecatedTemplateNodeTest extends NodeTestCase
     }
 
     /**
-     * {@inheritdoc}
+     * @return iterable<array-key, array{Node, string, Environment|null, bool}>
      */
-    public function getTests()
+    public function getTests(): iterable
     {
         return [
-            [$this->getNode(), null],
+            [$this->getNode(), '', null, false],
         ];
     }
 
-    private function getNode()
+    private function getNode(): Node
     {
         return new DeprecatedTemplateNode(
             new ConstantExpression('new.html.twig', 1),

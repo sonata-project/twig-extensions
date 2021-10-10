@@ -35,7 +35,7 @@ final class FunctionalTest extends WebTestCase
         return AppKernel::class;
     }
 
-    private function createClientBC(KernelInterface $kernel)
+    private function createClientBC(KernelInterface $kernel): KernelBrowser
     {
         if (class_exists(KernelBrowser::class)) {
             return new KernelBrowser($kernel);

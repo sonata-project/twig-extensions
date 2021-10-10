@@ -15,6 +15,7 @@ namespace Sonata\Twig\FlashMessage;
 
 use Sonata\Twig\Status\StatusClassRendererInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -25,7 +26,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 final class FlashManager implements FlashManagerInterface, StatusClassRendererInterface
 {
     /**
-     * @var SessionInterface|null
+     * @var Session|null
      *
      * @deprecated since sonata-project/twig-extensions 1.7. Use $requestStack->getSession() instead.
      */
@@ -37,26 +38,27 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     private $requestStack;
 
     /**
-     * @var array
+     * @var array<string, array<string, array<string, mixed>>>
      */
     private $types;
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     private $cssClasses;
 
     /**
-     * @param array $types      Sonata flash message types array (defined in configuration)
-     * @param array $cssClasses Css classes associated with $types
+     * @param Session|RequestStack                               $requestStackOrDeprecatedSession
+     * @param array<string, array<string, array<string, mixed>>> $types                           Sonata flash message types array (defined in configuration)
+     * @param array<string, string>                              $cssClasses                      Css classes associated with $types
      */
     public function __construct($requestStackOrDeprecatedSession, array $types, array $cssClasses)
     {
-        if ($requestStackOrDeprecatedSession instanceof SessionInterface) {
+        if ($requestStackOrDeprecatedSession instanceof Session) {
             @trigger_error(sprintf(
                 'Passing "%s" as $session to "%s" method is deprecated since sonata-project/twig-extensions 1.7'
                 .' and will be removed in 2.0. Pass "%s" instead.',
-                SessionInterface::class,
+                Session::class,
                 __METHOD__,
                 RequestStack::class
             ), \E_USER_DEPRECATED);
@@ -72,7 +74,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
                     'Argument $code of "%s" method should be "%s" or "%s", "%s" provided.',
                     __METHOD__,
                     RequestStack::class,
-                    SessionInterface::class,
+                    Session::class,
                     \is_object($requestStackOrDeprecatedSession) ? \get_class($requestStackOrDeprecatedSession) : \gettype($requestStackOrDeprecatedSession)
                 )
             );
@@ -157,6 +159,10 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
 
     /**
      * Returns Symfony session service.
+     *
+     * NEXT_MAJOR: Change visibility to private.
+     *
+     * @return Session
      */
     public function getSession(): SessionInterface
     {
@@ -170,7 +176,15 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
             $request = $this->requestStack->getMasterRequest();
         }
 
-        return $request->getSession();
+        $session = $request->getSession();
+        if (!$session instanceof Session) {
+            throw new \UnexpectedValueException(sprintf(
+                'The flash manager only works with a "%s" session.',
+                Session::class
+            ));
+        }
+
+        return $session;
     }
 
     /**

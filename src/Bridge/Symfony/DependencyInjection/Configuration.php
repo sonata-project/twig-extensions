@@ -39,6 +39,10 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Returns configuration for flash messages.
+     *
+     * @psalm-suppress PossiblyNullReference, PossiblyUndefinedMethod
+     *
+     * @see https://github.com/psalm/psalm-plugin-symfony/issues/174
      */
     private function addFlashMessageSection(ArrayNodeDefinition $node): void
     {
@@ -75,11 +79,16 @@ depending on this style.')
             ->end();
     }
 
-    // BC layer for deprecation messages for symfony/config < 5.1
+    /**
+     * BC layer for deprecation messages for symfony/config < 5.1.
+     *
+     * @return string[]
+     */
     private function getDomainParamDeprecationMsg(): array
     {
         $message = 'The child node "%node%" at path "%path%" is deprecated since sonata-project/twig-extensions 1.4 and will be removed in 2.0 version. Translate you message before add it to session flash.';
 
+        // @phpstan-ignore-next-line
         if (method_exists(BaseNode::class, 'getDeprecation')) {
             return [
                 'sonata-project/twig-extensions',

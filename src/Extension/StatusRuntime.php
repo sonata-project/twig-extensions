@@ -40,7 +40,6 @@ final class StatusRuntime
      * @param object|string $object     Object for StatusClassRenderer or string for FlashManager
      * @param string|null   $statusType Object status type or Sonata flash message type
      * @param string        $default    Default status class
-     * @param mixed         $statusType
      */
     public function statusClass($object, $statusType = null, string $default = ''): string
     {
@@ -65,11 +64,9 @@ final class StatusRuntime
         return $default;
     }
 
-    private function statusClassForStatusClassRenderer(object $object, $statusType = null, string $default = ''): string
+    private function statusClassForStatusClassRenderer(object $object, ?string $statusType = null, string $default = ''): string
     {
         foreach ($this->statusServices as $statusService) {
-            \assert($statusService instanceof StatusClassRendererInterface);
-
             if ($statusService->handlesObject($object, $statusType)) {
                 return $statusService->getStatusClass($object, $statusType, $default);
             }
@@ -80,7 +77,8 @@ final class StatusRuntime
 
     private function statusClassForFlashManager(string $object, ?string $statusType = null, string $default = ''): string
     {
-        if ($flashManager = $this->getFlashManagerFromStatusServices()) {
+        $flashManager = $this->getFlashManagerFromStatusServices();
+        if (null !== $flashManager) {
             if (null === $statusType) {
                 $statusType = $object;
             }

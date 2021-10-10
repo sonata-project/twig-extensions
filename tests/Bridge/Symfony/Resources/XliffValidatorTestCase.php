@@ -48,9 +48,9 @@ abstract class XliffValidatorTestCase extends TestCase
     }
 
     /**
-     * @return array List all path to validate xliff
+     * @return iterable<array-key, array{string}> List all path to validate xliff
      */
-    abstract public function getXliffPaths();
+    abstract public function getXliffPaths(): iterable;
 
     /**
      * @param string $file The path to the xliff file
@@ -71,6 +71,7 @@ abstract class XliffValidatorTestCase extends TestCase
     protected function validatePath($path): void
     {
         $files = glob(sprintf('%s/*.xliff', $path));
+        static::assertNotFalse($files);
 
         foreach ($files as $file) {
             $this->validateXliff($file);

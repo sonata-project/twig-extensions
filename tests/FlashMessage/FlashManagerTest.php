@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
@@ -28,10 +27,10 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  *
  * @group legacy
  */
-class FlashManagerTest extends TestCase
+final class FlashManagerTest extends TestCase
 {
     /**
-     * @var SessionInterface
+     * @var Session
      */
     protected $session;
 
@@ -235,6 +234,8 @@ class FlashManagerTest extends TestCase
 
     /**
      * Returns Sonata flash manager.
+     *
+     * @param array<string, array<string, array<string, mixed>>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {

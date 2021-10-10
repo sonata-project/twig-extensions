@@ -26,6 +26,10 @@ use Twig\Node\Node;
  */
 final class DeprecatedTemplateNode extends Node
 {
+    /**
+     * @param int         $line
+     * @param string|null $tag
+     */
     public function __construct(AbstractExpression $newTemplate, $line, $tag = null)
     {
         parent::__construct(['newTemplate' => $newTemplate], [], $line, $tag);

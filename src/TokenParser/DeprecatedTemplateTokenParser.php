@@ -26,6 +26,9 @@ use Twig\TokenParser\AbstractTokenParser;
  */
 final class DeprecatedTemplateTokenParser extends AbstractTokenParser
 {
+    /**
+     * @psalm-suppress InternalMethod
+     */
     public function parse(Token $token): DeprecatedTemplateNode
     {
         @trigger_error(
