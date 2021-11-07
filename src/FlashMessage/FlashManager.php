@@ -30,7 +30,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      *
      * @var RequestStack|Session
      */
-    private $requestStack;
+    private $requestStackOrDeprecatedSession;
 
     /**
      * @var array<string, array<string, array<string, mixed>>>
@@ -57,12 +57,12 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
                 __METHOD__,
                 RequestStack::class
             ), \E_USER_DEPRECATED);
-            $this->requestStack = $requestStackOrDeprecatedSession;
+            $this->requestStackOrDeprecatedSession = $requestStackOrDeprecatedSession;
         } elseif ($requestStackOrDeprecatedSession instanceof RequestStack) {
             // NEXT_MAJOR: keep this block only
             // NEXT_MAJOR: add \Symfony\Component\HttpFoundation\RequestStack typehint to $requestStackOrDeprecatedSession
             // NEXT_MAJOR: rename $requestStackOrDeprecatedSession to $requestStack
-            $this->requestStack = $requestStackOrDeprecatedSession;
+            $this->requestStackOrDeprecatedSession = $requestStackOrDeprecatedSession;
         } else {
             throw new \InvalidArgumentException(
                 sprintf(
@@ -169,15 +169,15 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      */
     public function getSession(): SessionInterface
     {
-        if ($this->requestStack instanceof Session) {
-            return $this->requestStack;
+        if ($this->requestStackOrDeprecatedSession instanceof Session) {
+            return $this->requestStackOrDeprecatedSession;
         }
 
         // @phpstan-ignore-next-line
-        if (method_exists($this->requestStack, 'getMainRequest')) {
-            $request = $this->requestStack->getMainRequest();
+        if (method_exists($this->requestStackOrDeprecatedSession, 'getMainRequest')) {
+            $request = $this->requestStackOrDeprecatedSession->getMainRequest();
         } else {
-            $request = $this->requestStack->getMasterRequest();
+            $request = $this->requestStackOrDeprecatedSession->getMasterRequest();
         }
 
         if (null === $request) {
