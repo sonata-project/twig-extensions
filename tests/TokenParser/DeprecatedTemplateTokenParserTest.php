@@ -29,6 +29,8 @@ use Twig\Source;
  * NEXT_MAJOR: Remove this class.
  *
  * @group legacy
+ *
+ * @psalm-suppress DeprecatedClass
  */
 final class DeprecatedTemplateTokenParserTest extends TestCase
 {

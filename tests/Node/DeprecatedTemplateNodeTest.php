@@ -21,6 +21,12 @@ use Twig\Test\NodeTestCase;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * NEXT_MAJOR: Remove this test
+ *
+ * @group legacy
+ *
+ * @psalm-suppress DeprecatedClass
  */
 final class DeprecatedTemplateNodeTest extends NodeTestCase
 {

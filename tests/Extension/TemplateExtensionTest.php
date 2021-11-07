@@ -22,6 +22,8 @@ final class TemplateExtensionTest extends TestCase
     /**
      * NEXT_MAJOR: Remove this test.
      *
+     * @psalm-suppress DeprecatedMethod
+     *
      * @group legacy
      */
     public function testSafeUrl(): void

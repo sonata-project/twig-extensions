@@ -39,7 +39,7 @@ final class DeprecatedTemplateNode extends Node
     {
         @trigger_error(sprintf(
             'The "%s" template is deprecated. Use "%s" instead.',
-            $this->getTemplateName(),
+            $this->getTemplateName() ?? '',
             $this->getNode('newTemplate')->getAttribute('value')
         ), \E_USER_DEPRECATED);
     }

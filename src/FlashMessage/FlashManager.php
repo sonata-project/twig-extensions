@@ -26,14 +26,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 final class FlashManager implements FlashManagerInterface, StatusClassRendererInterface
 {
     /**
-     * @var Session|null
+     * NEXT_MAJOR: Restrict to RequestStack.
      *
-     * @deprecated since sonata-project/twig-extensions 1.7. Use $requestStack->getSession() instead.
-     */
-    private $session;
-
-    /**
-     * @var RequestStack|null
+     * @var RequestStack|Session
      */
     private $requestStack;
 
@@ -62,11 +57,11 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
                 __METHOD__,
                 RequestStack::class
             ), \E_USER_DEPRECATED);
-            $this->session = $requestStackOrDeprecatedSession;
+            $this->requestStack = $requestStackOrDeprecatedSession;
         } elseif ($requestStackOrDeprecatedSession instanceof RequestStack) {
             // NEXT_MAJOR: keep this block only
-            // NEXT_MAJOR: add \Symfony\Component\HttpFoundation\RequestStack typehint to $session
-            // NEXT_MAJOR: rename $session to $requestStack
+            // NEXT_MAJOR: add \Symfony\Component\HttpFoundation\RequestStack typehint to $requestStackOrDeprecatedSession
+            // NEXT_MAJOR: rename $requestStackOrDeprecatedSession to $requestStack
             $this->requestStack = $requestStackOrDeprecatedSession;
         } else {
             throw new \InvalidArgumentException(
@@ -166,14 +161,19 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
      */
     public function getSession(): SessionInterface
     {
-        if (null !== $this->session) {
-            return $this->session;
+        if ($this->requestStack instanceof Session) {
+            return $this->requestStack;
         }
 
+        // @phpstan-ignore-next-line
         if (method_exists($this->requestStack, 'getMainRequest')) {
             $request = $this->requestStack->getMainRequest();
         } else {
             $request = $this->requestStack->getMasterRequest();
+        }
+
+        if (null === $request) {
+            throw new \RuntimeException('No request was found.');
         }
 
         $session = $request->getSession();
