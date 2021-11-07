@@ -69,7 +69,7 @@ final class FlashManagerTest extends TestCase
     }
 
     /**
-     * NEXT_MAJOR: Remove this test
+     * NEXT_MAJOR: Remove this test.
      *
      * @psalm-suppress DeprecatedMethod
      *
@@ -90,7 +90,7 @@ final class FlashManagerTest extends TestCase
     }
 
     /**
-     * NEXT_MAJOR: Remove this test
+     * NEXT_MAJOR: Remove this test.
      *
      * @psalm-suppress DeprecatedMethod
      *
