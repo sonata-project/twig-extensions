@@ -34,7 +34,7 @@ final class TemplateBoxNode extends Node
     {
         $this->enabled = $enabled;
 
-        parent::__construct(['message' => $message], [], $lineno, $tag);
+        parent::__construct(['message' => $message], [], $lineno ?? 0, $tag);
     }
 
     public function compile(Compiler $compiler): void

@@ -17,24 +17,17 @@ use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Node\TemplateBoxNode;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Environment;
-use Twig\Error\SyntaxError;
 use Twig\Loader\ArrayLoader;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Parser;
 use Twig\Source;
 
-class TemplateBoxTokenParserTest extends TestCase
+final class TemplateBoxTokenParserTest extends TestCase
 {
     /**
      * @dataProvider getTestsForRender
-     *
-     * @param bool            $enabled
-     * @param string          $source
-     * @param TemplateBoxNode $expected
-     *
-     * @throws SyntaxError
      */
-    public function testCompile($enabled, $source, $expected): void
+    public function testCompile(bool $enabled, string $source, TemplateBoxNode $expected): void
     {
         $env = new Environment(new ArrayLoader([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
         $env->addTokenParser(new TemplateBoxTokenParser($enabled));
@@ -45,15 +38,15 @@ class TemplateBoxTokenParserTest extends TestCase
         // "0" is passed as string due an issue with the allowed node name types.
         // @see https://github.com/twigphp/Twig/issues/3294
         $actual = $parser->parse($stream)->getNode('body')->getNode('0');
-        static::assertSame(
-            $expected->getIterator()->getFlags(),
-            $actual->getIterator()->getFlags()
-        );
+
         static::assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
         static::assertCount($expected->count(), $actual);
     }
 
-    public function getTestsForRender()
+    /**
+     * @return iterable<array-key, array{bool, string, TemplateBoxNode}>
+     */
+    public function getTestsForRender(): iterable
     {
         return [
             [

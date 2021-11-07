@@ -77,7 +77,7 @@ final class TemplateExtension extends AbstractExtension
             __METHOD__
         ), \E_USER_DEPRECATED);
 
-        return $this->modelAdapter->getUrlsafeIdentifier($model);
+        return $this->modelAdapter->getUrlSafeIdentifier($model);
     }
 
     public function getName(): string

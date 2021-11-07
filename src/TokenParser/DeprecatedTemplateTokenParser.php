@@ -22,10 +22,15 @@ use Twig\TokenParser\AbstractTokenParser;
  *
  * NEXT_MAJOR: Remove this class.
  *
+ * @psalm-suppress DeprecatedClass
+ *
  * @deprecated since sonata-project/twig-extensions 1.4, to be removed in 2.0. Use "deprecated" tag instead.
  */
 final class DeprecatedTemplateTokenParser extends AbstractTokenParser
 {
+    /**
+     * @psalm-suppress InternalMethod
+     */
     public function parse(Token $token): DeprecatedTemplateNode
     {
         @trigger_error(

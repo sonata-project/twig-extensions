@@ -20,18 +20,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
- *
- * @group legacy
  */
-class FlashManagerTest extends TestCase
+final class FlashManagerTest extends TestCase
 {
     /**
-     * @var SessionInterface
+     * @var Session
      */
     protected $session;
 
@@ -40,9 +37,6 @@ class FlashManagerTest extends TestCase
      */
     protected $flashManager;
 
-    /**
-     * Set up units tests.
-     */
     protected function setUp(): void
     {
         $this->session = $this->getSession();
@@ -74,41 +68,45 @@ class FlashManagerTest extends TestCase
         static::assertInstanceOf(Session::class, $session);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @psalm-suppress DeprecatedMethod
+     *
+     * @group legacy
+     */
+    public function testGetHandledObject(): void
+    {
+        static::assertTrue($this->flashManager->handlesObject($this->flashManager, 'error'));
+        static::assertFalse($this->flashManager->handlesObject($this->flashManager, 'warning'));
+    }
+
     public function testGetHandledTypes(): void
     {
         static::assertSame(['success', 'warning', 'error'], $this->flashManager->getHandledTypes());
 
-        // NEXT_MAJOR: StatusRuntime assertion
-        // StatusRuntime
-        static::assertTrue($this->flashManager->handlesObject($this->flashManager, 'error'));
-
-        // FlashMessageRuntime
         static::assertTrue($this->flashManager->handlesType('error'));
-
-        // NEXT_MAJOR: StatusRuntime assertion
-        static::assertFalse($this->flashManager->handlesObject($this->flashManager, 'warning'));
-
-        // FlashMessageRuntime
         static::assertFalse($this->flashManager->handlesType('warning'));
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this test.
+     *
+     * @psalm-suppress DeprecatedMethod
+     *
+     * @group legacy
+     */
+    public function testGetStatusClass(): void
+    {
+        static::assertSame('danger', $this->flashManager->getStatusClass($this->flashManager, 'error'));
+
+        static::assertSame('example', $this->flashManager->getStatusClass($this->flashManager, 'non_existing_status', 'example'));
     }
 
     public function testGetStatus(): void
     {
-        // NEXT_MAJOR: remove first assertion
-        // StatusRuntime
-        static::assertSame('danger', $this->flashManager->getStatusClass($this->flashManager, 'error'));
-
-        // FlashMessageRuntime
         static::assertSame('danger', $this->flashManager->getRenderedHtmlClassAttribute('error'));
-    }
 
-    public function testGetDefaultStatus(): void
-    {
-        // NEXT_MAJOR: StatusRuntime assertion
-        // StatusRuntime
-        static::assertSame('example', $this->flashManager->getStatusClass($this->flashManager, 'non_existing_status', 'example'));
-
-        // FlashMessageRuntime
         static::assertSame('example', $this->flashManager->getRenderedHtmlClassAttribute('non_existing_status', 'example'));
     }
 
@@ -235,6 +233,8 @@ class FlashManagerTest extends TestCase
 
     /**
      * Returns Sonata flash manager.
+     *
+     * @param array<string, array<string, array<string, mixed>>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {

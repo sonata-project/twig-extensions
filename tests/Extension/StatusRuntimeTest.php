@@ -22,13 +22,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
-class StatusRuntimeTest extends TestCase
+final class StatusRuntimeTest extends TestCase
 {
     /**
-     * @var SessionInterface
+     * @var Session
      */
     protected $session;
 
@@ -78,6 +77,8 @@ class StatusRuntimeTest extends TestCase
 
     /**
      * NEXT_MAJOR: remove this method.
+     *
+     * @group legacy
      */
     public function testFlashManagerInSonataStatusRenderer(): void
     {
@@ -103,16 +104,13 @@ class StatusRuntimeTest extends TestCase
         );
     }
 
-    /**
-     * Returns a Symfony session service.
-     */
     protected function getSession(): Session
     {
         return new Session(new MockArraySessionStorage(), new AttributeBag(), new FlashBag());
     }
 
     /**
-     * Returns Sonata flash manager.
+     * @param array<string, array<string, array<string, mixed>>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {

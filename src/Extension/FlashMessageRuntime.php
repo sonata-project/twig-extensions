@@ -35,6 +35,8 @@ final class FlashMessageRuntime
 
     /**
      * Returns flash messages handled by Sonata flash manager.
+     *
+     * @return string[]
      */
     public function getFlashMessages(string $type): array
     {
@@ -43,6 +45,8 @@ final class FlashMessageRuntime
 
     /**
      * Returns Sonata flash messages types handled by Sonata flash manager.
+     *
+     * @return string[]
      */
     public function getFlashMessagesTypes(): array
     {

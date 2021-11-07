@@ -16,12 +16,13 @@ namespace Sonata\Twig\Tests\Bridge\Symfony\DependencyInjection;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Bridge\Symfony\DependencyInjection\Configuration;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-class ConfigurationTest extends TestCase
+final class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    public function getConfiguration()
+    public function getConfiguration(): ConfigurationInterface
     {
         return new Configuration();
     }

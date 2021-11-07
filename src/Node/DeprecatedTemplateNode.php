@@ -26,6 +26,10 @@ use Twig\Node\Node;
  */
 final class DeprecatedTemplateNode extends Node
 {
+    /**
+     * @param int         $line
+     * @param string|null $tag
+     */
     public function __construct(AbstractExpression $newTemplate, $line, $tag = null)
     {
         parent::__construct(['newTemplate' => $newTemplate], [], $line, $tag);
@@ -35,7 +39,7 @@ final class DeprecatedTemplateNode extends Node
     {
         @trigger_error(sprintf(
             'The "%s" template is deprecated. Use "%s" instead.',
-            $this->getTemplateName(),
+            $this->getTemplateName() ?? '',
             $this->getNode('newTemplate')->getAttribute('value')
         ), \E_USER_DEPRECATED);
     }
