@@ -17,10 +17,12 @@ use PHPUnit\Framework\TestCase;
 use Sonata\Doctrine\Adapter\AdapterInterface;
 use Sonata\Twig\Extension\TemplateExtension;
 
-class TemplateExtensionTest extends TestCase
+final class TemplateExtensionTest extends TestCase
 {
     /**
      * NEXT_MAJOR: Remove this test.
+     *
+     * @psalm-suppress DeprecatedMethod
      *
      * @group legacy
      */

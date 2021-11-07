@@ -23,11 +23,17 @@ final class FormTypeExtension extends AbstractExtension implements GlobalsInterf
      */
     private $wrapFieldsWithAddons;
 
+    /**
+     * @param bool|string $formType
+     */
     public function __construct($formType)
     {
         $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getGlobals(): array
     {
         return [

@@ -13,12 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Tests\Bridge\Symfony\Resources;
 
-class XliffTest extends XliffValidatorTestCase
+final class XliffTest extends XliffValidatorTestCase
 {
-    /**
-     * @return array List all path to validate xliff
-     */
-    public function getXliffPaths()
+    public function getXliffPaths(): iterable
     {
         return [[__DIR__.'/../../Resources/translations']];
     }

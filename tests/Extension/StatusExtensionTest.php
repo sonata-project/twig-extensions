@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\StatusExtension;
 use Twig\TwigFilter;
 
-class StatusExtensionTest extends TestCase
+final class StatusExtensionTest extends TestCase
 {
     public function testGetName(): void
     {

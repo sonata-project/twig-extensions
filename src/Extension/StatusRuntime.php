@@ -40,11 +40,18 @@ final class StatusRuntime
      * @param object|string $object     Object for StatusClassRenderer or string for FlashManager
      * @param string|null   $statusType Object status type or Sonata flash message type
      * @param string        $default    Default status class
-     * @param mixed         $statusType
      */
     public function statusClass($object, $statusType = null, string $default = ''): string
     {
-        if ($object instanceof FlashManagerInterface) {
+        // NEXT_MAJOR: Remove this check.
+        if ($object instanceof FlashManagerInterface && null !== $statusType) {
+            @trigger_error(sprintf(
+                'Passing a %s as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
+                .' and will have a different behaviour in 2.0.',
+                FlashManagerInterface::class,
+                __METHOD__
+            ), \E_USER_DEPRECATED);
+
             return $this->statusClassForFlashManager($statusType, null, $default);
         }
 
@@ -56,6 +63,7 @@ final class StatusRuntime
             return $this->statusClassForFlashManager($object, $statusType, $default);
         }
 
+        // NEXT_MAJOR: Throw an exception instead.
         @trigger_error(sprintf(
             'Passing other type than object or string as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.4'
             .' and will throw an exception in 2.0.',
@@ -65,11 +73,9 @@ final class StatusRuntime
         return $default;
     }
 
-    private function statusClassForStatusClassRenderer(object $object, $statusType = null, string $default = ''): string
+    private function statusClassForStatusClassRenderer(object $object, ?string $statusType = null, string $default = ''): string
     {
         foreach ($this->statusServices as $statusService) {
-            \assert($statusService instanceof StatusClassRendererInterface);
-
             if ($statusService->handlesObject($object, $statusType)) {
                 return $statusService->getStatusClass($object, $statusType, $default);
             }
@@ -80,7 +86,8 @@ final class StatusRuntime
 
     private function statusClassForFlashManager(string $object, ?string $statusType = null, string $default = ''): string
     {
-        if ($flashManager = $this->getFlashManagerFromStatusServices()) {
+        $flashManager = $this->getFlashManagerFromStatusServices();
+        if (null !== $flashManager) {
             if (null === $statusType) {
                 $statusType = $object;
             }

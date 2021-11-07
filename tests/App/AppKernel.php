@@ -21,6 +21,7 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorageFactory;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollectionBuilder;
@@ -34,6 +35,9 @@ final class AppKernel extends Kernel
         parent::__construct('test', false);
     }
 
+    /**
+     * @return BundleInterface[]
+     */
     public function registerBundles(): array
     {
         return [

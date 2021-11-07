@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
-class FlashMessageRuntimeTest extends TestCase
+final class FlashMessageRuntimeTest extends TestCase
 {
     public function testStatusClassDefaultValue(): void
     {
@@ -58,6 +58,8 @@ class FlashMessageRuntimeTest extends TestCase
 
     /**
      * Returns Sonata flash manager.
+     *
+     * @param array<string, array<string, array<string, mixed>>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {
