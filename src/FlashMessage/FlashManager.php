@@ -110,6 +110,10 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
             return false;
         }
 
+        if (null === $statusName) {
+            return false;
+        }
+
         return $this->handlesType($statusName);
     }
 
@@ -139,6 +143,10 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
             if (null === $statusName) {
                 $statusName = $object;
             }
+        }
+
+        if (null === $statusName) {
+            return $default;
         }
 
         return $this->getRenderedHtmlClassAttribute($statusName, $default);

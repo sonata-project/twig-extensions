@@ -43,7 +43,15 @@ final class StatusRuntime
      */
     public function statusClass($object, $statusType = null, string $default = ''): string
     {
-        if ($object instanceof FlashManagerInterface) {
+        // NEXT_MAJOR: Remove this check.
+        if ($object instanceof FlashManagerInterface && null !== $statusType) {
+            @trigger_error(sprintf(
+                'Passing a %s as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
+                .' and will have a different behaviour in 2.0.',
+                FlashManagerInterface::class,
+                __METHOD__
+            ), \E_USER_DEPRECATED);
+
             return $this->statusClassForFlashManager($statusType, null, $default);
         }
 
@@ -55,6 +63,7 @@ final class StatusRuntime
             return $this->statusClassForFlashManager($object, $statusType, $default);
         }
 
+        // NEXT_MAJOR: Throw an exception instead.
         @trigger_error(sprintf(
             'Passing other type than object or string as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.4'
             .' and will throw an exception in 2.0.',
