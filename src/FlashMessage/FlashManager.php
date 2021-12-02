@@ -177,6 +177,7 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
         if (method_exists($this->requestStackOrDeprecatedSession, 'getMainRequest')) {
             $request = $this->requestStackOrDeprecatedSession->getMainRequest();
         } else {
+            // @phpstan-ignore-next-line
             $request = $this->requestStackOrDeprecatedSession->getMasterRequest();
         }
 
