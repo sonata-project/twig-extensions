@@ -23,10 +23,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 final class SonataTwigBundle extends Bundle
 {
-    /**
-     * @return string
-     */
-    public function getPath()
+    public function getPath(): string
     {
         return __DIR__.'/..';
     }
@@ -36,10 +33,7 @@ final class SonataTwigBundle extends Bundle
         $container->addCompilerPass(new StatusRendererCompilerPass());
     }
 
-    /**
-     * @return string
-     */
-    protected function getContainerExtensionClass()
+    protected function getContainerExtensionClass(): string
     {
         return SonataTwigExtension::class;
     }
