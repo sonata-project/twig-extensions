@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.9.1](https://github.com/sonata-project/twig-extensions/compare/1.9.0...1.9.1) - 2021-12-04
+### Fixed
+- [[#269](https://github.com/sonata-project/twig-extensions/pull/269)] Multiple phpdoc ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [1.9.0](https://github.com/sonata-project/twig-extensions/compare/1.8.0...1.9.0) - 2021-09-22
 ### Added
 - [[#253](https://github.com/sonata-project/twig-extensions/pull/253)] Added support for Symfony 6 ([@jordisala1991](https://github.com/jordisala1991))
