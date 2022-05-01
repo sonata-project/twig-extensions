@@ -44,16 +44,16 @@ final class StatusRuntimeTest extends TestCase
         $this->session = $this->getSession();
         $this->flashManager = $this->getFlashManager([
             'success' => [
-                'my_bundle_success' => [],
-                'my_second_bundle_success' => [],
+                'my_bundle_success',
+                'my_second_bundle_success',
             ],
             'warning' => [
-                'my_bundle_warning' => [],
-                'my_second_bundle_warning' => [],
+                'my_bundle_warning',
+                'my_second_bundle_warning',
             ],
             'error' => [
-                'my_bundle_error' => [],
-                'my_second_bundle_error' => [],
+                'my_bundle_error',
+                'my_second_bundle_error',
             ],
         ]);
     }
@@ -80,42 +80,13 @@ final class StatusRuntimeTest extends TestCase
         static::assertSame('test-value', $runtime->statusClass('getStatus', null, 'test-value'));
     }
 
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @group legacy
-     */
-    public function testFlashManagerInSonataStatusRenderer(): void
-    {
-        // Given
-        $this->flashManager->addFlash('my_bundle_success', 'hey, success dude!');
-        $this->session->getFlashBag()->set('my_second_bundle_success', 'hey, success dude!');
-
-        // When
-        $this->flashManager->get('success');
-
-        // Then
-        $statusRuntime = new StatusRuntime();
-        $statusRuntime->addStatusService($this->flashManager);
-
-        static::assertSame(
-            'danger',
-            $statusRuntime->statusClass($this->flashManager, 'error', 'default_class')
-        );
-
-        static::assertSame(
-            'default_class',
-            $statusRuntime->statusClass($this->flashManager, 'blabla', 'default_class')
-        );
-    }
-
     protected function getSession(): Session
     {
         return new Session(new MockArraySessionStorage(), new AttributeBag(), new FlashBag());
     }
 
     /**
-     * @param array<string, array<string, array<string, mixed>>> $types
+     * @param array<string, array<string>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {

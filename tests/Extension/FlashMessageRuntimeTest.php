@@ -29,16 +29,16 @@ final class FlashMessageRuntimeTest extends TestCase
     {
         $flashManager = $this->getFlashManager([
             'success' => [
-                'my_bundle_success' => [],
-                'my_second_bundle_success' => [],
+                'my_bundle_success',
+                'my_second_bundle_success',
             ],
             'warning' => [
-                'my_bundle_warning' => [],
-                'my_second_bundle_warning' => [],
+                'my_bundle_warning',
+                'my_second_bundle_warning',
             ],
             'error' => [
-                'my_bundle_error' => [],
-                'my_second_bundle_error' => [],
+                'my_bundle_error',
+                'my_second_bundle_error',
             ],
         ]);
 
@@ -59,7 +59,7 @@ final class FlashMessageRuntimeTest extends TestCase
     /**
      * Returns Sonata flash manager.
      *
-     * @param array<string, array<string, array<string, mixed>>> $types
+     * @param array<string, array<string>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {

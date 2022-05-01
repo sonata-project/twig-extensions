@@ -45,34 +45,19 @@ final class StatusRuntime
      */
     public function statusClass($object, $statusType = null, string $default = ''): string
     {
-        // NEXT_MAJOR: Remove this check.
-        if ($object instanceof FlashManagerInterface && null !== $statusType) {
-            @trigger_error(sprintf(
-                'Passing a %s as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
-                .' and will have a different behaviour in 2.0.',
-                FlashManagerInterface::class,
-                __METHOD__
-            ), \E_USER_DEPRECATED);
-
-            return $this->statusClassForFlashManager($statusType, null, $default);
-        }
-
         if (\is_object($object)) {
             return $this->statusClassForStatusClassRenderer($object, $statusType, $default);
         }
-
-        // NEXT_MAJOR: Throw an exception instead.
-        @trigger_error(sprintf(
-            'Passing other type than object as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
-            .' and will throw an exception in 2.0.',
-            __METHOD__
-        ), \E_USER_DEPRECATED);
 
         if (\is_string($object)) {
             return $this->statusClassForFlashManager($object, $statusType, $default);
         }
 
-        return $default;
+        throw new \TypeError(sprintf(
+            'Argument 1 passed to "%s()" must be an "object" or a "string", "%s" given.',
+            __METHOD__,
+            \gettype($object)
+        ));
     }
 
     private function statusClassForStatusClassRenderer(object $object, ?string $statusType = null, string $default = ''): string
@@ -105,10 +90,10 @@ final class StatusRuntime
     /**
      * Get FlashManager if it is registered as StatusClassRenderer.
      */
-    private function getFlashManagerFromStatusServices(): ?FlashManager
+    private function getFlashManagerFromStatusServices(): ?FlashManagerInterface
     {
         foreach ($this->statusServices as $statusService) {
-            if ($statusService instanceof FlashManager) {
+            if ($statusService instanceof FlashManagerInterface) {
                 return $statusService;
             }
         }

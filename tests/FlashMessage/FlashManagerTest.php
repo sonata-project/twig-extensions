@@ -42,43 +42,18 @@ final class FlashManagerTest extends TestCase
         $this->session = $this->getSession();
         $this->flashManager = $this->getFlashManager([
             'success' => [
-                'my_bundle_success' => [],
-                'my_second_bundle_success' => [],
+                'my_bundle_success',
+                'my_second_bundle_success',
             ],
             'warning' => [
-                'my_bundle_warning' => [],
-                'my_second_bundle_warning' => [],
+                'my_bundle_warning',
+                'my_second_bundle_warning',
             ],
             'error' => [
-                'my_bundle_error' => [],
-                'my_second_bundle_error' => [],
+                'my_bundle_error',
+                'my_second_bundle_error',
             ],
         ]);
-    }
-
-    /**
-     * Test the flash manager getSession() method.
-     */
-    public function testGetSession(): void
-    {
-        // When
-        $session = $this->flashManager->getSession();
-
-        // Then
-        static::assertInstanceOf(Session::class, $session);
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this test.
-     *
-     * @psalm-suppress DeprecatedMethod
-     *
-     * @group legacy
-     */
-    public function testGetHandledObject(): void
-    {
-        static::assertTrue($this->flashManager->handlesObject($this->flashManager, 'error'));
-        static::assertFalse($this->flashManager->handlesObject($this->flashManager, 'warning'));
     }
 
     public function testGetHandledTypes(): void
@@ -87,20 +62,6 @@ final class FlashManagerTest extends TestCase
 
         static::assertTrue($this->flashManager->handlesType('error'));
         static::assertFalse($this->flashManager->handlesType('warning'));
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this test.
-     *
-     * @psalm-suppress DeprecatedMethod
-     *
-     * @group legacy
-     */
-    public function testGetStatusClass(): void
-    {
-        static::assertSame('danger', $this->flashManager->getStatusClass($this->flashManager, 'error'));
-
-        static::assertSame('example', $this->flashManager->getStatusClass($this->flashManager, 'non_existing_status', 'example'));
     }
 
     public function testGetStatus(): void
@@ -122,16 +83,16 @@ final class FlashManagerTest extends TestCase
         static::assertCount(3, $types);
         static::assertSame([
             'success' => [
-                'my_bundle_success' => [],
-                'my_second_bundle_success' => [],
+                'my_bundle_success',
+                'my_second_bundle_success',
             ],
             'warning' => [
-                'my_bundle_warning' => [],
-                'my_second_bundle_warning' => [],
+                'my_bundle_warning',
+                'my_second_bundle_warning',
             ],
             'error' => [
-                'my_bundle_error' => [],
-                'my_second_bundle_error' => [],
+                'my_bundle_error',
+                'my_second_bundle_error',
             ],
         ], $types);
     }
@@ -234,7 +195,7 @@ final class FlashManagerTest extends TestCase
     /**
      * Returns Sonata flash manager.
      *
-     * @param array<string, array<string, array<string, mixed>>> $types
+     * @param array<string, array<string>> $types
      */
     protected function getFlashManager(array $types): FlashManager
     {
