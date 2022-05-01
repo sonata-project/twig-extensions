@@ -27,15 +27,9 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  */
 final class FlashManagerTest extends TestCase
 {
-    /**
-     * @var Session
-     */
-    protected $session;
+    protected Session $session;
 
-    /**
-     * @var FlashManager
-     */
-    protected $flashManager;
+    protected FlashManager $flashManager;
 
     protected function setUp(): void
     {

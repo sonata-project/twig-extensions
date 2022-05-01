@@ -15,54 +15,10 @@ namespace Sonata\Twig\Tests\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Extension\StatusRuntime;
-use Sonata\Twig\FlashMessage\FlashManager;
 use Sonata\Twig\Status\StatusClassRendererInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 final class StatusRuntimeTest extends TestCase
 {
-    /**
-     * @var Session
-     */
-    protected $session;
-
-    /**
-     * @var FlashManager
-     */
-    protected $flashManager;
-
-    /**
-     * Set up units tests.
-     */
-    protected function setUp(): void
-    {
-        $this->session = $this->getSession();
-        $this->flashManager = $this->getFlashManager([
-            'success' => [
-                'my_bundle_success',
-                'my_second_bundle_success',
-            ],
-            'warning' => [
-                'my_bundle_warning',
-                'my_second_bundle_warning',
-            ],
-            'error' => [
-                'my_bundle_error',
-                'my_second_bundle_error',
-            ],
-        ]);
-    }
-
-    /**
-     * NEXT_MAJOR: Remove group legacy.
-     *
-     * @group legacy
-     */
     public function testStatusClassDefaultValue(): void
     {
         $runtime = new StatusRuntime();
@@ -73,28 +29,7 @@ final class StatusRuntimeTest extends TestCase
             ->willReturn(false);
 
         $runtime->addStatusService($statusService);
-        // getStatusClass() for StatusClassRenderer
+
         static::assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));
-
-        // NEXT_MAJOR: Remove this line.
-        static::assertSame('test-value', $runtime->statusClass('getStatus', null, 'test-value'));
-    }
-
-    protected function getSession(): Session
-    {
-        return new Session(new MockArraySessionStorage(), new AttributeBag(), new FlashBag());
-    }
-
-    /**
-     * @param array<string, array<string>> $types
-     */
-    protected function getFlashManager(array $types): FlashManager
-    {
-        $classes = ['error' => 'danger'];
-        $requestStack = new RequestStack();
-        $requestStack->push($request = new Request());
-        $request->setSession($this->session);
-
-        return new FlashManager($requestStack, $types, $classes);
     }
 }
