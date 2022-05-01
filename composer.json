@@ -22,7 +22,6 @@
     "homepage": "https://docs.sonata-project.org/projects/twig-extensions",
     "require": {
         "php": "^7.4 || ^8.0",
-        "sonata-project/doctrine-extensions": "^1.9.1",
         "symfony/config": "^4.4 || ^5.3 || ^6.0",
         "symfony/translation": "^4.4 || ^5.3 || ^6.0",
         "symfony/twig-bridge": "^4.4 || ^5.3 || ^6.0",
