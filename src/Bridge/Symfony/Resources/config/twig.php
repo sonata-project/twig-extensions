@@ -16,7 +16,6 @@ use Sonata\Twig\Extension\StatusExtension;
 use Sonata\Twig\Extension\StatusRuntime;
 use Sonata\Twig\Extension\TemplateExtension;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     // Use "service" function for creating references to services when dropping support for Symfony 4.4
@@ -35,8 +34,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.twig.template_extension', TemplateExtension::class)
             ->tag('twig.extension')
-            ->args([
-                '%kernel.debug%',
-                new ReferenceConfigurator('sonata.doctrine.model.adapter.chain'),
-            ]);
+            ->args(['%kernel.debug%']);
 };
