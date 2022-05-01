@@ -11,7 +11,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\Twig\Extension\DeprecatedTemplateExtension;
 use Sonata\Twig\Extension\FormTypeExtension;
 use Sonata\Twig\Extension\StatusExtension;
 use Sonata\Twig\Extension\StatusRuntime;
@@ -32,10 +31,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('twig.runtime')
 
         ->set('sonata.twig.status_extension', StatusExtension::class)
-            ->tag('twig.extension')
-
-        // NEXT_MAJOR: Remove this service.
-        ->set('sonata.twig.deprecated_template_extension', DeprecatedTemplateExtension::class)
             ->tag('twig.extension')
 
         ->set('sonata.twig.template_extension', TemplateExtension::class)

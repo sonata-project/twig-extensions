@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 
-use Symfony\Component\Config\Definition\BaseNode;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -61,42 +60,12 @@ depending on this style.')
                     ->prototype('array')
                         ->children()
                             ->scalarNode('css_class')->end()
-                            // NEXT_MAJOR: change types to string[]
                             ->arrayNode('types')
-                                ->useAttributeAsKey('type')
-                                ->prototype('array')
-                                    ->children()
-                                        ->scalarNode('domain')
-                                            ->defaultValue('SonataTwigBundle')
-                                            ->setDeprecated(...$this->getDomainParamDeprecationMsg())
-                                            ->end()
-                                    ->end()
-                                ->end()
+                                ->prototype('scalar')->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
             ->end();
-    }
-
-    /**
-     * BC layer for deprecation messages for symfony/config < 5.1.
-     *
-     * @return string[]
-     */
-    private function getDomainParamDeprecationMsg(): array
-    {
-        $message = 'The child node "%node%" at path "%path%" is deprecated since sonata-project/twig-extensions 1.4 and will be removed in 2.0 version. Translate you message before add it to session flash.';
-
-        // @phpstan-ignore-next-line
-        if (method_exists(BaseNode::class, 'getDeprecation')) {
-            return [
-                'sonata-project/twig-extensions',
-                '1.4',
-                $message,
-            ];
-        }
-
-        return [$message];
     }
 }
