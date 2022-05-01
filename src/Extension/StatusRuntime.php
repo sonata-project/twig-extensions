@@ -37,6 +37,8 @@ final class StatusRuntime
     }
 
     /**
+     * NEXT_MAJOR: Restrict $object to object.
+     *
      * @param object|string $object     Object for StatusClassRenderer or string for FlashManager
      * @param string|null   $statusType Object status type or Sonata flash message type
      * @param string        $default    Default status class
@@ -59,16 +61,16 @@ final class StatusRuntime
             return $this->statusClassForStatusClassRenderer($object, $statusType, $default);
         }
 
-        if (\is_string($object)) {
-            return $this->statusClassForFlashManager($object, $statusType, $default);
-        }
-
         // NEXT_MAJOR: Throw an exception instead.
         @trigger_error(sprintf(
-            'Passing other type than object or string as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.4'
+            'Passing other type than object as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
             .' and will throw an exception in 2.0.',
             __METHOD__
         ), \E_USER_DEPRECATED);
+
+        if (\is_string($object)) {
+            return $this->statusClassForFlashManager($object, $statusType, $default);
+        }
 
         return $default;
     }
