@@ -18,10 +18,7 @@ use Twig\Extension\AbstractExtension;
 
 final class TemplateExtension extends AbstractExtension
 {
-    /**
-     * @var bool
-     */
-    protected $debug;
+    protected bool $debug;
 
     /**
      * @param bool $debug Is Symfony debug enabled?

@@ -22,20 +22,17 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 final class FlashManager implements FlashManagerInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * @var array<string, array<string>>
      */
-    private $types;
+    private array $types;
 
     /**
      * @var array<string, string>
      */
-    private $cssClasses;
+    private array $cssClasses;
 
     /**
      * @param array<string, array<string>> $types      Sonata flash message types array (defined in configuration)
