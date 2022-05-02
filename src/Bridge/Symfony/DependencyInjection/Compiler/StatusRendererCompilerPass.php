@@ -19,6 +19,10 @@ use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * NEXT_MAJOR: Remove this compiler pass.
+ *
+ * @deprecated Since version 1.x, to be removed in 2.0.
  */
 final class StatusRendererCompilerPass implements CompilerPassInterface
 {
