@@ -58,6 +58,11 @@ final class StatusRuntimeTest extends TestCase
         ]);
     }
 
+    /**
+     * NEXT_MAJOR: Remove group legacy.
+     *
+     * @group legacy
+     */
     public function testStatusClassDefaultValue(): void
     {
         $runtime = new StatusRuntime();
@@ -71,7 +76,7 @@ final class StatusRuntimeTest extends TestCase
         // getStatusClass() for StatusClassRenderer
         static::assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));
 
-        // getStatusClass() for FlashManager
+        // NEXT_MAJOR: Remove this line.
         static::assertSame('test-value', $runtime->statusClass('getStatus', null, 'test-value'));
     }
 
