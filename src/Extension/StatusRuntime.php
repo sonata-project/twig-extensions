@@ -35,7 +35,7 @@ final class StatusRuntime
     }
 
     /**
-     * @param string|null $statusType Object status type or Sonata flash message type
+     * @param string|null $statusType Object status type
      * @param string      $default    Default status class
      */
     public function statusClass(object $object, ?string $statusType = null, string $default = ''): string
