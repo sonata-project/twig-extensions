@@ -50,7 +50,6 @@ final class SonataTwigExtension extends Extension
                 'success',
                 'sonata_flash_success',
                 'sonata_user_success',
-                'fos_user_success',
             ]],
             'warning' => ['types' => [
                 'warning',
