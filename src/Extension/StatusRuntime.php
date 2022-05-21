@@ -48,7 +48,7 @@ final class StatusRuntime
         // NEXT_MAJOR: Remove this check.
         if ($object instanceof FlashManagerInterface && null !== $statusType) {
             @trigger_error(sprintf(
-                'Passing a %s as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
+                'Passing a %s as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.10'
                 .' and will have a different behaviour in 2.0.',
                 FlashManagerInterface::class,
                 __METHOD__
@@ -63,7 +63,7 @@ final class StatusRuntime
 
         // NEXT_MAJOR: Throw an exception instead.
         @trigger_error(sprintf(
-            'Passing other type than object as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.x'
+            'Passing other type than object as argument 1 for "%s()" is deprecated since sonata-project/twig-extensions 1.10'
             .' and will throw an exception in 2.0.',
             __METHOD__
         ), \E_USER_DEPRECATED);

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\Bridge\Symfony;
 
 @trigger_error(sprintf(
-    'The %s\SonataTwigSymfonyBundle class is deprecated since sonata-project/twig-extensions 1.x, to be removed in version 2.0. Use %s instead.',
+    'The %s\SonataTwigSymfonyBundle class is deprecated since sonata-project/twig-extensions 1.10, to be removed in version 2.0. Use %s instead.',
     __NAMESPACE__,
     SonataTwigBundle::class
 ), \E_USER_DEPRECATED);
