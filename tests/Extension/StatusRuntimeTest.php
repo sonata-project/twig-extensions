@@ -26,15 +26,9 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 final class StatusRuntimeTest extends TestCase
 {
-    /**
-     * @var Session
-     */
-    protected $session;
+    protected Session $session;
 
-    /**
-     * @var FlashManager
-     */
-    protected $flashManager;
+    protected FlashManager $flashManager;
 
     /**
      * Set up units tests.

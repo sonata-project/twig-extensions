@@ -26,7 +26,7 @@ final class StatusRuntime
     /**
      * @var StatusClassRendererInterface[]
      */
-    private $statusServices = [];
+    private array $statusServices = [];
 
     /**
      * Adds a renderer to the status services list.

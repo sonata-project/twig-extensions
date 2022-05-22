@@ -35,12 +35,12 @@ final class FlashManager implements FlashManagerInterface, StatusClassRendererIn
     /**
      * @var array<string, array<string, array<string, mixed>>>
      */
-    private $types;
+    private array $types;
 
     /**
      * @var array<string, string>
      */
-    private $cssClasses;
+    private array $cssClasses;
 
     /**
      * @param Session|RequestStack                               $requestStackOrDeprecatedSession

@@ -19,10 +19,7 @@ use Twig\Node\Node;
 
 final class TemplateBoxNode extends Node
 {
-    /**
-     * @var bool
-     */
-    protected $enabled;
+    protected bool $enabled;
 
     /**
      * @param AbstractExpression $message Node message to display
