@@ -44,13 +44,10 @@
         "symfony/dependency-injection": "^5.4 || ^6.0",
         "symfony/framework-bundle": "^5.4 || ^6.0",
         "symfony/http-foundation": "^5.4 || ^6.0",
-        "symfony/http-kernel": "^4.4.13 || ^5.3 || ^6.0",
+        "symfony/http-kernel": "^5.4 || ^6.0",
         "symfony/phpunit-bridge": "^6.0",
         "symfony/twig-bundle": "^5.4 || ^6.0",
         "vimeo/psalm": "^4.7.2"
-    },
-    "conflict": {
-        "sonata-project/core-bundle": ">=3.13"
     },
     "autoload": {
         "psr-4": {
