@@ -18,14 +18,11 @@ use Twig\Extension\AbstractExtension;
 
 final class TemplateExtension extends AbstractExtension
 {
-    protected bool $debug;
-
     /**
      * @param bool $debug Is Symfony debug enabled?
      */
-    public function __construct(bool $debug)
+    public function __construct(private bool $debug)
     {
-        $this->debug = $debug;
     }
 
     public function getTokenParsers(): array

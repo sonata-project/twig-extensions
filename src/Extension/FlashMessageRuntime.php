@@ -23,11 +23,8 @@ use Sonata\Twig\FlashMessage\FlashManagerInterface;
  */
 final class FlashMessageRuntime
 {
-    private FlashManagerInterface $flashManager;
-
-    public function __construct(FlashManagerInterface $flashManager)
+    public function __construct(private FlashManagerInterface $flashManager)
     {
-        $this->flashManager = $flashManager;
     }
 
     /**
