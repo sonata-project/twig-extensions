@@ -19,7 +19,6 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorageFactory;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -60,12 +59,7 @@ final class AppKernel extends Kernel
         return __DIR__;
     }
 
-    /**
-     * TODO: Add typehint when support for Symfony < 5.1 is dropped.
-     *
-     * @param RoutingConfigurator $routes
-     */
-    protected function configureRoutes($routes): void
+    protected function configureRoutes(RoutingConfigurator $routes): void
     {
         $routes->import(sprintf('%s/config/routes.yaml', $this->getProjectDir()));
     }
@@ -78,12 +72,7 @@ final class AppKernel extends Kernel
             'router' => ['utf8' => true],
         ];
 
-        // TODO: Remove else case when dropping support of Symfony < 5.3
-        if (class_exists(NativeSessionStorageFactory::class)) {
-            $frameworkConfig['session'] = ['storage_factory_id' => 'session.storage.factory.mock_file'];
-        } else {
-            $frameworkConfig['session'] = ['storage_id' => 'session.storage.mock_file'];
-        }
+        $frameworkConfig['session'] = ['storage_factory_id' => 'session.storage.factory.mock_file'];
 
         $containerBuilder->loadFromExtension('framework', $frameworkConfig);
 

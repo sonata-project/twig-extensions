@@ -26,8 +26,11 @@ final class FlashManager implements FlashManagerInterface
      * @param array<string, array<string>> $types      Sonata flash message types array (defined in configuration)
      * @param array<string, string>        $cssClasses Css classes associated with $types
      */
-    public function __construct(private RequestStack $requestStack, private array $types, private array $cssClasses)
-    {
+    public function __construct(
+        private RequestStack $requestStack,
+        private array $types,
+        private array $cssClasses
+    ) {
     }
 
     /**
