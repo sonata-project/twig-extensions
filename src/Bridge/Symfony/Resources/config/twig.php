@@ -17,7 +17,6 @@ use Sonata\Twig\Extension\FormTypeExtension;
 use Sonata\Twig\Extension\StatusExtension;
 use Sonata\Twig\Extension\StatusRuntime;
 use Sonata\Twig\Extension\TemplateExtension;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()

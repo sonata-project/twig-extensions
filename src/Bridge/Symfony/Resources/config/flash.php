@@ -31,8 +31,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('sonata.status.renderer')
             ->args([
                 service('request_stack'),
-                [],
-                [],
+                abstract_arg('Sonata flash message types array (defined in configuration)'),
+                abstract_arg('Css classes associated with the types'),
             ])
 
         ->set('sonata.twig.flashmessage.twig.runtime', FlashMessageRuntime::class)
