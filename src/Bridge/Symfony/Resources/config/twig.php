@@ -11,20 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Sonata\Twig\Extension\FormTypeExtension;
 use Sonata\Twig\Extension\StatusExtension;
 use Sonata\Twig\Extension\StatusRuntime;
 use Sonata\Twig\Extension\TemplateExtension;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    // Use "service" function for creating references to services when dropping support for Symfony 4.4
-    // Use "param" function for creating references to parameters when dropping support for Symfony 5.1
     $containerConfigurator->services()
 
         ->set('sonata.twig.extension.wrapping', FormTypeExtension::class)
             ->tag('twig.extension')
-            ->args(['%sonata.twig.form_type%'])
+            ->args([param('sonata.twig.form_type')])
 
         ->set('sonata.twig.status_runtime', StatusRuntime::class)
             ->tag('twig.runtime')
@@ -34,5 +33,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.twig.template_extension', TemplateExtension::class)
             ->tag('twig.extension')
-            ->args(['%kernel.debug%']);
+            ->args([param('kernel.debug')]);
 };

@@ -19,18 +19,18 @@ use Twig\Node\Node;
 
 final class TemplateBoxNode extends Node
 {
-    protected bool $enabled;
-
     /**
      * @param AbstractExpression $message Node message to display
      * @param bool               $enabled Is Symfony debug enabled?
      * @param int|null           $lineno  Symfony template line number
      * @param string|null        $tag     Symfony tag name
      */
-    public function __construct(AbstractExpression $message, bool $enabled, ?int $lineno = null, ?string $tag = null)
-    {
-        $this->enabled = $enabled;
-
+    public function __construct(
+        AbstractExpression $message,
+        private bool $enabled,
+        ?int $lineno = null,
+        ?string $tag = null
+    ) {
         parent::__construct(['message' => $message], [], $lineno ?? 0, $tag);
     }
 
