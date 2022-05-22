@@ -18,10 +18,7 @@ use Twig\Extension\GlobalsInterface;
 
 final class FormTypeExtension extends AbstractExtension implements GlobalsInterface
 {
-    /**
-     * @var bool
-     */
-    private $wrapFieldsWithAddons;
+    private bool $wrapFieldsWithAddons;
 
     /**
      * @param bool|string $formType

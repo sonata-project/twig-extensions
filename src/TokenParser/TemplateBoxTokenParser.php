@@ -20,10 +20,7 @@ use Twig\TokenParser\AbstractTokenParser;
 
 final class TemplateBoxTokenParser extends AbstractTokenParser
 {
-    /**
-     * @var bool
-     */
-    protected $enabled;
+    protected bool $enabled;
 
     /**
      * @param bool $enabled Is Symfony debug enabled?

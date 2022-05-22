@@ -20,17 +20,12 @@ use Twig\TwigFilter;
 
 final class TemplateExtension extends AbstractExtension
 {
-    /**
-     * @var bool
-     */
-    protected $debug;
+    protected bool $debug;
 
     /**
      * NEXT_MAJOR: Remove this property.
-     *
-     * @var AdapterInterface
      */
-    protected $modelAdapter;
+    protected AdapterInterface $modelAdapter;
 
     /**
      * NEXT_MAJOR: Remove the second argument.

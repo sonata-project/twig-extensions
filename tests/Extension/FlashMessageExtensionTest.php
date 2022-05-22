@@ -19,10 +19,7 @@ use Twig\TwigFunction;
 
 final class FlashMessageExtensionTest extends TestCase
 {
-    /**
-     * @var FlashMessageExtension
-     */
-    private $extension;
+    private FlashMessageExtension $extension;
 
     protected function setUp(): void
     {
