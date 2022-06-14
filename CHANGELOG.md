@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0-alpha-1](https://github.com/sonata-project/twig-extensions/compare/1.x...2.0.0-alpha-1) - 2022-06-14
+See UPGRADE-2.0.md for all changes
+
 ## [1.10.0](https://github.com/sonata-project/twig-extensions/compare/1.9.1...1.10.0) - 2022-05-21
 ### Deprecated
 - [[#318](https://github.com/sonata-project/twig-extensions/pull/318)] Passing a string to StatusRuntime::statusClass ([@VincentLanglet](https://github.com/VincentLanglet))
