@@ -20,7 +20,7 @@ final class FormTypeExtension extends AbstractExtension implements GlobalsInterf
 {
     private bool $wrapFieldsWithAddons;
 
-    public function __construct(bool | string $formType)
+    public function __construct(bool|string $formType)
     {
         $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
     }
