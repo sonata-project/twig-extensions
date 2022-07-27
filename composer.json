@@ -46,6 +46,7 @@
         "symfony/http-foundation": "^4.4 || ^5.4 || ^6.0",
         "symfony/http-kernel": "^4.4.13 || ^5.4 || ^6.0",
         "symfony/phpunit-bridge": "^6.1",
+        "symfony/translation": "^4.4 || ^5.4 || ^6.0",
         "symfony/twig-bundle": "^4.4 || ^5.4 || ^6.0",
         "vimeo/psalm": "^4.7.2"
     },
