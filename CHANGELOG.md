@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.11.0](https://github.com/sonata-project/twig-extensions/compare/1.10.0...1.11.0) - 2022-07-28
+### Removed
+- [[#338](https://github.com/sonata-project/twig-extensions/pull/338)] `symfony/translation` requirement ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#330](https://github.com/sonata-project/twig-extensions/pull/330)] Support of Symfony 5.3 ([@franmomu](https://github.com/franmomu))
+- [[#321](https://github.com/sonata-project/twig-extensions/pull/321)] PHP 7.3 support ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [1.10.0](https://github.com/sonata-project/twig-extensions/compare/1.9.1...1.10.0) - 2022-05-21
 ### Deprecated
 - [[#318](https://github.com/sonata-project/twig-extensions/pull/318)] Passing a string to StatusRuntime::statusClass ([@VincentLanglet](https://github.com/VincentLanglet))
