@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.0.0-alpha-1](https://github.com/sonata-project/twig-extensions/compare/1.x...2.0.0-alpha-1) - 2022-06-14
 See UPGRADE-2.0.md for all changes
 
+## [1.12.0](https://github.com/sonata-project/twig-extensions/compare/1.11.0...1.12.0) - 2022-07-28
+### Added
+- [[#341](https://github.com/sonata-project/twig-extensions/pull/341)] Support for `sonata-project/doctrine-extensions` ^2 ([@VincentLanglet](https://github.com/VincentLanglet))
+
+## [1.11.0](https://github.com/sonata-project/twig-extensions/compare/1.10.0...1.11.0) - 2022-07-28
+### Removed
+- [[#338](https://github.com/sonata-project/twig-extensions/pull/338)] `symfony/translation` requirement ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#330](https://github.com/sonata-project/twig-extensions/pull/330)] Support of Symfony 5.3 ([@franmomu](https://github.com/franmomu))
+- [[#321](https://github.com/sonata-project/twig-extensions/pull/321)] PHP 7.3 support ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [1.10.0](https://github.com/sonata-project/twig-extensions/compare/1.9.1...1.10.0) - 2022-05-21
 ### Deprecated
 - [[#318](https://github.com/sonata-project/twig-extensions/pull/318)] Passing a string to StatusRuntime::statusClass ([@VincentLanglet](https://github.com/VincentLanglet))
