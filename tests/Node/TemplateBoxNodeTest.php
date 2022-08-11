@@ -67,20 +67,20 @@ final class TemplateBoxNodeTest extends NodeTestCase
 
         return [
             [$nodeEn, <<<'EOF'
-// line 1
-echo "<div class='alert alert-default alert-info'>
-    <strong>This is the default message</strong>
-    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
-</div>";
-EOF, null, false,
+                // line 1
+                echo "<div class='alert alert-default alert-info'>
+                    <strong>This is the default message</strong>
+                    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+                </div>";
+                EOF, null, false,
             ],
             [$nodeFr, <<<'EOF'
-// line 1
-echo "<div class='alert alert-default alert-info'>
-    <strong>Ceci est le message par défaut</strong>
-    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
-</div>";
-EOF, null, false,
+                // line 1
+                echo "<div class='alert alert-default alert-info'>
+                    <strong>Ceci est le message par défaut</strong>
+                    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+                </div>";
+                EOF, null, false,
             ],
         ];
     }
