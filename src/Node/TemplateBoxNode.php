@@ -48,11 +48,11 @@ final class TemplateBoxNode extends Node
         $value = $this->getNode('message')->getAttribute('value');
 
         $message = <<<CODE
-"<div class='alert alert-default alert-info'>
-    <strong>{$value}</strong>
-    <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
-</div>"
-CODE;
+            "<div class='alert alert-default alert-info'>
+                <strong>{$value}</strong>
+                <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
+            </div>"
+            CODE;
 
         $compiler
             ->write("echo $message;");
