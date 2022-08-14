@@ -12,5 +12,3 @@ The ``twig-extensions`` provided defaults elements required by the different Son
    reference/installation
    reference/status_helper
    reference/flash_messages
-   reference/twig_helpers
-
