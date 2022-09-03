@@ -44,7 +44,9 @@ final class DeprecatedTemplateNodeTest extends NodeTestCase
      * @param mixed $isPattern
      *
      * @expectedDeprecation The "" template is deprecated. Use "new.html.twig" instead.
+     *
      * @group legacy
+     *
      * @dataProvider getTests
      */
     public function testCompile($node, $source, $environment = null, $isPattern = false): void
