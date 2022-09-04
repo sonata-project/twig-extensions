@@ -13,34 +13,15 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Tests\Functional;
 
-use Sonata\Twig\Tests\App\AppKernel;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 final class FunctionalTest extends WebTestCase
 {
     public function testRenderFlashes(): void
     {
-        $kernel = new AppKernel();
-
-        $client = $this->createClientBC($kernel);
+        $client = static::createClient();
         $client->request('GET', '/');
 
         static::assertSame(200, $client->getResponse()->getStatusCode());
-    }
-
-    protected static function getKernelClass(): string
-    {
-        return AppKernel::class;
-    }
-
-    private function createClientBC(KernelInterface $kernel): KernelBrowser
-    {
-        if (class_exists(KernelBrowser::class)) {
-            return new KernelBrowser($kernel);
-        }
-
-        return static::createClient();
     }
 }
