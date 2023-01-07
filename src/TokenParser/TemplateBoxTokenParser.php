@@ -27,9 +27,6 @@ final class TemplateBoxTokenParser extends AbstractTokenParser
     {
     }
 
-    /**
-     * @psalm-suppress InternalMethod
-     */
     public function parse(Token $token): TemplateBoxNode
     {
         if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
