@@ -43,21 +43,21 @@ Configuration
             flashmessage:
                 success:
                     types:
-                        - { type: my_custom_bundle_success }
-                        - { type: my_other_bundle_success }
+                        - my_custom_bundle_success
+                        - my_other_bundle_success
 
                 warning:
                     types:
-                        - { type: my_custom_bundle_warning }
+                        - my_custom_bundle_warning
 
                 error:
                     css_class: danger # optionally, a CSS class can be defined
                     types:
-                        - { type: my_custom_bundle }
+                        - my_custom_bundle
 
                 custom_type: # You can add custom types too
                     types:
-                        - { type: custom_bundle_type }
+                        - custom_bundle_type
 
 You can specify multiple *flash messages types* you want to manage here.
 
