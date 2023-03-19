@@ -18,6 +18,9 @@ use Twig\Node\Expression\ConstantExpression;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor $this->parser is set by twig using setParser.
+ */
 final class TemplateBoxTokenParser extends AbstractTokenParser
 {
     /**
