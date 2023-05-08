@@ -49,6 +49,8 @@
         "symfony/twig-bundle": "^5.4 || ^6.2",
         "vimeo/psalm": "^5.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Sonata\\Twig\\": "src/",
