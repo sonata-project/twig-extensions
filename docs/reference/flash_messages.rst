@@ -33,31 +33,29 @@ Grouped flashmessage (expanded)
 Configuration
 -------------
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_twig.yaml
 
-        # config/packages/sonata_twig.yaml
+    sonata_twig:
+        flashmessage:
+            success:
+                types:
+                    - my_custom_bundle_success
+                    - my_other_bundle_success
 
-        sonata_twig:
-            flashmessage:
-                success:
-                    types:
-                        - my_custom_bundle_success
-                        - my_other_bundle_success
+            warning:
+                types:
+                    - my_custom_bundle_warning
 
-                warning:
-                    types:
-                        - my_custom_bundle_warning
+            error:
+                css_class: danger # optionally, a CSS class can be defined
+                types:
+                    - my_custom_bundle
 
-                error:
-                    css_class: danger # optionally, a CSS class can be defined
-                    types:
-                        - my_custom_bundle
-
-                custom_type: # You can add custom types too
-                    types:
-                        - custom_bundle_type
+            custom_type: # You can add custom types too
+                types:
+                    - custom_bundle_type
 
 You can specify multiple *flash messages types* you want to manage here.
 
@@ -72,13 +70,13 @@ To use this feature in your PHP classes/controllers::
 
 To use this feature in your templates, include the following template:
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {% include '@SonataTwig/FlashMessage/render.html.twig' %}
 
 You can also use your own template. Below, you can see an example:
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {# check each types #}
     {% for type in sonata_flashmessages_types() %}

@@ -30,27 +30,19 @@ Each service you want to define must implement the ``Sonata\Twig\Status\StatusCl
 
 Now that we have defined our service, we will add it using the ``sonata.status.renderer`` tag, just as follow:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
-
-        services:
-            sonata.order.status.renderer:
-                class:  Sonata\Component\Order\OrderStatusRenderer
-                tags:
-                    - { name: sonata.status.renderer }
-
-    .. code-block:: xml
-
-        <service id="sonata.order.status.renderer" class="Sonata\Component\Order\OrderStatusRenderer">
-            <tag name="sonata.status.renderer"/>
-        </service>
+    services:
+        sonata.order.status.renderer:
+            class:  Sonata\Component\Order\OrderStatusRenderer
+            tags:
+                - { name: sonata.status.renderer }
 
 Use the service
 ---------------
 
 You can now call your helper in your twig views using the following code:
 
-.. code-block:: twig
+.. code-block:: html+twig
 
     {{ my_object|sonata_status_class(status_name, 'default_value') }}
