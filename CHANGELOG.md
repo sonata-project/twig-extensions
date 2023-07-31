@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0](https://github.com/sonata-project/twig-extensions/compare/2.1.0...2.2.0) - 2023-07-31
+### Added
+- [[#387](https://github.com/sonata-project/twig-extensions/pull/387)] Add `SonataTwigBundle.it.xliff` translation file ([@gremo](https://github.com/gremo))
+
 ## [2.1.0](https://github.com/sonata-project/twig-extensions/compare/2.0.0...2.1.0) - 2023-04-25
 ### Removed
 - [[#369](https://github.com/sonata-project/twig-extensions/pull/369)] Drop support for Symfony 6.0 and 6.1. ([@jordisala1991](https://github.com/jordisala1991))
