@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.0](https://github.com/sonata-project/twig-extensions/compare/2.2.0...2.3.0) - 2023-08-02
+### Added
+- [[#389](https://github.com/sonata-project/twig-extensions/pull/389)] Add Ukrainian translations ([@gulaandrij](https://github.com/gulaandrij))
+
 ## [2.2.0](https://github.com/sonata-project/twig-extensions/compare/2.1.0...2.2.0) - 2023-07-31
 ### Added
 - [[#387](https://github.com/sonata-project/twig-extensions/pull/387)] Add `SonataTwigBundle.it.xliff` translation file ([@gremo](https://github.com/gremo))
