@@ -34,19 +34,6 @@ final class TemplateBoxNodeTest extends NodeTestCase
     }
 
     /**
-     * @param mixed $node
-     * @param mixed $source
-     * @param mixed $environment
-     * @param mixed $isPattern
-     *
-     * @dataProvider getTests
-     */
-    public function testCompile($node, $source, $environment = null, $isPattern = false): void
-    {
-        parent::testCompile($node, $source, $environment, $isPattern);
-    }
-
-    /**
      * @return iterable<array-key, array{Node, string, Environment|null, bool}>
      */
     public function getTests(): iterable
@@ -64,24 +51,21 @@ final class TemplateBoxNodeTest extends NodeTestCase
             1,
             'sonata_template_box'
         );
-
-        return [
-            [$nodeEn, <<<'EOF'
-                // line 1
-                echo "<div class='alert alert-default alert-info'>
-                    <strong>This is the default message</strong>
-                    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
-                </div>";
-                EOF, null, false,
-            ],
-            [$nodeFr, <<<'EOF'
-                // line 1
-                echo "<div class='alert alert-default alert-info'>
-                    <strong>Ceci est le message par défaut</strong>
-                    <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
-                </div>";
-                EOF, null, false,
-            ],
+        yield [$nodeEn, <<<'EOF'
+            // line 1
+            echo "<div class='alert alert-default alert-info'>
+                <strong>This is the default message</strong>
+                <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+            </div>";
+            EOF, null, false,
+        ];
+        yield [$nodeFr, <<<'EOF'
+            // line 1
+            echo "<div class='alert alert-default alert-info'>
+                <strong>Ceci est le message par défaut</strong>
+                <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+            </div>";
+            EOF, null, false,
         ];
     }
 }

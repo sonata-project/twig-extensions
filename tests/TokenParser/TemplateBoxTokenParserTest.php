@@ -25,7 +25,7 @@ use Twig\Source;
 final class TemplateBoxTokenParserTest extends TestCase
 {
     /**
-     * @dataProvider getTestsForRender
+     * @dataProvider provideCompileCases
      */
     public function testCompile(bool $enabled, string $source, TemplateBoxNode $expected): void
     {
@@ -46,39 +46,37 @@ final class TemplateBoxTokenParserTest extends TestCase
     /**
      * @return iterable<array-key, array{bool, string, TemplateBoxNode}>
      */
-    public function getTestsForRender(): iterable
+    public function provideCompileCases(): iterable
     {
-        return [
-            [
+        yield [
+            true,
+            '{% sonata_template_box %}',
+            new TemplateBoxNode(
+                new ConstantExpression('Template information', 1),
                 true,
-                '{% sonata_template_box %}',
-                new TemplateBoxNode(
-                    new ConstantExpression('Template information', 1),
-                    true,
-                    1,
-                    'sonata_template_box'
-                ),
-            ],
-            [
+                1,
+                'sonata_template_box'
+            ),
+        ];
+        yield [
+            true,
+            '{% sonata_template_box "This is the basket delivery address step page" %}',
+            new TemplateBoxNode(
+                new ConstantExpression('This is the basket delivery address step page', 1),
                 true,
-                '{% sonata_template_box "This is the basket delivery address step page" %}',
-                new TemplateBoxNode(
-                    new ConstantExpression('This is the basket delivery address step page', 1),
-                    true,
-                    1,
-                    'sonata_template_box'
-                ),
-            ],
-            [
+                1,
+                'sonata_template_box'
+            ),
+        ];
+        yield [
+            false,
+            '{% sonata_template_box "This is the basket delivery address step page" %}',
+            new TemplateBoxNode(
+                new ConstantExpression('This is the basket delivery address step page', 1),
                 false,
-                '{% sonata_template_box "This is the basket delivery address step page" %}',
-                new TemplateBoxNode(
-                    new ConstantExpression('This is the basket delivery address step page', 1),
-                    false,
-                    1,
-                    'sonata_template_box'
-                ),
-            ],
+                1,
+                'sonata_template_box'
+            ),
         ];
     }
 }
