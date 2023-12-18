@@ -39,9 +39,7 @@ final class Configuration implements ConfigurationInterface
     /**
      * Returns configuration for flash messages.
      *
-     * @psalm-suppress PossiblyNullReference, UndefinedInterfaceMethod
-     *
-     * @see https://github.com/psalm/psalm-plugin-symfony/issues/174
+     * @psalm-suppress UndefinedInterfaceMethod
      */
     private function addFlashMessageSection(ArrayNodeDefinition $node): void
     {
