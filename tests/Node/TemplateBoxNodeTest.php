@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Node;
 
 use Sonata\Twig\Node\TemplateBoxNode;
+use Twig\Attribute\YieldReady;
 use Twig\Environment;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Node\Node;
@@ -51,19 +52,22 @@ final class TemplateBoxNodeTest extends NodeTestCase
             1,
             'sonata_template_box'
         );
-        yield [$nodeEn, <<<'EOF'
+
+        $display = class_exists(YieldReady::class) ? 'yield' : 'echo';
+
+        yield [$nodeEn, <<<EOF
             // line 1
-            echo "<div class='alert alert-default alert-info'>
+            $display "<div class='alert alert-default alert-info'>
                 <strong>This is the default message</strong>
-                <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+                <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
             </div>";
             EOF, null, false,
         ];
-        yield [$nodeFr, <<<'EOF'
+        yield [$nodeFr, <<<EOF
             // line 1
-            echo "<div class='alert alert-default alert-info'>
+            $display "<div class='alert alert-default alert-info'>
                 <strong>Ceci est le message par défaut</strong>
-                <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
+                <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
             </div>";
             EOF, null, false,
         ];

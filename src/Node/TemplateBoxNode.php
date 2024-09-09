@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Node;
 
+use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Expression\AbstractExpression;
 use Twig\Node\Node;
 
+#[YieldReady]
 final class TemplateBoxNode extends Node
 {
     /**
@@ -29,7 +31,7 @@ final class TemplateBoxNode extends Node
         AbstractExpression $message,
         private bool $enabled,
         ?int $lineno = null,
-        ?string $tag = null
+        ?string $tag = null,
     ) {
         parent::__construct(['message' => $message], [], $lineno ?? 0, $tag);
     }
@@ -54,7 +56,8 @@ final class TemplateBoxNode extends Node
             </div>"
             CODE;
 
+        $display = class_exists(YieldReady::class) ? 'yield' : 'echo';
         $compiler
-            ->write("echo $message;");
+            ->write("$display $message;");
     }
 }

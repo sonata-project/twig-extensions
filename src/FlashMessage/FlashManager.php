@@ -29,7 +29,7 @@ final class FlashManager implements FlashManagerInterface
     public function __construct(
         private RequestStack $requestStack,
         private array $types,
-        private array $cssClasses
+        private array $cssClasses,
     ) {
     }
 
@@ -127,7 +127,7 @@ final class FlashManager implements FlashManagerInterface
 
         $session = $request->getSession();
         if (!$session instanceof Session) {
-            throw new \UnexpectedValueException(sprintf(
+            throw new \UnexpectedValueException(\sprintf(
                 'The flash manager only works with a "%s" session.',
                 Session::class
             ));
