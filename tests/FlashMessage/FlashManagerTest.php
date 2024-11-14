@@ -115,19 +115,19 @@ final class FlashManagerTest extends TestCase
         static::assertCount(2, $successMessages);
 
         foreach ($successMessages as $message) {
-            static::assertSame($message, 'hey, success dude!');
+            static::assertSame('hey, success dude!', $message);
         }
 
         static::assertCount(2, $warningMessages);
 
         foreach ($warningMessages as $message) {
-            static::assertSame($message, 'hey, warning dude!');
+            static::assertSame('hey, warning dude!', $message);
         }
 
         static::assertCount(2, $errorMessages);
 
         foreach ($errorMessages as $message) {
-            static::assertSame($message, 'hey, error dude!');
+            static::assertSame('hey, error dude!', $message);
         }
     }
 
@@ -149,7 +149,7 @@ final class FlashManagerTest extends TestCase
         static::assertCount(1, $nonRegisteredMessages);
 
         foreach ($nonRegisteredMessages as $message) {
-            static::assertSame($message, 'hey, success dude!');
+            static::assertSame('hey, success dude!', $message);
         }
     }
 
@@ -170,11 +170,11 @@ final class FlashManagerTest extends TestCase
         static::assertCount(1, $messagesWithoutDomain);
 
         foreach ($messages as $message) {
-            static::assertSame($message, 'my_bundle_success_message');
+            static::assertSame('my_bundle_success_message', $message);
         }
 
         foreach ($messagesWithoutDomain as $message) {
-            static::assertSame($message, 'my_bundle_success_message');
+            static::assertSame('my_bundle_success_message', $message);
         }
     }
 
