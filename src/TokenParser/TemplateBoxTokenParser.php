@@ -33,7 +33,12 @@ final class TemplateBoxTokenParser extends AbstractTokenParser
     public function parse(Token $token): TemplateBoxNode
     {
         if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
-            $message = $this->parser->getExpressionParser()->parseExpression();
+            if (method_exists($this->parser, 'parseExpression')) {
+                $message = $this->parser->parseExpression();
+            } else {
+                /** @psalm-suppress DeprecatedClass, DeprecatedMethod */
+                $message = $this->parser->getExpressionParser()->parseExpression();
+            }
         } else {
             $message = new ConstantExpression('Template information', $token->getLine());
         }
