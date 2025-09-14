@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Tests\Node;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Sonata\Twig\Node\TemplateBoxNode;
 use Twig\Attribute\YieldReady;
 use Twig\Environment;
@@ -35,9 +36,21 @@ final class TemplateBoxNodeTest extends NodeTestCase
     }
 
     /**
+     * @param mixed $node
+     * @param mixed $source
+     * @param mixed $environment
+     * @param mixed $isPattern
+     */
+    #[DataProvider('provideCompileCases')]
+    public function testCompile($node, $source, $environment = null, $isPattern = false): void
+    {
+        parent::testCompile($node, $source, $environment, $isPattern);
+    }
+
+    /**
      * @return iterable<array-key, array{Node, string, Environment|null, bool}>
      */
-    public static function getTests(): iterable
+    public static function provideCompileCases(): iterable
     {
         $nodeEn = new TemplateBoxNode(
             new ConstantExpression('This is the default message', 1),
