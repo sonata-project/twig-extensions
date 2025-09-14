@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Tests\TokenParser;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\Twig\Node\TemplateBoxNode;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
@@ -24,9 +25,7 @@ use Twig\Source;
 
 final class TemplateBoxTokenParserTest extends TestCase
 {
-    /**
-     * @dataProvider provideCompileCases
-     */
+    #[DataProvider('provideCompileCases')]
     public function testCompile(bool $enabled, string $source, TemplateBoxNode $expected): void
     {
         $env = new Environment(new ArrayLoader([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
@@ -46,7 +45,7 @@ final class TemplateBoxTokenParserTest extends TestCase
     /**
      * @return iterable<array-key, array{bool, string, TemplateBoxNode}>
      */
-    public function provideCompileCases(): iterable
+    public static function provideCompileCases(): iterable
     {
         yield [
             true,
