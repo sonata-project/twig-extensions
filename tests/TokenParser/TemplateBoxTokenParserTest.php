@@ -46,7 +46,7 @@ final class TemplateBoxTokenParserTest extends TestCase
     /**
      * @return iterable<array-key, array{bool, string, TemplateBoxNode}>
      */
-    public function provideCompileCases(): iterable
+    public static function provideCompileCases(): iterable
     {
         yield [
             true,

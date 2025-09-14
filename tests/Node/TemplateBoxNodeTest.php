@@ -37,7 +37,7 @@ final class TemplateBoxNodeTest extends NodeTestCase
     /**
      * @return iterable<array-key, array{Node, string, Environment|null, bool}>
      */
-    public function getTests(): iterable
+    public static function getTests(): iterable
     {
         $nodeEn = new TemplateBoxNode(
             new ConstantExpression('This is the default message', 1),
