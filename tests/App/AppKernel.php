@@ -73,7 +73,6 @@ final class AppKernel extends Kernel
 
         $containerBuilder->loadFromExtension('twig', [
             'strict_variables' => '%kernel.debug%',
-            'exception_controller' => null,
             'paths' => ['%kernel.project_dir%/templates'],
         ]);
     }
