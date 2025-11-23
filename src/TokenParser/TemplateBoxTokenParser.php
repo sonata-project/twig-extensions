@@ -18,9 +18,6 @@ use Twig\Node\Expression\ConstantExpression;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor $this->parser is set by twig using setParser.
- */
 final class TemplateBoxTokenParser extends AbstractTokenParser
 {
     /**
@@ -36,7 +33,6 @@ final class TemplateBoxTokenParser extends AbstractTokenParser
             if (method_exists($this->parser, 'parseExpression')) {
                 $message = $this->parser->parseExpression();
             } else {
-                /** @psalm-suppress DeprecatedClass, DeprecatedMethod */
                 $message = $this->parser->getExpressionParser()->parseExpression();
             }
         } else {
