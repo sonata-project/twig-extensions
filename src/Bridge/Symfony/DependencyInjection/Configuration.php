@@ -38,8 +38,6 @@ final class Configuration implements ConfigurationInterface
 
     /**
      * Returns configuration for flash messages.
-     *
-     * @psalm-suppress UndefinedInterfaceMethod
      */
     private function addFlashMessageSection(ArrayNodeDefinition $node): void
     {
