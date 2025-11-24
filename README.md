@@ -10,7 +10,6 @@ Sonata twig extensions
 
 [![Latest Stable Version](https://poser.pugx.org/sonata-project/twig-extensions/v/stable)](https://packagist.org/packages/sonata-project/twig-extensions)
 [![Latest Unstable Version](https://poser.pugx.org/sonata-project/twig-extensions/v/unstable)](https://packagist.org/packages/sonata-project/twig-extensions)
-[![Psalm Type Coverage][shepherd_stable_badge]][shepherd_stable_link]
 [![License](https://poser.pugx.org/sonata-project/twig-extensions/license)](https://packagist.org/packages/sonata-project/twig-extensions)
 
 [![Total Downloads](https://poser.pugx.org/sonata-project/twig-extensions/downloads)](https://packagist.org/packages/sonata-project/twig-extensions)
