@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Bridge\Symfony\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -25,29 +24,20 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 final class Configuration implements ConfigurationInterface
 {
+    /**
+     * @return TreeBuilder<'array'>
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('sonata_twig');
 
         $rootNode = $treeBuilder->getRootNode();
 
-        $this->addFlashMessageSection($rootNode);
-
-        return $treeBuilder;
-    }
-
-    /**
-     * Returns configuration for flash messages.
-     */
-    private function addFlashMessageSection(ArrayNodeDefinition $node): void
-    {
-        $validFormTypeValues = ['standard', 'horizontal'];
-
-        $node
+        $rootNode
             ->children()
                 ->enumNode('form_type')
                     ->defaultValue('standard')
-                    ->values($validFormTypeValues)
+                    ->values(['standard', 'horizontal'])
                     ->info('Style used in the forms, some of the widgets need to be wrapped in a special div element
 depending on this style.')
                 ->end()
@@ -63,5 +53,7 @@ depending on this style.')
                     ->end()
                 ->end()
             ->end();
+
+        return $treeBuilder;
     }
 }
