@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.7.0](https://github.com/sonata-project/twig-extensions/compare/2.6.0...2.7.0) - 2026-11-15
+### Removed
+- [[#447](https://github.com/sonata-project/twig-extensions/pull/447)] Support for Symfony 7.3 and 8.0 ([@dmaicher](https://github.com/dmaicher))
+
 ## [2.6.0](https://github.com/sonata-project/twig-extensions/compare/2.5.0...2.6.0) - 2025-11-23
 ### Added
 - [[#432](https://github.com/sonata-project/twig-extensions/pull/432)] Support for Symfony 8 ([@dmaicher](https://github.com/dmaicher))
